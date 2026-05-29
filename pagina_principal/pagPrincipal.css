@@ -1,0 +1,64 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.encabezados{
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color:rgb(49, 133, 206);
+}
+.menu{
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+.encabezados a{
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color:aliceblue;
+    font-size: 30px;
+    font-family: Arial;
+    margin: 0 10px 0 10px
+}
+
+.carrucel {
+    display: flex;
+    overflow: scroll;
+    flex-wrap: nowrap;
+}
+
+.instalaciones {
+    flex: 1 0 auto;
+    margin: 0 50px;
+    background-color: rgb(255, 0, 0);
+    width: 200px;
+    height: 50px;
+}
+
+/*de aca pa abajo lo responsivo*/
+@media screen and (max-width: 768px) {
+    .encabezados a {
+        display: none;
+    }
+    .menu{
+        display: block;
+    }
+    .encabezados.responsive {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .encabezados.responsive a {
+        display: block;
+        text-align: left;
+        width: 100%;
+        padding: 10px;
+    }
+}
