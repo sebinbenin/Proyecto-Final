@@ -3,6 +3,6 @@ function mostrarMenu(){
         if (x.className === "encabezados") {
             x.className += "responsive";
         }else{
-        x.className = "encabezados";
+            x.className = "encabezados";
     }
 }
