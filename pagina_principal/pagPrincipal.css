@@ -4,6 +4,8 @@ body {
     box-sizing: border-box;
     background-color:white;
 }
+p{font-family: Arial, Helvetica, sans-serif;}
+a{font-family: Arial, Helvetica, sans-serif;}
 .encabezados{
     overflow: hidden;
     display: flex;
@@ -79,27 +81,27 @@ main h2{
     flex-wrap: nowrap;
 }
 #quimica{
-    background-image: url(imagenes/quimica-Photoroom.png);
+    background-image: url(/Assets/imagenes/quimica-Photoroom.png);
     background-size: contain;
 }
 #fisica{
-    background-image: url(/imagenes/fisica-Photoroom.png);
+    background-image: url(/Assets/imagenes/fisica-Photoroom.png);
     background-size: contain;
 }
 #informatica{
-    background-image: url(imagenes/informatica1-Photoroom.png);
+    background-image: url(/Assets/imagenes/informatica1-Photoroom.png);
     background-size: contain;
 }
 #biblioteca{
-    background-image: url(/imagenes/biblioteca-Photoroom.png);
+    background-image: url(/Assets/imagenes/biblioteca-Photoroom.png);
     background-size: contain;
 }
 #conferencias{
-    background-image: url(imagenes/conferencias-Photoroom.png);
+    background-image: url(/Assets/imagenes/conferencias-Photoroom.png);
     background-size: contain;
 }
 #ciencias{
-    background-image: url(imagenes/ciencias-Photoroom.png);
+    background-image: url(/Assets/imagenes/ciencias-Photoroom.png);
     background-size: contain;
 }
 .instalaciones {
@@ -115,16 +117,47 @@ footer{
     background-color:rgb(49, 133, 206);
 }
 #ubicacion{
-    width: 300px;
+    margin-left: 30px;
+    padding-top: 30px;
+    color: white;
+    width: 250px;
     height: 50px;
-    padding-top:10px ;
     display: flex;
     font-size: 1em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
+    align-items: center;
 }
 #ubi{
+    height: 45px;
+    width: 45px;
+}
+#gmail{
+    margin-left: 30px;
+    display: flex;
+    padding-top: 30px;
+    width: 400px;
+    height: 50px;
+    align-items: center;
+}
+#gmail a{
+    text-decoration: none;
+    font-size: 1.25em;
+    font-family: Arial;
+    color: white;
+}
+#img-gmail{
     height: 50px;
     width: 50px;
+}
+.whatsapp{
+    padding-top: 20px;
+    color: white;
+    width: 250px;
+    height: 50px;
+    display: flex;
+    font-size: 1em;
+    font-family: Arial;
+    align-items: center;
 }
 /*de aca pa abajo lo responsivo*/
 @media screen and (max-width: 768px) {
