@@ -1,1 +1,126 @@
-
+.encabezados{
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color:rgb(49, 133, 206);
+}
+.menu{
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+.encabezados a{
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color:white;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 700;
+    margin:0 0 0 10px;
+}
+p{font-family: Arial, Helvetica, sans-serif;}
+a{font-family: Arial, Helvetica, sans-serif;}
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5em;
+}
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color:white;
+    height: 100%;
+    width: 100%;
+}
+footer{
+    display: flex;
+    margin: 100px 0 0 0;
+    height: auto;
+    width: 100%;
+    background-color:rgb(49, 133, 206);
+}
+#a{
+    height: 200px;
+    width: auto;
+    margin-left: 100px;
+    padding: 25px
+}
+.cont-footer{
+    margin-left: 30px;
+    padding-top: 25px;
+    color: white;
+    width: 250px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.cont-footer a{
+    text-decoration: none;
+    font-size: 1.25em;
+    font-family: Arial;
+    color: white;
+}
+#img-ubi{
+    height: 45px;
+    width: 45px;
+}
+#img-gmail{
+    height: 50px;
+    width: 50px;
+}
+#img-whatsapp{
+    height: 55px;
+    width: 55px;
+}
+#redes{
+    padding-top: 15px;
+    justify-content: center;
+    width: 250px;
+    height: 100px;
+    margin-left: 450px;
+}
+.cont-redes{
+    padding-top:30px;
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 1.25em;
+}
+.cont-redes a{
+    margin-left: 10px;
+    text-decoration: none;
+    font-family: Arial;
+    color: white;
+}
+#img-face{
+    height: 45px;
+    width: 45px;
+}
+#img-ig{
+    height: 40px;
+    width: 40px;
+}
+/*de aca pa abajo lo responsivo*/
+@media screen and (max-width: 768px) {
+    .encabezados a {
+        display: none;
+    }
+    .menu{
+        display: block;
+    }
+    .encabezados.responsive {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .encabezados.responsive a {
+        display: block;
+        text-align: left;
+        width: 100%;
+        padding: 5px;
+    }
+}
