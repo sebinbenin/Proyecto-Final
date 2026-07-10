@@ -1,0 +1,27 @@
+#arriba_izquierda {
+    margin-left: 25px;
+    height: 650px;
+    width: 700px;
+    background-color: aqua;
+}
+#informacion {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    gap: 10px;
+    height: 300px;
+    width: 650px;
+    background-color: #ee0505;
+}
+.info_informatica{
+    height: 100px;
+    width: 250px;
+}
+#sala {
+    height: 250px;
+    width: 650px;
+    border-radius: 20px;
+}
+#barra {
+    height: 40px;
+    width: 650px;
+}
