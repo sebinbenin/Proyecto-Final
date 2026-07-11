@@ -1,27 +1,111 @@
-#arriba_izquierda {
-    margin-left: 25px;
+main {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+#lado_izquierdo {
     height: 650px;
     width: 700px;
-    background-color: aqua;
+}
+#lado_izquierdo h2 {
+    margin:30px 0 0 60px;
+}
+#descripcion {
+    margin:10px 60px;
+    font-size: 20px;
 }
 #informacion {
+    margin-left:30px;
     display: grid;
-    grid-template-columns: repeat(2, 0.5fr);
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
     height: 300px;
-    width: 650px;
-    background-color: #ee0505;
+    width: auto;
 }
 .info_informatica{
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
     height: 100px;
-    width: 250px;
+    width: 300px;
+}
+.info_informatica p{
+    margin-left: 10px;
 }
 #sala {
-    height: 250px;
-    width: 650px;
+    margin-left: 40px;
+    height: 225px;
+    width: 600px;
     border-radius: 20px;
 }
 #barra {
+    margin: 20px 0 10px 5px;
     height: 40px;
-    width: 650px;
+    width: 700px;
+}
+#lado_derecho {
+    margin-right: 45px;
+    height: 700px;
+    width: 580px;
+}
+#info_sala {
+    margin-top: 30px;
+    border-radius: 30px;
+    height: 500px;
+    width: 580px;
+    background: linear-gradient(90deg, #5de0e6, #0078a6, #0b697d);
+}
+#info_sala h2 {
+    margin: 0;
+    padding-top:30px;
+    text-align: center;
+    color: white;
+}
+#info_sala p {
+    line-height: 1.4;
+    font-size: 1.2em;
+    height: auto;
+    width: 425px;
+    margin-left:75px;
+    text-align:center;
+    color: white;
+}
+#info_sala div {
+    margin:30px 0 45px 15px;
+    background-color: white;
+    width: 95%;
+    height: 2px;
+}
+#equipamiento {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    width: 100px;
+    height: 210px;
+    width: auto;
+}
+#equipamiento span{
+    font-weight: bold;
+    margin-left:55px;
+    font-family: Arial;
+    color: white;
+    height: 50px;
+    width: 200px;
+}
+#normas_uso{
+    background-color: #f5ebeb;
+    margin:20px 0;
+    height: 215px;
+    border-radius: 40px;
+}
+#normas_uso h2 {
+    font-size: 2em;
+    margin: 0;
+    padding-top:10px;
+    margin-left: 50px;
+}
+#normas_uso ul{
+    font-size: 1em;
+    font-family: Arial;
+    margin:12.5px;
 }
