@@ -1,15 +1,15 @@
-.info_informatica {
+.info_informatica{
     display: flex;
     align-items: flex-start;
     gap: 10px;
     margin-bottom: 12px;
 }
 
-.info_informatica img {
+.info_informatica img{
     width: 35px;
     height: auto;
 }
 
-.info_informatica p {
+.info_informatica p{
     margin: 0;
 }
