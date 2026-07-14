@@ -43,38 +43,75 @@ main h2{
     font-size: 2.5em;
     margin: 100px 0 15px 60px;
 }
-.carrucel {
+
+.carousel {
+    margin-left: 67px;
+    height: 200px;
+    width: 90%;
+    position: relative;
+}
+
+.carousel-track {
     display: flex;
-    overflow: scroll;
-    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 8px;
+    /* oculta la scrollbar (opcional) */
+    scrollbar-width: none;
 }
-#quimica{
-    background-image: url(/Assets/imagenes/quimica-Photoroom.png);
-    background-size: contain;
-}
-#fisica{
-    background-image: url(/Assets/imagenes/fisica-Photoroom.png);
-    background-size: contain;
-}
-#informatica{
-    background-image: url(/Assets/imagenes/informatica1-Photoroom.png);
-    background-size: contain;
-}
-#biblioteca{
-    background-image: url(/Assets/imagenes/biblioteca-Photoroom.png);
-    background-size: contain;
-}
-#conferencias{
-    background-image: url(/Assets/imagenes/conferencias-Photoroom.png);
-    background-size: contain;
-}
-#ciencias{
-    background-image: url(/Assets/imagenes/ciencias-Photoroom.png);
-    background-size: contain;
-}
-.instalaciones {
-    flex: 1 0 auto;
-    margin: 0 30px;
-    width: 250px;
+.carousel-track::-webkit-scrollbar { display: none; }
+
+.slide {
+    flex: 0 0 auto;
+    width: 25%;
     height: 250px;
+    scroll-snap-align: start;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.slide:active { cursor: grabbing; }
+
+.slide img {
+    width: 225px;
+    height: 225px;
+    object-fit: cover;
+    display: block;
+    pointer-events: none; /* evita el drag nativo de la imagen */
+}
+  /* Flechas de navegación */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.9);
+    border: 1px solid #8b7f7f;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 2;
+}
+.nav-prev {
+    display: flex;
+    justify-content: center;
+    font-size: 35px;
+    left: -50px;
+    height: 50px;
+    width: 50px;
+}
+.nav-next {
+    display: flex;
+    justify-content: center;
+    font-size: 35px;
+    right: -50px;
+    height: 50px;
+    width: 50px;
 }
