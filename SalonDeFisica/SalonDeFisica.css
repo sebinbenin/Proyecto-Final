@@ -1,15 +1,41 @@
-.info_informatica{
+.Espacioletras {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    gap: 12px;
+}
+
+.info_fisica{
     display: flex;
     align-items: flex-start;
     gap: 10px;
     margin-bottom: 12px;
 }
 
-.info_informatica img{
+.info_fisica img{
     width: 35px;
     height: auto;
 }
 
-.info_informatica p{
+.info_fisica p{
     margin: 0;
 }
+.que_se_hace_en_el_salon {
+    display: grid;
+    margin: 40px 40px;
+    grid-template-columns: repeat(2, 0.5fr);
+}
+.informacion_salon {
+ margin-top: 20px;
+    border-radius: 30px;
+    height: 350px;
+    width: 600px;
+    background: linear-gradient(90deg, #5de0e6, #0078a6, #0b697d);
+    }
+.normas_de_uso {
+    margin-top: 10px;
+    border-radius: 30px;
+    height: 280px;
+    width: 600px;
+    background: linear-gradient(90deg, #f5ebeb);
+    }
+
