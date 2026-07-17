@@ -5,11 +5,38 @@
     justify-content: space-between;
     display: flex;
 }
-#imagenInstitucion{
+.ubi-img{
+    border:0;
+    height: 350px;
+    width: 600px;
+}
+.cambio img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+}
+.carrusel-automatico{
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Ajusta el ancho a tu gusto */
+    height: 350px;    /* Ajusta la altura */
     margin: 20px 60px 0 0;
-    height: 300px;
-    width: 500px;
-    background-color: aqua;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.cambio{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out; /* Transición suave de desvanecimiento */
+    pointer-events: none; /* Evita interactuar con el slide oculto */
+}
+.cambio.slide-automatico{
+    opacity: 1;
+    pointer-events: auto; 
 }
 #informacion h2{
     font-size: 2em;
