@@ -1,8 +1,14 @@
+
 .Espacioletras {
     display: grid;
     grid-template-columns: repeat(2, 0.5fr);
-    gap: 12px;
+    gap: 10px;
+    margin: 40px 300px;
 }
+.Espacioletras {
+ position: relative;
+    left: -300px; 
+    }
 
 .info_fisica{
     display: flex;
@@ -29,13 +35,23 @@
     border-radius: 30px;
     height: 350px;
     width: 600px;
+    color: white;
     background: linear-gradient(90deg, #5de0e6, #0078a6, #0b697d);
     }
+.informacion_salon {
+ position: relative;
+    left: 848px; 
+    top: -702px; 
+    }
 .normas_de_uso {
-    margin-top: 10px;
+    margin-top: 300px;
     border-radius: 30px;
     height: 280px;
     width: 600px;
     background: linear-gradient(90deg, #f5ebeb);
     }
-
+.normas_de_uso {
+ position: relative;
+    left: 848px; 
+    top: -950px; 
+    }
