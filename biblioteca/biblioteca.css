@@ -1,0 +1,68 @@
+main {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+#lado-izquierdo {
+    width: 70%;
+    height: 100%;
+}
+#derecho{
+    width: 40%;
+    height: 100%;
+}
+#lado-izquierdo h1{
+    padding-left: 20px;
+    font-size: 30px;
+}
+#lado-izquierdo p{
+    padding-left: 20px;
+}
+#img-biblioteca {
+    width: 80%;
+    height: auto;
+    border-radius: 20px;
+    margin-left: 30px;
+}
+
+#info-izquierda {
+    margin-top: 20px;
+    margin-left: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+    
+}
+#derecho {
+    width: 60%;
+}
+#info-derecha {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 20px;
+    font-weight: bold;
+}
+#derecha-arriba {
+    height: 300px;
+    width: auto;
+    background: linear-gradient(90deg, #5de0e6, #0078a6, #0b697d);
+    border-radius: 30px;
+    color: white;
+}
+#descripcion-derecha {
+    padding-left: 20px;
+}
+#normas {
+    background-color: #f5ebeb;
+    height: 250px;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+
+}
+h2 {
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
