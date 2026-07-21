@@ -20,7 +20,7 @@ main {
     padding-left: 20px;
 }
 #img-biblioteca {
-    width: 80%;
+    width: 85%;
     height: auto;
     border-radius: 20px;
     margin-left: 30px;
@@ -31,11 +31,21 @@ main {
     margin-left: 10px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 90%;
-    
+    width: 90%;   
+}
+#info-izquierda span {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+
+}
+.imagenes-descripcion {
+    width: 100px;
+    height: 80px;
 }
 #derecho {
     width: 60%;
+    margin-right: 20px;
 }
 #info-derecha {
     display: grid;
@@ -43,12 +53,16 @@ main {
     padding-left: 20px;
     font-weight: bold;
 }
+#info-derecha span {
+    width: 80%;
+}
 #derecha-arriba {
-    height: 300px;
+    height: 350px;
     width: auto;
     background: linear-gradient(90deg, #5de0e6, #0078a6, #0b697d);
     border-radius: 30px;
     color: white;
+    margin-top: 30px;
 }
 #descripcion-derecha {
     padding-left: 20px;
@@ -58,8 +72,7 @@ main {
     height: 250px;
     border-radius: 20px;
     padding-left: 20px;
-    padding-top: 5px;
-
+    margin-top: 30px;
 }
 h2 {
     font-size: 20px;
