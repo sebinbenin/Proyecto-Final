@@ -2,19 +2,22 @@
 main {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     height: 100%;
     width: 100%;
 }
 #Lado_izquierdo {
     height: 100%;
-    width: 50%;
+    width: 48%;
     margin-left: 20px;
+    flex: 0 0 48%;
 }
 #Lado_derecho {
     margin-left: 20px;
     height: 100%;
-    width: 50%;
+    width: 48%;
     margin-top: 65px;
+    flex: 0 0 48%;
 }
 #inicio {
     margin-left: 60px;
@@ -107,4 +110,27 @@ background: linear-gradient(90deg, #f5ebeb);
 .normas{
     margin-left: 30px;
     margin-bottom: 20px;
+}
+.modelo3d {
+    width: 100%;
+    margin: 40px 20px 0 0;
+}
+
+.modelo3d h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0b697d;
+}
+
+.modelo3dcaracteristicas {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.modelo3dcaracteristicas iframe {
+    width: 100%;
+    min-height: 500px;
+    border: 0;
+    border-radius: 20px;
 }
