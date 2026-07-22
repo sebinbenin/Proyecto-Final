@@ -3,6 +3,7 @@ main {
     justify-content: space-between;
     height: 100%;
     width: 100%;
+    flex-wrap: wrap;
 }
 #lado_izquierdo {
     height: 650px;
@@ -108,4 +109,28 @@ main {
     font-size: 1em;
     font-family: Arial;
     margin:12.5px;
+}
+.modelo3d {
+    width: 80%;
+    margin: 80px 30px 0 0;
+    order: 8;
+}
+
+.modelo3d h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0b697d;
+}
+
+.modelo3dcaracteristicas {
+    width: 100%;
+    max-width: 1000px;
+    margin: 80px auto;
+}
+
+.modelo3dcaracteristicas iframe {
+    width: 100%;
+    min-height: 500px;
+    border: 0;
+    border-radius: 20px;
 }
