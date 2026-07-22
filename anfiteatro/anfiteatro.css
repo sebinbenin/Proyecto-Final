@@ -71,8 +71,8 @@ body {
 }
 
 .main-image {
-    width: 210px;
-    height: 7px;
+    width: 550px;
+    height: 200px;
     border: 2px solid #c7e3ef;
     border-radius: 14px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
