@@ -7,7 +7,7 @@ h1 {
     margin-bottom: 33px;
     padding-bottom: 8px;
     white-space: nowrap;
-    font-size: 2em;
+    font-size:2rem;
     border-bottom: 4px solid #45cbd1;
 }
 .parte-superior {
@@ -30,12 +30,12 @@ h1 {
 }
 .descripcion h2 {
     margin: 6px 0 4px;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 .descripcion p {
     max-width: 565px;
     margin: 0 0 20px;
-    font-size: 1em;
+    font-size: 1rem;
     line-height: 1.7;
 }
 
