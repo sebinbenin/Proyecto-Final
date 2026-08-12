@@ -12,6 +12,8 @@ main{
 
 .izquierda{
     width:58%;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 
 .derecha{
@@ -19,7 +21,8 @@ main{
 }
 
 .imagen{
-    width:100%;
+    width:90%;
+    height:300px;
     margin:20px 0;
 }
 
@@ -37,8 +40,8 @@ main{
 }
 
 .item img{
-    width:55px;
-    height:55px;
+    width:75px;
+    height:70px;
 }
 
 .informacion{
@@ -47,6 +50,10 @@ main{
     color:white;
     border-radius:30px;
     padding:30px;
+}
+.informacion h2{
+    font-size: 2em;
+    margin-bottom: 30px;
 }
 
 .datos{
@@ -58,7 +65,7 @@ main{
 
 .normas{
     background-color: #f5ebeb;
-    margin:0 20px;
+    margin:50px 20px;
     height: 215px;
     border-radius: 40px;
 }
