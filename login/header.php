@@ -12,20 +12,11 @@ $ruta_base = "http://localhost/Proyecto-Final/";
     <header>
         <nav>
             <!-- Ahora le pegamos $ruta_base a TODOS los enlaces -->
-            <a href="<?php echo $ruta_base; ?>index.php">Inicio</a> | 
+            <a href="<?php echo $ruta_base; ?>pagina_principal/PagPrincipal.html">Inicio</a>
             
             <?php if (isset($_SESSION['usuario_id'])): ?>
-                <span>👤 Rol: <?php echo $_SESSION['rol']; ?></span> | 
-                
-                <?php if ($_SESSION['rol'] == 'administrador'): ?>
-                    <a href="<?php echo $ruta_base; ?>admin/panel_admin.php">Panel Administrador</a> | 
-                <?php endif; ?>
-                
-                <a href="<?php echo $ruta_base; ?>logout.php">Cerrar Sesión</a>
-            
-            <?php else: ?>
-                <a href="<?php echo $ruta_base; ?>login.php">Iniciar Sesión</a> | 
-                <a href="<?php echo $ruta_base; ?>registro.php">Registrarse</a>
+                <span>👤 Rol: <?php echo $_SESSION['rol']; ?></span> 
+                <a href="<?php echo $ruta_base; ?>login/logout.php">Cerrar Sesión</a>
             <?php endif; ?>
         </nav>
     </header>

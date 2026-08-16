@@ -28,7 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['rol'] = $usuario['rol'];
             
             // Redirigir al inicio o a su panel
-            header("Location: panel_admin.php");
+            if ($usuario['rol'] === 'administrador') {
+                header("Location: ../Admin/panel_admin.php");
+            } elseif ($usuario['rol'] === 'profesor') {
+                header("Location: ../profesor/momentaneo.php");
+            } else {
+                header("Location: ../pagina_principal/PagPrincipal.html");
+            }
             exit();
         }
     } else {
@@ -51,6 +57,7 @@ include 'header.php';
         <input type="password" name="password" required><br><br>
 
         <button type="submit">Entrar</button>
+        <p>¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
     </form>
 </main>
 </body>

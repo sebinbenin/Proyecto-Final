@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db = 'UTEC'; // Cambia esto por el nombre de tu base de datos
+$db = 'utec'; // Cambia esto por el nombre de tu base de datos
 $user = 'root';
 $pass = '';
 

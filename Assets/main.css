@@ -42,17 +42,12 @@ body {
     width: 100%;
 }
 footer{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin: 100px 0 0 0;
     height: auto;
     width: 100%;
     background-color:rgb(49, 133, 206);
-}
-#a{
-    height: 200px;
-    width: auto;
-    margin-left: 100px;
-    padding: 25px
 }
 .cont-footer{
     margin-left: 30px;
@@ -80,13 +75,6 @@ footer{
 #img-whatsapp{
     height: 55px;
     width: 55px;
-}
-#redes{
-    padding-top: 15px;
-    justify-content: center;
-    width: 250px;
-    height: 100px;
-    margin-left: 450px;
 }
 .cont-redes{
     padding-top:30px;
