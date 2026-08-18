@@ -31,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($usuario['rol'] === 'administrador') {
                 header("Location: ../Admin/panel_admin.php");
             } elseif ($usuario['rol'] === 'profesor') {
-                header("Location: ../profesor/momentaneo.php");
+                header("Location: ../profesor/panel_profesor.php");
+            exit();
             } else {
                 header("Location: ../pagina_principal/PagPrincipal.html");
             }
