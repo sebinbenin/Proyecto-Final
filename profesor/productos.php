@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Solo puede entrar un profesor
+
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'profesor') {
     header("Location: ../login/login.php");
     exit();
@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'profesor') {
 require '../login/conexion.php';
 include '../login/header.php';
 
-// Traer todos los productos
+
 $sql = "SELECT * FROM productos";
 $stmt = $conexion->query($sql);
 $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);

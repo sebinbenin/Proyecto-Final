@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Solo profesores
+
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'profesor') {
     header("Location: ../login/login.php");
     exit();
@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'profesor') {
 
 require '../login/conexion.php';
 
-// Verificar que venga el ID del producto
+
 if (!isset($_GET['id'])) {
     header("Location: productos.php");
     exit();
@@ -18,34 +18,34 @@ if (!isset($_GET['id'])) {
 $id_producto = $_GET['id'];
 $id_usuario = $_SESSION['usuario_id'];
 
-// Buscar el producto
+
 $sql = "SELECT * FROM productos WHERE id = ?";
 $stmt = $conexion->prepare($sql);
 $stmt->execute([$id_producto]);
 
 $producto = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Si no existe
+
 if (!$producto) {
     die("Producto no encontrado.");
 }
 
-// Si no hay stock
+
 if ($producto['stock_disponible'] <= 0) {
     die("Este producto no tiene stock disponible.");
 }
 
-// Cuando el profesor confirma
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $cantidad = $_POST['cantidad'];
 
-    // Verificar cantidad
+    
     if ($cantidad <= 0 || $cantidad > $producto['stock_disponible']) {
         $mensaje = "Cantidad no válida.";
     } else {
 
-        // Guardar solicitud como pendiente
+        
         $sql = "INSERT INTO reservas
                 (producto_id, usuario_id, cantidad, fecha_reserva, estado)
                 VALUES (?, ?, ?, NOW(), 'pendiente')";

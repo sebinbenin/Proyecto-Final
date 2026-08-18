@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Solo administradores
+
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'administrador') {
     header("Location: ../login/login.php");
     exit();
@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'administrador') {
 
 require '../login/conexion.php';
 
-// Verificar datos
+
 if (!isset($_GET['id']) || !isset($_GET['accion'])) {
     header("Location: panel_admin.php");
     exit();
@@ -18,7 +18,7 @@ if (!isset($_GET['id']) || !isset($_GET['accion'])) {
 $id_reserva = $_GET['id'];
 $accion = $_GET['accion'];
 
-// Buscar reserva
+
 $sql = "SELECT reservas.*, productos.stock_disponible
         FROM reservas
         INNER JOIN productos
@@ -30,24 +30,24 @@ $stmt->execute([$id_reserva]);
 
 $reserva = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Verificar que exista
+
 if (!$reserva) {
     die("Reserva no encontrada.");
 }
 
-// Solo procesar pendientes
+
 if ($reserva['estado'] != 'pendiente') {
     die("Esta reserva ya fue procesada.");
 }
 
-// APROBAR
+
 if ($accion == 'aprobar') {
 
     if ($reserva['cantidad'] > $reserva['stock_disponible']) {
         die("No hay suficiente stock disponible.");
     }
 
-    // Cambiar estado
+    
     $sql = "UPDATE reservas
             SET estado = 'aprobada'
             WHERE id = ?";
@@ -55,7 +55,7 @@ if ($accion == 'aprobar') {
     $stmt = $conexion->prepare($sql);
     $stmt->execute([$id_reserva]);
 
-    // Restar stock
+    
     $sql = "UPDATE productos
             SET stock_disponible = stock_disponible - ?
             WHERE id = ?";
@@ -70,7 +70,7 @@ if ($accion == 'aprobar') {
     exit();
 }
 
-// RECHAZAR
+
 if ($accion == 'rechazar') {
 
     $sql = "UPDATE reservas
@@ -84,7 +84,7 @@ if ($accion == 'rechazar') {
     exit();
 }
 
-// Si la acción no es válida
+
 header("Location: panel_admin.php");
 exit();
 ?>

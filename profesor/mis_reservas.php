@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Solo profesores
+
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'profesor') {
     header("Location: ../login/login.php");
     exit();
@@ -11,7 +11,7 @@ require '../login/conexion.php';
 
 $id_usuario = $_SESSION['usuario_id'];
 
-// Traer solo las reservas del profesor que inició sesión
+
 $sql = "SELECT reservas.*, productos.nombre
         FROM reservas
         INNER JOIN productos
