@@ -116,22 +116,3 @@ footer{
     height: 40px;
     width: 40px;
 }
-/*de aca pa abajo lo responsivo*/
-@media screen and (max-width: 768px) {
-    .encabezados a {
-        display: none;
-    }
-    .menu{
-        display: block;
-    }
-    .encabezados.responsive {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .encabezados.responsive a {
-        display: block;
-        text-align: left;
-        width: 100%;
-        padding: 5px;
-    }
-}
