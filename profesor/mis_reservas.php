@@ -1,90 +1,141 @@
 <?php
 session_start();
 
-
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'profesor') {
+if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
     header("Location: ../login/login.php");
     exit();
 }
 
 require '../login/conexion.php';
+include '../login/header.php';
 
-$id_usuario = $_SESSION['usuario_id'];
-
-
-$sql = "SELECT reservas.*, productos.nombre
-        FROM reservas
-        INNER JOIN productos
-        ON reservas.producto_id = productos.id
-        WHERE reservas.usuario_id = ?
-        ORDER BY reservas.fecha_reserva DESC";
-
-$stmt = $conexion->prepare($sql);
-$stmt->execute([$id_usuario]);
-
+$sql = "SELECT r.id, r.cantidad, r.fecha_reserva, p.nombre AS nombre_producto
+        FROM reservas r
+        INNER JOIN productos p ON p.id = r.producto_id
+        WHERE r.estado = 'aprobada'
+        ORDER BY r.fecha_reserva DESC";
+$stmt = $conexion->query($sql);
 $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f9fb;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis reservas</title>
-</head>
+    .contenedor {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
 
-<body>
+    h2 {
+        margin-top: 0;
+        color: #123d5b;
+    }
 
-    <h1>Mis reservas</h1>
+    .link {
+        display: inline-block;
+        margin-bottom: 18px;
+        color: #0d4f78;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-    <a href="panel_profesor.php">Volver al panel</a>
+    .alerta {
+        padding: 10px 14px;
+        border-radius: 10px;
+        margin: 12px 0 18px;
+        font-weight: bold;
+    }
 
-    <hr>
+    .alerta-ok {
+        background: #eafaf0;
+        color: #1d7a3f;
+        border: 1px solid #9ad6ae;
+    }
 
-    <?php if (count($reservas) == 0) { ?>
+    .alerta-error {
+        background: #fff1f1;
+        color: #b32525;
+        border: 1px solid #f0b7b7;
+    }
 
-        <p>No tenés reservas todavía.</p>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border: 1px solid #dfeef5;
+        border-radius: 12px;
+        overflow: hidden;
+    }
 
-    <?php } else { ?>
+    th, td {
+        padding: 12px 14px;
+        border-bottom: 1px solid #edf5f9;
+        text-align: left;
+    }
 
-        <?php foreach ($reservas as $reserva) { ?>
+    th {
+        background: #edf8fb;
+        color: #123d5b;
+    }
 
-            <div>
+    .btn {
+        background: linear-gradient(90deg, #2ea3c7, #0d4f78);
+        color: #fff;
+        border: none;
+        border-radius: 18px;
+        padding: 8px 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
 
-                <h3><?php echo $reserva['nombre']; ?></h3>
+<main class="contenedor">
+    <h2>Reservas activas</h2>
+    <a class="link" href="productos.php">← Volver</a>
 
-                <p>
-                    Cantidad:
-                    <?php echo $reserva['cantidad']; ?>
-                </p>
+    <?php if (isset($_GET['res'])): ?>
+        <?php if ($_GET['res'] === 'devuelto'): ?>
+            <p class="alerta alerta-ok">✅ Producto marcado como devuelto. El stock fue actualizado.</p>
+        <?php elseif ($_GET['res'] === 'error'): ?>
+            <p class="alerta alerta-error">❌ Ocurrió un error al procesar la devolución.</p>
+        <?php endif; ?>
+    <?php endif; ?>
 
-                <p>
-                    Fecha de reserva:
-                    <?php echo $reserva['fecha_reserva']; ?>
-                </p>
-
-                <p>
-                    Estado:
-                    <?php echo $reserva['estado']; ?>
-                </p>
-
-                <?php if ($reserva['estado'] == 'aprobada') { ?>
-
-                    <a href="devolver.php?id=<?php echo $reserva['id']; ?>">
-                        Devolver producto
-                    </a>
-
-                <?php } ?>
-
-            </div>
-
-            <hr>
-
-        <?php } ?>
-
-    <?php } ?>
+    <?php if (count($reservas) > 0): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($reservas as $r): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($r['nombre_producto']); ?></td>
+                        <td><?php echo (int) $r['cantidad']; ?></td>
+                        <td><?php echo date('d/m/Y H:i', strtotime($r['fecha_reserva'])); ?></td>
+                        <td>
+                            <form method="POST" action="devolver.php" onsubmit="return confirm('¿Confirmás que el producto fue devuelto?');">
+                                <input type="hidden" name="reserva_id" value="<?php echo (int) $r['id']; ?>">
+                                <button type="submit" class="btn">Devolver</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>🎉 No tenés productos reservados en este momento.</p>
+    <?php endif; ?>
+</main>
 
 </body>
-
 </html>
