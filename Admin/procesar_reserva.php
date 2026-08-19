@@ -44,10 +44,10 @@ if ($reserva['estado'] != 'pendiente') {
 if ($accion == 'aprobar') {
 
     if ($reserva['cantidad'] > $reserva['stock_disponible']) {
-        die("No hay suficiente stock disponible.");
+        header("Location: panel_admin.php?res=sin_stock");
+        exit();
     }
 
-    
     $sql = "UPDATE reservas
             SET estado = 'aprobada'
             WHERE id = ?";
@@ -55,7 +55,6 @@ if ($accion == 'aprobar') {
     $stmt = $conexion->prepare($sql);
     $stmt->execute([$id_reserva]);
 
-    
     $sql = "UPDATE productos
             SET stock_disponible = stock_disponible - ?
             WHERE id = ?";
@@ -66,7 +65,7 @@ if ($accion == 'aprobar') {
         $reserva['producto_id']
     ]);
 
-    header("Location: panel_admin.php");
+    header("Location: panel_admin.php?res=aprobado");
     exit();
 }
 
@@ -80,7 +79,7 @@ if ($accion == 'rechazar') {
     $stmt = $conexion->prepare($sql);
     $stmt->execute([$id_reserva]);
 
-    header("Location: panel_admin.php");
+    header("Location: panel_admin.php?res=rechazado");
     exit();
 }
 
