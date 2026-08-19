@@ -133,7 +133,7 @@ $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     <?php else: ?>
-        <p>🎉 No tenés productos reservados en este momento.</p>
+        <p>No tenés productos reservados en este momento.</p>
     <?php endif; ?>
 </main>
 
