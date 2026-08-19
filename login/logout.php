@@ -14,7 +14,7 @@ session_destroy();
     <section>
         <h1>Sesión Cerrada</h1>
         <p>Has cerrado tu sesión correctamente.</p>
-        <button onclick="window.location.href='../pagina_principal/PagPrincipal.html'">Volver a la página de inicio</button>
+        <button onclick="window.location.href='../login/login.php'">Volver a iniciar sesión</button>
     </section>
 </body>
 </html>

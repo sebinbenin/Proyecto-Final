@@ -29,26 +29,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Incluimos el diseño después de la lógica
 include 'header.php';
 ?>
+<!DOCTYPE html>
+<html lang="en">
+    <link rel= "stylesheet" href="login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h2>Crear cuenta</h2>
+        <p><b><?php echo $mensaje; ?></b></p>
 
-<main>
-    <h2>Crear cuenta</h2>
-    <p><b><?php echo $mensaje; ?></b></p>
+        <form action="registro.php" method="POST">
+            <label>Correo:</label><br>
+            <input type="email" name="correo" required><br><br>
 
-    <form action="registro.php" method="POST">
-        <label>Correo:</label><br>
-        <input type="email" name="correo" required><br><br>
+            <label>Contraseña:</label><br>
+            <input type="password" name="password" required><br><br>
 
-        <label>Contraseña:</label><br>
-        <input type="password" name="password" required><br><br>
+            <label>Rol:</label><br>
+            <select name="rol" required>
+                <option value="alumno">Alumno</option>
+                <option value="profesor">Profesor</option>
+            </select><br><br>
 
-        <label>Rol:</label><br>
-        <select name="rol" required>
-            <option value="alumno">Alumno</option>
-            <option value="profesor">Profesor</option>
-        </select><br><br>
-
-        <button type="submit">Registrarse</button>
-    </form>
-</main>
+            <button type="submit">Registrarse</button>
+        </form>
+   </main>
 </body>
 </html>
