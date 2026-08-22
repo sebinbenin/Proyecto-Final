@@ -56,19 +56,24 @@ include 'header.php';
 </head>
 <body>
     <main>
-        <h2>Iniciar Sesión</h2>
-        <p style="color: red;"><b><?php echo $mensaje; ?></b></p>
-
-        <form action="login.php" method="POST">
-            <label>Correo:</label><br>
-            <input type="email" name="correo" required><br><br>
-
-            <label>Contraseña:</label><br>
-            <input type="password" name="password" required><br><br>
-
-            <button type="submit">Entrar</button>
-            <p>¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
-        </form>
+        <div class="left-section">
+            <section class="login-section">
+                <h2>Bienvenido</h2>
+                <p class="form-text">Por favor, inicia sesión para continuar</p>
+                <p style="color: red;"><b><?php echo $mensaje; ?></b></p>
+                    <form action="login.php" method="POST">
+                        
+                        <input type="email" placeholder="Correo electrónico" name="correo" required><br><br>
+                        
+                        <input type="password" placeholder="Contraseña" name="password" required><br><br>
+                        <button type="submit">Entrar</button>
+                        <p>¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
+                    </form>
+            </section>
+        </div>
+        <section class="right-section">
+            
+        </section>
     </main>
     <script src="main.js"></script>
 </body>

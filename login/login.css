@@ -1,10 +1,118 @@
 main{
-font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    background-color: #ffffff;
+}
+.left-section{
+    width: 25em;
+    height: 100vh;
+    background-color: #f7f7f7;
+    border-radius: 0px 20px 20px 0px;
+    max-width: 500px;
+}
+.login-section{
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 100%; 
+    max-width: 380px;
+
+}
+.right-section{
+    width: 45em;
+    height: 30em;
+    margin-top: 5em;
+    margin-right: 2em;
+    background-image: url('../Assets/imagenes/logoutec.png');
+    background-size: contain;
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    
+}
+h2{
+    padding-left: 12px;
+    padding-top: 10px;
+    color: #374151;
 }
 form{
-    width: 400px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #f2f2f2;
+    width: 70%;
+    padding: 20px;
     border-radius: 10px;
+    justify-content: center;
+    max-width: 300px;
+}
+input {
+  width: 100%;
+  max-width: 200px;
+  padding: 12px 15px; /* Da espacio para que el texto respire */
+  font-size: 14px; /* 16px evita que los iPhones hagan zoom automático */
+  font-family: sans-serif;
+  color: #333;
+  background-color: transparent; /* Fondo transparente para que se vea el color del formulario */
+  border-radius: 8px; /* Redondea las esquinas */
+  outline: none; /* Elimina el recuadro negro por defecto del navegador */
+  transition: all 0.3s ease; /* Hace que el cambio de color sea fluido */
+  border: 1px solid #888888;
+}
+
+/* Estado cuando el usuario hace clic en el input */
+input:focus {
+  border-color: #3b82f6; /* Borde azul */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Resplandor azul suave */
+}
+/* Selecciona el placeholder de todos los inputs */
+input::placeholder {
+  color: #767676; /* Cambia el color del texto */
+  opacity: 1; /* Necesario en algunos navegadores para que el color se vea sólido */
+}
+.form-text{
+    color: #686868;
+    font-size: 14px;
+    margin-bottom: 10px;
+    justify-content: center;
+    padding-left: 2em;
+    padding-right: 4em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    max-width: 280px;
+}
+button {
+    width:100%;
+    max-width: 100px;
+    margin-left:20px;
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size:14px;
+    cursor: pointer;
+    outline: none;
+}
+button:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+
+}
+select {
+  width: 100%;
+  max-width:100px;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
 }

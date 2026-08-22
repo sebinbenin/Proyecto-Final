@@ -15,9 +15,9 @@ $ruta_base = "http://localhost/Proyecto-Final/";
             <a href="<?php echo $ruta_base; ?>pagina_principal/PagPrincipal.html">Inicio</a>
             
             <?php if (isset($_SESSION['usuario_id'])): ?>
-                <span>👤 Rol: <?php echo $_SESSION['rol']; ?></span> 
+                <span> Rol: <?php echo $_SESSION['rol']; ?></span> 
                 <a href="<?php echo $ruta_base; ?>login/logout.php">Cerrar Sesión</a>
             <?php endif; ?>
         </nav>
     </header>
-    <hr>
+<hr>

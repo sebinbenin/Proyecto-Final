@@ -35,27 +35,36 @@ include 'header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../Assets/main.css">
 </head>
 <body>
     <main>
-        <h2>Crear cuenta</h2>
-        <p><b><?php echo $mensaje; ?></b></p>
+        
+        <div class="left-section">
+            <p><b><?php echo $mensaje; ?></b></p>
+            <section class="login-section">
+                <h2>Bienvenido</h2>
+                <p class="form-text">Por favor, completa el formulario para registrarte. Si eres profesor, tu cuenta será revisada por un administrador antes de poder iniciar sesión.</p>
+                <form action="registro.php" method="POST">
+                    
+                    <input type="email" placeholder="Correo electrónico" name="correo" required><br><br>
 
-        <form action="registro.php" method="POST">
-            <label>Correo:</label><br>
-            <input type="email" name="correo" required><br><br>
-
-            <label>Contraseña:</label><br>
-            <input type="password" name="password" required><br><br>
-
-            <label>Rol:</label><br>
-            <select name="rol" required>
-                <option value="alumno">Alumno</option>
-                <option value="profesor">Profesor</option>
-            </select><br><br>
-
-            <button type="submit">Registrarse</button>
-        </form>
-   </main>
+                    <input type="password" placeholder="Contraseña" name="password" required><br><br>
+            
+                    <label>Rol:</label><br>
+                    <select placeholder="Rol" name="rol" required>
+                        <option value="alumno">Alumno</option>
+                        <option value="profesor">Profesor</option>
+                    </select>
+            
+                    <button type="submit">Registrarse</button>
+                </form>
+            </section>
+        </div>
+        <section class="right-section">
+            
+        </section>
+    </main>
+    <script src="../Assets/main.js"></script>
 </body>
 </html>
