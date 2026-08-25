@@ -1,0 +1,221 @@
+#panel-izquierdo{
+    background-color: #f2f2f2;
+    height: 100vh;
+    width: 23%;
+}
+
+#panel-izquierdo h2{
+    margin-left: 4vh;
+    font-size: 2em;
+}
+.opciones{
+    color:#767676;
+    font-size: 1.1em;
+    display:grid;
+    height: 45vh;
+    margin-top: 5vh;
+}
+
+a, a:visited {
+    color: #767676;
+}
+
+.opciones span{
+    margin-left: 1px;
+    padding: 10px;
+    display: flex;
+    padding-left: 9vh;
+    align-items:center;
+}
+.opciones span a:hover{
+    color:#0059ff
+}
+
+.opciones span:hover{
+    color: #0059ff;
+    border-left: 5px solid #0059ff;
+    background-color:#0059ff0a;
+}
+
+#cerrar{
+    margin-top: 22vh;
+    padding: 10px;
+    display: flex;
+    padding-left: 10vh;
+    align-items:flex-end;
+}
+
+#cerrar a:hover{
+    color: #dc3545;
+}
+#cerrar:hover{
+    color: #dc3545;
+    background-color: #dc354621;
+}
+
+.cerrar-sesion{
+    font-size: 1.3em;
+    text-decoration: none;
+    color:#767676;
+}
+
+svg {
+    margin-right:1em;
+    width: 30px;
+    height: 30px;
+}
+
+#panel-derecho{
+    margin-left: 3.5%;
+    flex: 1; /* Hace que ocupe todo el espacio sobrante a la derecha */
+    overflow-y: auto; /* Crea la barra de desplazamiento vertical SOLO aquí */
+}
+
+main{
+    display: flex;
+    justify-content: space-between;
+    height: 100vh; /* Ocupa toda la altura de la ventana del navegador */
+    overflow: hidden; /* Evita que se genere un scroll en toda la página entera */
+}
+
+.filtros {
+    border-radius: 7px;
+    width: 35%;
+    background-color: #d9dee5;
+    margin-bottom:2em;
+    display: flex;
+    align-items: center;
+}
+
+.filtro {
+    background-color: white;
+    border: 1px solid #d9dee5;
+    padding: 10px 25px;
+    font-size: 1.2em;
+    color: #5f6368;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filtro:hover {
+    background-color: #f5f7fa;
+}
+
+.filtro.active {
+    border-radius: 7px;
+    background-color: white; /* Quitamos el fondo azul y lo dejamos blanco */
+    border-color: #b9d3f5;   /* Mantiene el borde celeste (puedes borrar esta línea si no lo quieres) */
+    color: #0059ff;          /* Mantiene las letras azules */
+}
+
+#btn-iz{
+    border-bottom-left-radius:7px;
+    border-top-left-radius:7px;
+}
+
+#btn-der{
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.oculto {
+    display: none;
+}
+
+#solicitudes {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+}
+
+.solicitud {
+    margin-bottom: 2em;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.2s;
+}
+
+.solicitud:hover {
+    border-color: #cbd5e1;
+}
+
+.correo {
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    color: #1f2937;
+}
+
+.acciones {
+    height: 5em;
+}
+
+.acciones a {
+    display:grid;
+    place-items: center;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-aprobar {
+    margin-bottom: 20px;
+    background: #e8f7ee;
+    color: #198754;
+}
+
+.btn-rechazar {
+    background: #fdeaea;
+    color: #dc3545;
+}
+
+#reservas {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+}
+
+.reserva {
+    margin-bottom: 2em;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.2s;
+}
+
+.reserva:hover {
+    border-color: #cbd5e1;
+}
+
+.info-reserva {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.profesor {
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.producto,.cantidad,.fecha {
+    font-family: Arial, sans-serif;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.btn-aprobar,.btn-rechazar {
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+}
