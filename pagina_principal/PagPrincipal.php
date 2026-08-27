@@ -1,3 +1,12 @@
+<?php
+require '../login/conexion.php';
+session_start();
+if (isset($_SESSION['rol'])) {
+    $rol = $_SESSION['rol'];
+} else {
+    $rol = null;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +23,11 @@
             <section id="informacion">
                 <h2>Utec Tacuarembó</h2>
                 <p>Centro educativo ubicado en la ciudad de Tacuarembó, especializado en carreras tercearias y bachilleratos tecnicos de UTU. Nuestra vision es preparar a los estuidantes profecionalmente para el mercado laboral <br><br>Se requiere tener aprobado ciclo basico para ingresar a los bachilleratos.<br> Y para cursar niveles tercerarios es necesario tener secundaria completa.</p>
-                <button>RESERVAS</button>
+                <?php if ($rol == 'administrador'): ?>
+                <button onclick="window.location.href='../Admin/panel_admin.php'">Volver al panel</button>
+                <?php elseif ($rol == 'profesor'): ?>
+                <button onclick="window.location.href='../profesor/panel_profesor.php'">Volver al panel</button>
+            <?php endif; ?>
             </section>
             <section class="carrusel-automatico">
                 <span class="cambio slide-automatico">
