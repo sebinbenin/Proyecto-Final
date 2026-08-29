@@ -11,12 +11,164 @@ include '../login/header.php';
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../profesor/panel_profesor.css">
+<link rel="stylesheet" href="../Assets/main.css">
 <title>Panel del Profesor</title>
 </head>
 <body>
-<h1>Panel del Profesor</h1>
+<h1><p>Panel del Profesor</p></h1>
 <p>Bienvenido al sistema de préstamos.</p>
-<a href="productos.php">Ver productos</a>    <br><br>
+<a href="productos.php">Ver productos</a>    
 <a href="mis_reservas.php">Mis reservas</a>
+<body>
+
+    <div class="panel">
+
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                AulaPanel
+            </div>
+
+            <nav class="menu">
+
+                <a href="panel_profesor.php" class="activo">
+                    🏠 Inicio
+                </a>
+
+                <a href="mis_reservas.php">
+                    📅 Mis reservas
+                </a>
+
+                <a href="reservar.php">
+                    ➕ Reservar salón
+                </a>
+
+                <a href="salones.php">
+                    🏫 Salones
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- CONTENIDO -->
+        <main class="contenido">
+
+            <header class="encabezado">
+
+                <div>
+                    <h1>Panel del Profesor</h1>
+                    <p>Bienvenido al sistema de reservas.</p>
+                </div>
+
+                <div class="usuario">
+                    👤 Profesor
+                </div>
+
+            </header>
+
+
+            <!-- TARJETAS -->
+            <section class="tarjetas">
+
+                <div class="tarjeta">
+
+                    <div class="icono">📅</div>
+
+                    <h2>Mis reservas</h2>
+
+                    <p>
+                        Consultá tus reservas realizadas.
+                    </p>
+
+                    <a href="mis_reservas.php" class="boton">
+                        Ver reservas
+                    </a>
+
+                </div>
+
+
+                <div class="tarjeta">
+
+                    <div class="icono">➕</div>
+
+                    <h2>Reservar salón</h2>
+
+                    <p>
+                        Realizá una nueva reserva.
+                    </p>
+
+                    <a href="reservar.php" class="boton">
+                        Nueva reserva
+                    </a>
+
+                </div>
+
+
+                <div class="tarjeta">
+
+                    <div class="icono">🏫</div>
+
+                    <h2>Salones</h2>
+
+                    <p>
+                        Consultá los salones disponibles.
+                    </p>
+
+                    <a href="salones.php" class="boton secundario">
+                        Ver salones
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- PRÓXIMAS RESERVAS -->
+            <section class="reservas">
+
+                <div class="titulo-reservas">
+                    <h2>Próximas reservas</h2>
+
+                    <a href="mis_reservas.php">
+                        Ver todas
+                    </a>
+                </div>
+
+
+                <div class="reserva">
+
+                    <div>
+                        <h3>Salón 201</h3>
+                        <p>📅 Lunes · ⏰ 10:00 - 12:00</p>
+                    </div>
+
+                    <span>Confirmada</span>
+
+                </div>
+
+
+                <div class="reserva">
+
+                    <div>
+                        <h3>Laboratorio de Informática</h3>
+                        <p>📅 Miércoles · ⏰ 14:00 - 16:00</p>
+                    </div>
+
+                    <span>Confirmada</span>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
 </body>
 </html>
