@@ -270,4 +270,26 @@ body {
         align-items: flex-start;
         gap: 12px;
     }
+
+}
+#cerrar{
+    margin-top: 22vh;
+    padding: 10px;
+    display: flex;
+    padding-left: 10vh;
+    align-items:center;
+}
+
+#cerrar a:hover{
+    color: #dc3545;
+}
+#cerrar:hover{
+    color: #dc3545;
+    background-color: #dc354621;
+}
+
+.cerrar-sesion{
+    font-size: 1.3em;
+    text-decoration: none;
+    color:#767676;
 }
