@@ -45,7 +45,7 @@ if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
 
     $nombreImagen = uniqid('producto_') . '.' . $extension;
 
-    $carpeta = '../uploads/productos/';
+    $carpeta = '../Assets/imagenes/productos/';
 
     if (!is_dir($carpeta)) {
         mkdir($carpeta, 0777, true);
