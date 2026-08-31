@@ -1,22 +1,96 @@
-function cambiarPestana(seccionId, botonSeleccionado) {
-    const contenidos = document.querySelectorAll('.contenido');
-    
-    // 1. Mostrar u ocultar los contenidos
-    contenidos.forEach(contenido => {
-        // Si el botón presionado es 'todas' O si el ID del contenido coincide con el botón
-        if (seccionId === 'todas' || contenido.id === seccionId) {
-            contenido.style.display = 'block'; // Mostrar
-        } else {
-            contenido.style.display = 'none';  // Ocultar
-        }
+function cambiarPestana(pestana, boton) {
+
+    const solicitudes = document.getElementById("solicitudes");
+    const reservas = document.getElementById("reservas");
+
+    const botones = document.querySelectorAll(".filtro");
+
+    // Quitar clase activa
+    botones.forEach(function(boton) {
+        boton.classList.remove("activo");
     });
 
-    // 2. Gestionar los colores de los botones (clase "active")
-    const botones = document.querySelectorAll('.filtro');
-    botones.forEach(boton => {
-        boton.classList.remove('active');
-    });
-    
-    // 3. Iluminar el botón presionado
-    botonSeleccionado.classList.add('active');
+    // Activar botón seleccionado
+    if (boton) {
+        boton.classList.add("activo");
+    }
+
+
+    // TODAS
+
+    if (pestana === "todas") {
+
+        solicitudes.classList.remove("oculto");
+        reservas.classList.remove("oculto");
+
+    }
+
+
+    // SOLICITUDES
+
+    else if (pestana === "solicitudes") {
+
+        solicitudes.classList.remove("oculto");
+        reservas.classList.add("oculto");
+
+    }
+
+
+    // RESERVAS
+
+    else if (pestana === "reservas") {
+
+        solicitudes.classList.add("oculto");
+        reservas.classList.remove("oculto");
+
+    }
+
+}
+
+
+
+// ==========================================
+// MOSTRAR PRODUCTOS
+// ==========================================
+
+function mostrarProductos(event) {
+
+    event.preventDefault();
+
+
+    const vistaSolicitudes =
+        document.getElementById("vista-solicitudes");
+
+    const vistaProductos =
+        document.getElementById("vista-productos");
+
+
+    vistaSolicitudes.classList.add("oculto");
+
+    vistaProductos.classList.remove("oculto");
+
+}
+
+
+
+// ==========================================
+// VOLVER A SOLICITUDES
+// ==========================================
+
+function mostrarSolicitudes(event) {
+
+    event.preventDefault();
+
+
+    const vistaSolicitudes =
+        document.getElementById("vista-solicitudes");
+
+    const vistaProductos =
+        document.getElementById("vista-productos");
+
+
+    vistaProductos.classList.add("oculto");
+
+    vistaSolicitudes.classList.remove("oculto");
+
 }

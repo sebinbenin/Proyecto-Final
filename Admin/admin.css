@@ -223,3 +223,180 @@ main{
     border-radius: 6px;
     text-decoration: none;
 }
+
+/* =====================================
+   OCULTAR VISTAS
+===================================== */
+
+.oculto {
+    display: none !important;
+}
+
+
+/* =====================================
+   FORMULARIO PRODUCTO
+===================================== */
+
+.form-producto {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+
+.formulario-contenido {
+    display: flex;
+    gap: 40px;
+}
+
+
+.datos-producto {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+.datos-producto label,
+.imagen-producto label {
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+
+.datos-producto input,
+.datos-producto textarea {
+    padding: 10px;
+    margin-bottom: 18px;
+
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+
+.datos-producto textarea {
+    resize: vertical;
+
+    min-height: 80px;
+}
+
+
+.imagen-producto {
+    width: 250px;
+}
+
+
+.imagen-producto input {
+    width: 100%;
+}
+
+
+.btn-subir-producto {
+    margin-top: 15px;
+
+    padding: 11px 22px;
+
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+
+
+/* =====================================
+   PRODUCTOS EXISTENTES
+===================================== */
+
+.lista-productos {
+    margin-top: 30px;
+}
+
+
+.producto-stock {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: white;
+
+    padding: 15px 20px;
+
+    border-radius: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+.producto-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: 35%;
+}
+
+
+.producto-info img {
+    width: 55px;
+    height: 55px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+
+.producto-info h3 {
+    margin: 0;
+}
+
+
+.producto-info span {
+    font-size: 14px;
+
+    color: #777;
+}
+
+
+.stock-info {
+    display: flex;
+
+    gap: 20px;
+}
+
+
+.form-stock {
+    display: flex;
+
+    gap: 6px;
+}
+
+
+.form-stock input {
+    width: 90px;
+
+    padding: 8px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+}
+
+
+.form-stock button {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
