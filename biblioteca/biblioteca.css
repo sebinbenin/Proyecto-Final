@@ -1,16 +1,19 @@
 main {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     height: 100%;
     width: 100%;
 }
 #lado-izquierdo {
-    width: 70%;
+    width: 55%;
     height: 100%;
 }
 #derecho{
     width: 40%;
     height: 100%;
+    margin-left: 700px;
+    margin-top: -670px;
 }
 #lado-izquierdo h1{
     padding-left: 20px;
@@ -77,5 +80,28 @@ main {
 h2 {
     font-size: 20px;
     padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 10px;
+}
+.modelo3d {
+    width: 100%;
+    margin: 40px 20px 0 0;
+}
+
+.modelo3d h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0b697d;
+}
+
+.modelo3dcaracteristicas {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.modelo3dcaracteristicas iframe {
+    width: 100%;
+    min-height: 500px;
+    border: 0;
+    border-radius: 20px;
 }
