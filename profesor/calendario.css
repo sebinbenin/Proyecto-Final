@@ -1,0 +1,238 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+background: #f4f6f8;
+min-height: 100vh;
+padding: 40px 20px;
+color: #222;
+}
+
+.contenedor {
+width: 100%;
+max-width: 1000px;
+margin: 0 auto;
+}
+
+h1 {
+text-align: center;
+margin-bottom: 30px;
+font-size: 32px;
+}
+
+.calendario {
+background: white;
+border-radius: 15px;
+padding: 25px;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cabecera-calendario {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 25px;
+}
+
+.cabecera-calendario h2 {
+font-size: 25px;
+}
+
+.cabecera-calendario a {
+text-decoration: none;
+background: #1e73be;
+color: white;
+width: 45px;
+height: 45px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 8px;
+font-size: 25px;
+}
+
+.cabecera-calendario a:hover {
+background: #155a96;
+}
+
+.dias-semana {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 8px;
+margin-bottom: 8px;
+}
+
+.dias-semana div {
+text-align: center;
+font-weight: bold;
+padding: 12px 5px;
+background: #e9eef3;
+border-radius: 6px;
+}
+
+.dias {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 8px;
+}
+
+.dias > div {
+min-height: 80px;
+}
+
+.dia {
+min-height: 80px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration: none;
+color: #222;
+background: #f8f9fa;
+border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 18px;
+font-weight: bold;
+}
+
+.dia:hover {
+background: #1e73be;
+color: white;
+}
+
+.volver {
+display: inline-block;
+margin-bottom: 20px;
+text-decoration: none;
+color: #1e73be;
+font-weight: bold;
+}
+
+.boton-reservar {
+display: inline-block;
+background: #1e73be;
+color: white;
+text-decoration: none;
+padding: 12px 20px;
+border-radius: 8px;
+margin-bottom: 25px;
+font-weight: bold;
+}
+
+.boton-reservar:hover {
+background: #155a96;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+background: white;
+border-radius: 10px;
+overflow: hidden;
+}
+
+th {
+background: #1e73be;
+color: white;
+padding: 15px;
+text-align: left;
+}
+
+td {
+padding: 14px 15px;
+border-bottom: 1px solid #ddd;
+}
+
+tr:hover td {
+background: #f5f8fb;
+}
+
+.formulario {
+max-width: 600px;
+background: white;
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.formulario form {
+display: flex;
+flex-direction: column;
+}
+
+.formulario label {
+margin-bottom: 7px;
+font-weight: bold;
+}
+
+.formulario input,
+.formulario select {
+padding: 12px;
+margin-bottom: 18px;
+border: 1px solid #ccc;
+border-radius: 7px;
+font-size: 16px;
+width: 100%;
+}
+
+.formulario button {
+padding: 13px;
+border: none;
+border-radius: 8px;
+background: #1e73be;
+color: white;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.formulario button:hover {
+background: #155a96;
+}
+
+@media (max-width: 700px) {
+
+body {
+    padding: 20px 10px;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+.calendario {
+    padding: 12px;
+}
+
+.dias-semana {
+    gap: 4px;
+}
+
+.dias {
+    gap: 4px;
+}
+
+.dias-semana div {
+    font-size: 12px;
+    padding: 8px 2px;
+}
+
+.dia {
+    min-height: 55px;
+    font-size: 15px;
+}
+
+table {
+    font-size: 13px;
+}
+
+th,
+td {
+    padding: 9px 6px;
+}
+
+}
+
