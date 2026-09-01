@@ -8,7 +8,6 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'profesor') {
 }
 
 require '../login/conexion.php';
-include '../login/header.php';
 
 
 $sql = "SELECT id, nombre, imagen, stock_disponible
@@ -69,6 +68,23 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         flex-wrap: wrap;
         margin: 20px 0;
     }
+
+    .mi-boton {
+    border-color:white;
+    font-size:1em;
+    color:white;
+    background: linear-gradient(90deg, #2ea3c7, #0d4f78);
+    border-radius:15px;
+    text-aling:left;
+    height: 40px;
+    width: 80px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    bottom: 20px;
+    left: 20px;
+}
 
     #buscador {
         flex: 1;
@@ -248,6 +264,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif; ?>
                 </div>
             </div>
+            <button onclick="window.location.href='../profesor/panel_profesor.php'" class="mi-boton">Volver</button>
         <?php endforeach; ?>
     <?php else: ?>
         <p>No hay productos cargados todavía.</p>
