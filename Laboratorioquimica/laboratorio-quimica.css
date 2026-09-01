@@ -142,3 +142,20 @@ main > section:nth-of-type(2) > h3::after {
 main > section:nth-of-type(2) > section > h3::after {
     content: "Investigación";
 }
+.modelo3d{
+    text-align:center;
+    margin:40px 0;
+}
+
+.modelo3d h2{
+    color:#007c99;
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.modelo3d iframe{
+    width:1000px;
+    height:500px;
+    border:none;
+    border-radius:20px;
+}
