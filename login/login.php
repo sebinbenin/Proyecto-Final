@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../profesor/panel_profesor.php");
             exit();
             } else {
-                header("Location: ../pagina_principal/PagPrincipal.html");
+                header("Location: ../pagina_principal/PagPrincipal.php");
             }
             exit();
         }
@@ -42,15 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mensaje = "Correo o contraseña incorrectos.";
     }
 }
-
-include 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Iniciar Sesión</title>
     <link rel= "stylesheet" href="login.css">
     <link rel="stylesheet" href="../Assets/main.css">
 </head>
@@ -58,16 +56,13 @@ include 'header.php';
     <main>
         <div class="left-section">
             <section class="login-section">
-                <h2>Bienvenido</h2>
-                <p class="form-text">Por favor, inicia sesión para continuar</p>
+                <h2 id="login-title">Bienvenido</h2>
                 <p style="color: red;"><b><?php echo $mensaje; ?></b></p>
                     <form action="login.php" method="POST">
-                        
                         <input type="email" placeholder="Correo electrónico" name="correo" required><br><br>
-                        
                         <input type="password" placeholder="Contraseña" name="password" required><br><br>
                         <button type="submit">Entrar</button>
-                        <p>¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
+                        <p class="form-text">¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
                     </form>
             </section>
         </div>
