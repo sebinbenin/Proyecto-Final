@@ -7,12 +7,12 @@ function cambiarPestana(pestana, boton) {
 
     // Quitar clase activa
     botones.forEach(function(boton) {
-        boton.classList.remove("activo");
+        boton.classList.remove("active");
     });
 
     // Activar botón seleccionado
     if (boton) {
-        boton.classList.add("activo");
+        boton.classList.add("active");
     }
 
 

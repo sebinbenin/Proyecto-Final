@@ -11,7 +11,7 @@ require '../login/conexion.php';
 // SOLICITUDES DE PROFESORES
 // ================================
 
-$sql = "SELECT id, correo
+$sql = "SELECT id, correo, nombre
         FROM usuarios
         WHERE rol = 'profesor'
         AND estado = 'pendiente'";
@@ -124,18 +124,19 @@ $productos = $stmt_productos->fetchAll(PDO::FETCH_ASSOC);
                 <h2 id="titulo-panel">Solicitudes</h2>
                 <!-- FILTROS -->
                 <section class="filtros">
-                    <button class="filtro" id="btn-iz" onclick="cambiarPestana('todas', this)">Todas</button>
+                    <button class="filtro active" id="btn-iz" onclick="cambiarPestana('todas', this)">Todas</button>
                     <button class="filtro" onclick="cambiarPestana('solicitudes', this)">Inscripciones</button>
                     <button class="filtro" id="btn-der" onclick="cambiarPestana('reservas', this)">Reservas</button>
                 </section>
                 <!-- =================================
                     SOLICITUDES
                 ================================== -->
-                <section id="solicitudes" class="contenido">
+                <section id="solicitudes" class="contenido oculto">
                     <?php if (count($pendientes) > 0): ?>
                         <?php foreach ($pendientes as $profesor): ?>
                             <span class="solicitud">
-                                <span class="datos">
+                                <span class="info-reserva">
+                                    <span class="nombre"><?php echo htmlspecialchars($profesor['nombre']);?></span>
                                     <span class="correo"><?php echo htmlspecialchars($profesor['correo']);?></span>
                                 </span>
                                 <span class="acciones">

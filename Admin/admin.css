@@ -148,10 +148,16 @@ main{
     border-color: #cbd5e1;
 }
 
-.correo {
+.nombre {
     font-family: arial, sans-serif;
     font-size: 16px;
     color: #1f2937;
+}
+
+.correo {
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    color: #ccc;
 }
 
 .acciones {
@@ -238,6 +244,7 @@ main{
 ===================================== */
 
 .form-producto {
+    width: 90%;
     background: white;
     padding: 25px;
     border-radius: 12px;
@@ -309,6 +316,7 @@ main{
 ===================================== */
 
 .lista-productos {
+    width: 96%;
     margin-top: 30px;
 }
 
@@ -358,32 +366,25 @@ main{
 
 .producto-info span {
     font-size: 14px;
-
     color: #777;
 }
 
 
 .stock-info {
     display: flex;
-
     gap: 20px;
 }
 
 
 .form-stock {
     display: flex;
-
     gap: 6px;
 }
 
 
 .form-stock input {
-    width: 90px;
-
     padding: 8px;
-
     border: 1px solid #ccc;
-
     border-radius: 6px;
 }
 
