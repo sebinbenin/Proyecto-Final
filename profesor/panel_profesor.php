@@ -65,7 +65,7 @@ exit();
                     <div class="icono">🏫</div>
                     <h2>Salones</h2>
                     <p>Consultá los salones disponibles.</p>
-                    <a href="salones.php" class="boton secundario">Ver salones</a>
+                    <a href="../profesor/calendario.php" class="boton">Ver salones</a>
                 </div>
             </section>
                 </div>

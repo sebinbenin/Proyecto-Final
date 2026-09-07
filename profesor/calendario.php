@@ -1,10 +1,33 @@
 <?php
-
 session_start();
+
+// 1. Verificamos si existe una sesión activa y si el rol está definido
+if (!isset($_SESSION['rol'])) {
+    // Si no está logueado, lo mandamos al login
+    header("Location: ../login/login.php"); 
+    exit();
+}
+
+// 2. Verificamos que el rol sea exclusivamente 'admin' o 'profesor'
+$rol_usuario = $_SESSION['rol'];
+if ($rol_usuario !== 'admin' && $rol_usuario !== 'profesor') {
+    // Si es un usuario con otro rol (ej. alumno), lo redirigimos o mostramos error
+    echo "<script>
+            alert('No tienes permisos para acceder a esta página.');
+            window.location.href = '../login/login.php';
+          </script>";
+    exit();
+}
+
+// Si pasa las validaciones, el código continúa normalmente...
 require '../login/conexion.php';
+
+// ... resto de tu código del calendario (variables de fecha, etc.)
 
 $mes = isset($_GET['mes']) ? (int)$_GET['mes'] : (int)date('m');
 $anio = isset($_GET['anio']) ? (int)$_GET['anio'] : (int)date('Y');
+
+$fechaSeleccionada = isset($_GET['fecha']) ? $_GET['fecha'] : null;
 
 $fechaActual = sprintf("%04d-%02d-01", $anio, $mes);
 
@@ -93,43 +116,32 @@ $nombreMes = [
 
     </div>
 
+<!-- DÍAS DEL MES -->
+<div class="dias">
+    <?php
+    // Espacios vacíos antes del primer día
+    for ($i = 1; $i < $primerDia; $i++) {
+        echo "<div></div>";
+    }
 
-    <!-- DÍAS DEL MES -->
-
-    <div class="dias">
-
-        <?php
-
-        for ($i = 1; $i < $primerDia; $i++) {
-
-            echo "<div></div>";
-
+    // Días del mes
+    for ($dia = 1; $dia <= $diasMes; $dia++) {
+        $fecha = sprintf("%04d-%02d-%02d", $anio, $mes, $dia);
+        
+        // Usamos mktime para evitar cualquier error de zona horaria
+        $timestamp = mktime(0, 0, 0, $mes, $dia, $anio);
+        $diaSemana = (int)date('N', $timestamp); 
+        
+        // 6 = Sábado, 7 = Domingo
+        if ($diaSemana === 6 || $diaSemana === 7) {
+            echo "<div class='dia deshabilitado'>$dia</div>";
+        } else {
+            $clase = ($fecha === $fechaSeleccionada) ? "dia seleccionado" : "dia";
+            echo "<a class='$clase' href='nueva_reserva.php?fecha=$fecha'>$dia</a>";
         }
-
-
-        for ($dia = 1; $dia <= $diasMes; $dia++) {
-
-            $fecha = sprintf(
-                "%04d-%02d-%02d",
-                $anio,
-                $mes,
-                $dia
-            );
-
-            echo "
-            <a
-                class='dia'
-                href='reservas_dias.php?fecha=$fecha'
-            >
-                $dia
-            </a>
-            ";
-
-        }
-
-        ?>
-
-    </div>
+    }
+    ?>
+</div>
 
 </div>
 
@@ -138,4 +150,3 @@ $nombreMes = [
 </body>
 
 </html>
-

@@ -193,6 +193,12 @@ cursor: pointer;
 background: #155a96;
 }
 
+.dia.deshabilitado {
+    background-color: #f0f0f0; /* Fondo gris claro */
+    color: #a0a0a0; /* Texto atenuado */
+    cursor: not-allowed; /* Muestra el cursor de prohibido */
+    pointer-events: none; /* Bloquea cualquier intento de clic */
+}
 @media (max-width: 700px) {
 
 body {
@@ -235,4 +241,3 @@ td {
 }
 
 }
-
