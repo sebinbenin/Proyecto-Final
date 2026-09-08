@@ -55,13 +55,14 @@ body {
     color: white;
     background: linear-gradient(90deg, #2ea3c7, #0d4f78);
     border-radius: 15px;
-    text-align: left;
+    text-align:center;
     height: 40px;
     width: 80px;
     position: fixed;
     bottom: 20px;
     left: 20px;
     z-index: 1000;
+    cursor: pointer;
 }
 
 #buscador {
