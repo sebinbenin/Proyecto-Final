@@ -10,7 +10,7 @@ if (!isset($_SESSION['rol'])) {
 
 // 2. Verificamos que el rol sea exclusivamente 'admin' o 'profesor'
 $rol_usuario = $_SESSION['rol'];
-if ($rol_usuario !== 'admin' && $rol_usuario !== 'profesor') {
+if ($rol_usuario !== 'administrador' && $rol_usuario !== 'profesor') {
     // Si es un usuario con otro rol (ej. alumno), lo redirigimos o mostramos error
     echo "<script>
             alert('No tienes permisos para acceder a esta página.');

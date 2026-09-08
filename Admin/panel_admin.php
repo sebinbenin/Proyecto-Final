@@ -95,7 +95,7 @@ $productos = $stmt_productos->fetchAll(PDO::FETCH_ASSOC);
                         <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                         <line x1="2" y1="17" x2="22" y2="17"/><line x1="6"y1="17"x2="4"y2="21"/>
                         <line x1="18" y1="17" x2="20" y2="21"/>
-                    </svg><a href="../reservas/calendario.php">Reservar salones</a>
+                    </svg><a href="../profesor/calendario.php">Reservar salones</a>
                 </span>
                 <!-- usaurio -->
                 <span>
