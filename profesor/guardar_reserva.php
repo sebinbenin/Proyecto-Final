@@ -2,6 +2,12 @@
 session_start();
 require '../login/conexion.php';
 
+if (!isset($_SESSION['rol'])) {
+    // Si no está logueado, lo mandamos al login
+    header("Location: ../login/login.php"); 
+    exit();
+}
+$rol_usuario = $_SESSION['rol'];
 // Validar que se hayan enviado los datos requeridos
 if (
     empty($_POST['fecha']) || 
@@ -68,10 +74,24 @@ try {
         $anio = $partesFecha[0];
         $mes = $partesFecha[1];
 
-        echo "<script>
-                alert('Reserva guardada con éxito.');
-                window.location.href = '../panel_profesor/panel_profesor.php';
-              </script>";
+        if ($rol_usuario === 'profesor') {
+            echo "<script>
+                    alert('Reserva guardada con éxito.');
+                    window.location.href = '../profesor/panel_profesor.php';
+                  </script>";
+        }
+        elseif ($rol_usuario === 'administrador') {
+            echo "<script>
+                    alert('Reserva guardada con éxito.');
+                    window.location.href = '../Admin/panel_admin.php';
+                  </script>";
+        }
+        else {
+            echo "<script>
+                    alert('Reserva guardada con éxito.');
+                    window.location.href = '../login/login.php';
+                  </script>";
+        }
         exit();
     }
 
