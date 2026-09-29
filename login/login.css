@@ -1,15 +1,63 @@
+/* ===== THEME COLORS (variables) ===== */
+:root {
+    --bg-main: #ffffff;
+    --bg-left: #f7f7f7;
+    --bg-right: transparent;
+    --text-primary: #374151;
+    --text-secondary: #686868;
+    --link-color: #3b82f6;
+    --input-text: #333;
+    --input-bg: transparent;
+    --input-border: #888888;
+    --placeholder-color: #767676;
+    --focus-border: #3b82f6;
+    --focus-shadow: rgba(59, 130, 246, 0.2);
+    --btn-bg: #f9f9f9;
+    --btn-hover-bg: #f0f0f0;
+    --btn-text: #333;
+    --btn-border: #ccc;
+    --select-bg: #f9f9f9;
+    --select-border: #ccc;
+    --icon-color: #374151;
+    --accent-color: #facc15;
+}
+
+[data-theme="dark"] {
+    --bg-main: #2b2b30;
+    --bg-left: #333338;
+    --bg-right: #2b2b30;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --link-color: #e0e0e0;
+    --input-text: #e0e0e0;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: #55555c;
+    --placeholder-color: #888888;
+    --focus-border: #e0e0e0;
+    --focus-shadow: rgba(224, 224, 224, 0.2);
+    --btn-bg: #3a3a40;
+    --btn-hover-bg: #45454c;
+    --btn-text: #e0e0e0;
+    --btn-border: #55555c;
+    --select-bg: #3a3a40;
+    --select-border: #55555c;
+    --icon-color: #e0e0e0;
+    --accent-color: #facc15;
+}
+
 main{
     display: flex;
     justify-content: space-between;
     height: 100dvh;
-    background-color: #ffffff;
+    background-color: var(--bg-main);
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 .left-section{
     align-items: center;
     display: flex;
     width: 25em;
     height: 100dvh;
-    background-color: #f7f7f7;
+    background-color: var(--bg-left);
     border-radius: 0px 20px 20px 0px;
     max-width: 500px;
 }
@@ -29,6 +77,7 @@ main{
     background-image: url('../Assets/imagenes/logoutec.png');
     background-size: contain;
     background-repeat: no-repeat; 
+    background-color: var(--bg-right);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,13 +88,13 @@ main{
 }
 #login-title{
     text-align: center;
-    color: #374151;
+    color: var(--text-primary);
     max-height:10px
 }
 h2{
     text-align: center;
     font-size: 2em;
-    color: #374151;
+    color: var(--text-primary);
     max-height: 30px;
 
 }
@@ -64,26 +113,26 @@ input {
   padding: 12px 15px; /* Da espacio para que el texto respire */
   font-size: 14px; /* 16px evita que los iPhones hagan zoom automático */
   font-family: sans-serif;
-  color: #333;
-  background-color: transparent; /* Fondo transparente para que se vea el color del formulario */
+  color: var(--input-text);
+  background-color: var(--input-bg); /* Fondo transparente para que se vea el color del formulario */
   border-radius: 8px; /* Redondea las esquinas */
   outline: none; /* Elimina el recuadro negro por defecto del navegador */
   transition: all 0.3s ease; /* Hace que el cambio de color sea fluido */
-  border: 1px solid #888888;
+  border: 1px solid var(--input-border);
 }
 
 /* Estado cuando el usuario hace clic en el input */
 input:focus {
-  border-color: #3b82f6; /* Borde azul */
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Resplandor azul suave */
+  border-color: var(--focus-border); /* Borde azul */
+  box-shadow: 0 0 0 3px var(--focus-shadow); /* Resplandor azul suave */
 }
 /* Selecciona el placeholder de todos los inputs */
 input::placeholder {
-  color: #767676; /* Cambia el color del texto */
+  color: var(--placeholder-color); /* Cambia el color del texto */
   opacity: 1; /* Necesario en algunos navegadores para que el color se vea sólido */
 }
 .form-text{
-    color: #686868;
+    color: var(--text-secondary);
     font-size: 14px;
     max-width: 250px;
     max-height: 150px;
@@ -91,12 +140,15 @@ input::placeholder {
     margin-right:auto;
 
 }
+.form-text a {
+    color: var(--link-color);
+}
 button {
     width:100%;
     max-width: 100px;
-    background-color: #f9f9f9;
-    color: #333;
-    border: 1px solid #ccc;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--btn-border);
     padding:10px 10px;
     border-radius: 6px;
     font-size:14px;
@@ -104,9 +156,13 @@ button {
     outline: none;
 }
 
+button:hover {
+    background-color: var(--btn-hover-bg);
+}
+
 button:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+    border-color: var(--focus-border);
+    box-shadow: 0 0 4px var(--focus-shadow);
 
 }
 select {
@@ -115,15 +171,52 @@ select {
   margin-right:20px;
   padding: 10px 15px;
   font-size: 14px;
-  color: #333;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
+  color: var(--input-text);
+  background-color: var(--select-bg);
+  border: 1px solid var(--select-border);
   border-radius: 6px;
   cursor: pointer;
   outline: none;
 }
 
 select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
-}   
+  border-color: var(--focus-border);
+  box-shadow: 0 0 4px var(--focus-shadow);
+}       
+/* Estilo para el icono de la flecha */
+
+.fa-solid.fa-chevron-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: var(--icon-color);
+    cursor: pointer;
+}
+/* Dark mode toggle boton */
+.dark-mode-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--icon-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 8px;
+    width: auto;
+    max-width: none;
+}
+.dark-mode-btn:hover {
+    color: var(--accent-color);
+    box-shadow: none;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+}
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

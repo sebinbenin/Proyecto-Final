@@ -35,11 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel ="stylesheet" href = "login.css">
     <link rel="stylesheet" href="../Assets/main.css">
 </head>
 <body>
     <main>
-        
+        <button class="dark-mode-btn" id="darkModeToggle"><i class="fa-solid fa-moon"></i></button>
         <div class="left-section">
             <p><b><?php echo $mensaje; ?></b></p>
             <section class="login-section">
@@ -56,12 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p class="form-text">¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
                     <p class="form-text">Completa el formulario para registrarte. Si eres profesor, tu cuenta será revisada por un administrador antes de poder iniciar sesión.</p>
                 </form>
+                <a href="../pagina_principal/PagPrincipal.php"><i class="fa-solid fa-chevron-left"></i></a>
             </section>
         </div>
         <section class="right-section">
             
         </section>
     </main>
-    <script src="../Assets/main.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
