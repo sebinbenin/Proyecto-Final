@@ -67,6 +67,8 @@ function mostrarProductos(event) {
 
     vistaSolicitudes.classList.add("oculto");
 
+    document.getElementById("vista-profesores").classList.add("oculto");
+
     vistaProductos.classList.remove("oculto");
 
 }
@@ -91,6 +93,26 @@ function mostrarSolicitudes(event) {
 
     vistaProductos.classList.add("oculto");
 
+    document.getElementById("vista-profesores").classList.add("oculto");
+
     vistaSolicitudes.classList.remove("oculto");
+
+}
+
+
+
+// ==========================================
+// MOSTRAR PROFESORES
+// ==========================================
+
+function mostrarProfesores(event) {
+
+    event.preventDefault();
+
+    document.getElementById("vista-solicitudes").classList.add("oculto");
+
+    document.getElementById("vista-productos").classList.add("oculto");
+
+    document.getElementById("vista-profesores").classList.remove("oculto");
 
 }

@@ -58,6 +58,37 @@ $sql_productos = "SELECT
 $stmt_productos = $conexion->query($sql_productos);
 $productos = $stmt_productos->fetchAll(PDO::FETCH_ASSOC);
 
+// ================================
+// PROFESORES Y CURSOS
+// ================================
+
+$sql_profesores = "SELECT id, nombre, correo, foto
+                    FROM usuarios
+                    WHERE rol = 'profesor'
+                    AND estado = 'aprobado'
+                    ORDER BY nombre ASC";
+
+$stmt_profesores = $conexion->query($sql_profesores);
+$profesores = $stmt_profesores->fetchAll(PDO::FETCH_ASSOC);
+
+$sql_asignaciones = "SELECT
+                        profesor_curso.profesor_id,
+                        profesor_curso.curso_id,
+                        profesor_curso.materia,
+                        cursos.nombre AS curso
+                        FROM profesor_curso
+                        INNER JOIN cursos
+                        ON profesor_curso.curso_id = cursos.id
+                        ORDER BY cursos.nombre ASC";
+
+$stmt_asignaciones = $conexion->query($sql_asignaciones);
+$asignaciones = $stmt_asignaciones->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt_cursos = $conexion->query("SELECT id, nombre FROM cursos ORDER BY nombre ASC");
+$cursos = $stmt_cursos->fetchAll(PDO::FETCH_ASSOC);
+
+$vista = $_GET['vista'] ?? 'solicitudes';
+
 ?>
 
 <!DOCTYPE html>
@@ -104,6 +135,15 @@ $productos = $stmt_productos->fetchAll(PDO::FETCH_ASSOC);
                         <circle cx="12" cy="7" r="4"/>
                     </svg><a onclick="mostrarSolicitudes(event)">Solicitudes</a>
                 </span>
+                <!-- PROFESORES -->
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg><a onclick="mostrarProfesores(event)">Profesores</a>
+                </span>
             </section>
             <!-- CERRAR SESIÓN -->
             <span id="cerrar">
@@ -120,7 +160,7 @@ $productos = $stmt_productos->fetchAll(PDO::FETCH_ASSOC);
             <!-- =====================================
                 VISTA SOLICITUDES / RESERVAS
             ====================================== -->
-            <div id="vista-solicitudes">
+            <div id="vista-solicitudes" <?php if ($vista === 'profesores') echo 'class="oculto"'; ?>>
                 <h2 id="titulo-panel">Solicitudes</h2>
                 <!-- FILTROS -->
                 <section class="filtros">
@@ -246,6 +286,58 @@ $productos = $stmt_productos->fetchAll(PDO::FETCH_ASSOC);
                         <p>No hay productos registrados.</p>
                     <?php endif; ?>
                 </section>
+            </div>
+            <!-- =========================================
+                VISTA PROFESORES
+            ========================================== -->
+            <div id="vista-profesores" <?php if ($vista !== 'profesores') echo 'class="oculto"'; ?>>
+                <h2>Profesores</h2>
+                <!-- NUEVO CURSO -->
+                <form action="asignar_curso.php" method="POST">
+                    <input type="hidden" name="accion" value="nuevo_curso">
+                    <input type="text" name="nombre_curso" placeholder="Nuevo curso (ej: 3.º MB)" required>
+                    <button type="submit">Crear curso</button>
+                </form>
+                <!-- LISTA DE PROFESORES -->
+                <?php if (count($profesores) > 0): ?>
+                    <?php foreach ($profesores as $profesor): ?>
+                        <div class="reserva">
+                            <div class="info-reserva">
+                                <img src="../Assets/imagenes/<?php echo $profesor['foto'] ? 'perfiles/' . htmlspecialchars($profesor['foto']) : 'foto-usuario.png'; ?>" alt="Foto" width="60" height="60">
+                                <span class="profesor"><?php echo htmlspecialchars($profesor['nombre'] ?? 'Sin nombre'); ?></span>
+                                <span class="correo"><?php echo htmlspecialchars($profesor['correo']); ?></span>
+                                <?php $tiene_cursos = false; ?>
+                                <?php foreach ($asignaciones as $asignacion): ?>
+                                    <?php if ($asignacion['profesor_id'] == $profesor['id']): ?>
+                                        <?php $tiene_cursos = true; ?>
+                                        <span>
+                                            <?php echo htmlspecialchars($asignacion['curso']); ?> (<?php echo htmlspecialchars($asignacion['materia']); ?>)
+                                            <a href="asignar_curso.php?accion=quitar&profesor_id=<?php echo $profesor['id']; ?>&curso_id=<?php echo $asignacion['curso_id']; ?>&materia=<?php echo urlencode($asignacion['materia']); ?>" onclick="return confirm('¿Quitar este curso?');">Quitar</a>
+                                        </span>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <?php if (!$tiene_cursos): ?>
+                                    <span>Sin cursos asignados</span>
+                                <?php endif; ?>
+                            </div>
+                            <!-- ASIGNAR CURSO -->
+                            <form action="asignar_curso.php" method="POST">
+                                <input type="hidden" name="accion" value="asignar">
+                                <input type="hidden" name="profesor_id" value="<?php echo $profesor['id']; ?>">
+                                <select name="curso_id" required>
+                                    <option value="">Curso</option>
+                                    <?php foreach ($cursos as $curso): ?>
+                                        <option value="<?php echo $curso['id']; ?>"><?php echo htmlspecialchars($curso['nombre']); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <input type="text" name="materia" placeholder="Materia" required>
+                                <button type="submit">Asignar</button>
+                            </form>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No hay profesores aprobados.</p>
+                <?php endif; ?>
             </div>
         </section>
     </main>
