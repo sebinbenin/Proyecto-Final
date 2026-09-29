@@ -137,7 +137,7 @@ $nombreMes = [
             echo "<div class='dia deshabilitado'>$dia</div>";
         } else {
             $clase = ($fecha === $fechaSeleccionada) ? "dia seleccionado" : "dia";
-            echo "<a class='$clase' href='nueva_reserva.php?fecha=$fecha'>$dia</a>";
+            echo "<a class='$clase' href='reserva_salones.php?fecha=$fecha'>$dia</a>";
         }
     }
     ?>

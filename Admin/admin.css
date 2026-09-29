@@ -249,7 +249,12 @@ main{
     padding: 25px;
     border-radius: 12px;
 }
-
+#categoria {
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
 
 .formulario-contenido {
     display: flex;
@@ -266,6 +271,7 @@ main{
 
 .datos-producto label,
 .imagen-producto label {
+    font-family: Arial, sans-serif;
     margin-bottom: 6px;
     font-weight: bold;
 }

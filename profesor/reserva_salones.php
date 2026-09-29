@@ -14,6 +14,7 @@ $fecha = (isset($_GET['fecha']) && !empty($_GET['fecha'])) ? $_GET['fecha'] : da
 
 // Autocompletar con el nombre guardado en la sesión
 $profesor_logueado = $_SESSION['usuario_nombre'] ?? '';
+$rol_usuario = $_SESSION['rol'];
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ $profesor_logueado = $_SESSION['usuario_nombre'] ?? '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva reserva</title>
+    <title>Reserva de Salones</title>
     <link rel="stylesheet" href="calendario.css">
 </head>
 <body>
@@ -29,11 +30,14 @@ $profesor_logueado = $_SESSION['usuario_nombre'] ?? '';
 <div class="contenedor formulario">
 
     <!-- VOLVER -->
-    <a class="volver" href="calendario.php?fecha=<?php echo urlencode($fecha); ?>">
-        ← Volver al calendario
-    </a>
+    <a class="volver" href="<?php if ($rol_usuario === 'profesor') {
+            echo "../profesor/panel_profesor.php";
+        }
+        elseif ($rol_usuario === 'administrador') {
+            echo "../Admin/panel_admin.php";
+        } ?>">← Volver</a>
 
-    <h1>🏫 Nueva reserva de salón</h1>
+    <h1>Nueva reserva de salón</h1>
 
     <form action="guardar_reserva.php" method="POST">
 

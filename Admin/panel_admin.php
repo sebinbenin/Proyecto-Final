@@ -189,7 +189,15 @@ $productos = $stmt_productos->fetchAll(PDO::FETCH_ASSOC);
                             <label for="descripcion">Descripción</label>
                             <textarea id="descripcion"name="descripcion"required></textarea>
                             <label for="categoria">Categoría</label>
-                            <input type="text" id="categoria" name="categoria" required>
+                            <select id="categoria" name="categoria" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="Audio">Audio</option>
+                                <option value="Audiovisual">Audiovisual</option>
+                                <option value="Electricidad">Electricidad</option>
+                                <option value="Informática">Informática</option>
+                                <option value="Accesorios">Accesorios</option>
+                                <option value="Material didáctico">Material didáctico</option>
+                            </select>
                             <label for="stock">Stock inicial</label>
                             <input type="number"id="stock"name="stock"min="0"required>
                         </div>
