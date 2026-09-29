@@ -117,3 +117,7 @@ footer{
     height: 40px;
     width: 40px;
 }
+.usuario, .foto-perfil {
+    border-radius: 50%;
+    object-fit: cover;
+}
