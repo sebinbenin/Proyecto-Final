@@ -55,7 +55,7 @@ main {
     border-radius: 30px;
     height: 500px;
     width: 580px;
-    background: #511d96;
+    background: var(--primario, #511d96);
 }
 #info_sala h2 {
     margin: 0;
@@ -74,7 +74,7 @@ main {
 }
 #info_sala div {
     margin:30px 0 45px 15px;
-    background-color: #ffc43d;
+    background-color: var(--acento, #ffc43d);
     width: 95%;
     height: 2px;
 }
@@ -95,12 +95,12 @@ main {
 }
 #equipamiento span::before{
     content:"•";
-    color:#ffc43d;
+    color:var(--acento, #ffc43d);
     padding-right:6px;
 }
 #normas_uso{
-    background-color: #ffffff;
-    border: 1px solid #e7e0ee;
+    background-color: var(--superficie, #ffffff);
+    border: 1px solid var(--borde, #e7e0ee);
     margin:20px 0;
     height: 215px;
     border-radius: 40px;
@@ -125,7 +125,7 @@ main {
 .modelo3d h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #511d96;
+    color: var(--titulo, #511d96);
 }
 
 .modelo3dcaracteristicas {

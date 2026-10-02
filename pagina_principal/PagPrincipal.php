@@ -14,6 +14,7 @@ if (isset($_SESSION['rol'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pagPrincipal.css">
     <link rel="stylesheet" href="../Assets/main.css">
+    <script src="../Assets/tema.js"></script>
     <title>Utec Tacuarembó</title>
 </head>
 <body>

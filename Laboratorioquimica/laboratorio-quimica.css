@@ -8,7 +8,7 @@ h1 {
     padding-bottom: 8px;
     white-space: nowrap;
     font-size:2rem;
-    border-bottom: 4px solid #ffc43d;
+    border-bottom: 4px solid var(--acento, #ffc43d);
 }
 .parte-superior {
     display: flex;
@@ -24,8 +24,8 @@ h1 {
 .descripcion {
     min-height: 100px;
     padding: 10px;
-    background-color: white;
-    border: 2px solid #ded6e8;
+    background-color: var(--superficie, white);
+    border: 2px solid var(--borde, #ded6e8);
     border-radius: 18px;
 }
 .descripcion h2 {
@@ -40,10 +40,10 @@ h1 {
 }
 
 .imagen-lab {
-    background-color: #ffffff;
+    background-color: var(--superficie, #ffffff);
     margin-top: 16px;
     padding: 16px;
-    border: 2px solid #ded6e8;
+    border: 2px solid var(--borde, #ded6e8);
     border-radius: 20px;
 }
 #img-lab {
@@ -65,8 +65,8 @@ main > section:nth-of-type(1) {
     vertical-align: top;
     box-sizing: border-box;
     color: white;
-    background: #511d96;
-    border: 1px solid #511d96;
+    background: var(--primario, #511d96);
+    border: 1px solid var(--borde-primario, #511d96);
     border-radius: 15px;
 }
 main > section:nth-of-type(2) {
@@ -79,8 +79,8 @@ main > section:nth-of-type(2) {
     vertical-align: top;
     box-sizing: border-box;
     color: white;
-    background: #511d96;
-    border: 1px solid #511d96;
+    background: var(--primario, #511d96);
+    border: 1px solid var(--borde-primario, #511d96);
     border-radius: 15px;
 }
 main > section:nth-of-type(2) > section {
@@ -93,8 +93,8 @@ main > section:nth-of-type(2) > section {
     padding: 15px;
     box-sizing: border-box;
     color: white;
-    background: #511d96;
-    border: 1px solid #511d96;
+    background: var(--primario, #511d96);
+    border: 1px solid var(--borde-primario, #511d96);
     border-radius: 15px;
 }
 main > section h3 {
@@ -148,7 +148,7 @@ main > section:nth-of-type(2) > section > h3::after {
 }
 
 .modelo3d h2{
-    color:#511d96;
+    color:var(--titulo, #511d96);
     font-size:40px;
     margin-bottom:20px;
 }

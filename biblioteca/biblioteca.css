@@ -62,7 +62,7 @@ main {
 #derecha-arriba {
     height: 350px;
     width: auto;
-    background: #511d96;
+    background: var(--primario, #511d96);
     border-radius: 30px;
     color: white;
     margin-top: 30px;
@@ -71,8 +71,8 @@ main {
     padding-left: 20px;
 }
 #normas {
-    background-color: #ffffff;
-    border: 1px solid #e7e0ee;
+    background-color: var(--superficie, #ffffff);
+    border: 1px solid var(--borde, #e7e0ee);
     height: 250px;
     border-radius: 20px;
     padding-left: 20px;
@@ -91,7 +91,7 @@ h2 {
 .modelo3d h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #511d96;
+    color: var(--titulo, #511d96);
 }
 
 .modelo3dcaracteristicas {

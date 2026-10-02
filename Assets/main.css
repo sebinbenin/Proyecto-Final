@@ -1,3 +1,19 @@
+[data-theme="dark"]{
+    --fondo:#0b1a33;
+    --superficie:#12264a;
+    --superficie-2:#1a3463;
+    --primario:#12264a;
+    --barra:#06102a;
+    --titulo:#eef4ff;
+    --texto:#dbe6fa;
+    --texto-suave:#9fb3d9;
+    --acento:#38bdf8;
+    --acento-hover:#7dd3fc;
+    --texto-boton:#06102a;
+    --borde:#24406e;
+    --borde-primario:#24406e;
+    --enlace:#38bdf8;
+}
 .usuario{
     margin-left:65%;
     width: 60px;
@@ -9,7 +25,7 @@
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    background-color:#511d96;
+    background-color:var(--barra, #511d96);
 }
 
 .encabezados img{
@@ -28,7 +44,7 @@
     margin:0 0 0 30px;
 }
 .encabezados a:hover{
-    color:#ffc43d;
+    color:var(--acento, #ffc43d);
 }
 p{font-family: Arial, Helvetica, sans-serif;
 }
@@ -36,7 +52,7 @@ a, a:visited{font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
 }
 a{
-    color:#511d96;
+    color:var(--enlace, #511d96);
 }
 h2{
     font-family: Arial, Helvetica, sans-serif;
@@ -50,15 +66,15 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f8f6fc;
-    color:#302044;
+    background-color: var(--fondo, #f8f6fc);
+    color:var(--texto, #302044);
     height: 100%;
     width: 100%;
 }
 button{
-    background:#ffc43d;
-    color:#511d96;
-    border:1px solid #ffc43d;
+    background:var(--acento, #ffc43d);
+    color:var(--texto-boton, #511d96);
+    border:1px solid var(--acento, #ffc43d);
     border-radius:8px;
     padding:10px 16px;
     font-weight:700;
@@ -66,8 +82,8 @@ button{
     transition:background-color 0.2s ease, border-color 0.2s ease;
 }
 button:hover{
-    background:#e6a915;
-    border-color:#e6a915;
+    background:var(--acento-hover, #e6a915);
+    border-color:var(--acento-hover, #e6a915);
 }
 button:focus-visible,
 input:focus-visible,
@@ -79,9 +95,9 @@ textarea:focus-visible{
 input,
 select,
 textarea{
-    color:#302044;
-    background:#ffffff;
-    border:1px solid #d9d0e5;
+    color:var(--texto, #302044);
+    background:var(--superficie, #ffffff);
+    border:1px solid var(--borde, #d9d0e5);
     border-radius:7px;
 }
 footer{
@@ -91,7 +107,7 @@ footer{
     display: flex;
     height: 100%;
     width: 100%;
-    background-color:#511d96;
+    background-color:var(--barra, #511d96);
 }
 
 #footer-izq{
@@ -121,7 +137,7 @@ footer{
 }
 .cont-footer a:hover,
 .cont-redes a:hover{
-    color:#ffc43d;
+    color:var(--acento, #ffc43d);
 }
 #img-ubi{
     height: 45px;
@@ -160,4 +176,28 @@ footer{
 .usuario, .foto-perfil {
     border-radius: 50%;
     object-fit: cover;
+}
+#botonTema{
+    margin-left:20px;
+    width:45px;
+    height:45px;
+    padding:0;
+    border-radius:50%;
+    font-size:24px;
+}
+[data-theme="dark"] .encabezados{
+    border-bottom:1px solid #12264a;
+}
+[data-theme="dark"] p{
+    color:#c8d6f0;
+}
+[data-theme="dark"] b{
+    color:#eef4ff;
+}
+[data-theme="dark"] #derecha-arriba,
+[data-theme="dark"] .informacion_salon,
+[data-theme="dark"] .informacion,
+[data-theme="dark"] .info-card,
+[data-theme="dark"] #info_sala{
+    outline:1px solid #24406e;
 }

@@ -23,26 +23,26 @@
 }
 
 [data-theme="dark"] {
-    --bg-main: #1d1030;
-    --bg-left: #2a1745;
-    --bg-right: #1d1030;
-    --text-primary: #f8f6fc;
-    --text-secondary: #e4dcef;
-    --link-color: #ffcf5c;
-    --input-text: #f8f6fc;
+    --bg-main: #0b1a33;
+    --bg-left: #12264a;
+    --bg-right: #0b1a33;
+    --text-primary: #eef4ff;
+    --text-secondary: #c8d6f0;
+    --link-color: #38bdf8;
+    --input-text: #eef4ff;
     --input-bg: rgba(255, 255, 255, 0.08);
-    --input-border: #6d5a8a;
-    --placeholder-color: #c4b8d6;
-    --focus-border: #ffcf5c;
-    --focus-shadow: rgba(255, 193, 91, 0.24);
-    --btn-bg: #ffc43d;
-    --btn-hover-bg: #e6a915;
-    --btn-text: #511d96;
-    --btn-border: #ffc43d;
-    --select-bg: #2a1745;
-    --select-border: #6d5a8a;
-    --icon-color: #f8f6fc;
-    --accent-color: #ffcf5c;
+    --input-border: #2f4f86;
+    --placeholder-color: #9fb3d9;
+    --focus-border: #38bdf8;
+    --focus-shadow: rgba(56, 189, 248, 0.24);
+    --btn-bg: #38bdf8;
+    --btn-hover-bg: #7dd3fc;
+    --btn-text: #06102a;
+    --btn-border: #38bdf8;
+    --select-bg: #12264a;
+    --select-border: #2f4f86;
+    --icon-color: #eef4ff;
+    --accent-color: #38bdf8;
 }
 
 main{
@@ -220,4 +220,7 @@ select:focus {
 }
 body {
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+[data-theme="dark"] .right-section{
+    background-image: url('../Assets/imagenes/noche/logoutec.png');
 }

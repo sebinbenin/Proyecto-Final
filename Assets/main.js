@@ -23,6 +23,7 @@ fetch("../Assets/main.html")
 
         if (header) {
             document.getElementById("header").appendChild(header);
+            aplicarTema(localStorage.getItem("darkMode") === "true");
         }
 
         if (footer) {
