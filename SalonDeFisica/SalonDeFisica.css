@@ -68,7 +68,7 @@ main {
     height: 350px;
     width: 600px;
     color: white;
-    background: linear-gradient(90deg, #5de0e6, #0078a6, #0b697d);
+    background: #511d96;
     }
 
 .informacion_salon h2 {
@@ -90,7 +90,7 @@ main {
     width: 200px;
 }
 .informacion_salon div {
-    background-color: blue;
+    background-color: #ffc43d;
     height: 2px;
     width: 90%;
     margin: 40px 0 0 30px;
@@ -100,7 +100,8 @@ margin-top: 40px;
 border-radius: 30px;
 height: 280px;
 width: 600px;
-background: linear-gradient(90deg, #f5ebeb);
+background: #ffffff;
+border: 1px solid #e7e0ee;
 }
 .normas_de_uso h2 {
     text-align: center;
@@ -119,7 +120,7 @@ background: linear-gradient(90deg, #f5ebeb);
 .modelo3d h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #0b697d;
+    color: #511d96;
 }
 
 .modelo3dcaracteristicas {

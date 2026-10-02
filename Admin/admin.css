@@ -1,5 +1,5 @@
 #panel-izquierdo{
-    background-color: #f2f2f2;
+    background-color: #511d96;
     height: 100vh;
     width: 23%;
 }
@@ -9,7 +9,7 @@
     font-size: 2em;
 }
 .opciones{
-    color:#767676;
+    color:#d2dbea;
     font-size: 1.1em;
     display:grid;
     height: 45vh;
@@ -18,7 +18,7 @@
 
 a, a:visited {
     
-    color: #767676;
+    color: #d2dbea;
 }
 
 .opciones span{
@@ -32,13 +32,13 @@ a, a:visited {
     width: 100%;
 }
 .opciones span a:hover{
-    color: #0059ff;
+    color: #ffcf5c;
 }
 
 .opciones span:hover{
-    color: #0059ff;
-    border-left: 5px solid #0059ff;
-    background-color:#0059ff0a;
+    color: #ffcf5c;
+    border-left: 5px solid #ffc43d;
+    background-color:rgba(242, 166, 41, 0.14);
 }
 
 #cerrar{
@@ -60,7 +60,7 @@ a, a:visited {
 .cerrar-sesion{
     font-size: 1.3em;
     text-decoration: none;
-    color:#767676;
+    color:#d2dbea;
 }
 
 svg {
@@ -85,7 +85,7 @@ main{
 .filtros {
     border-radius: 7px;
     width: 35%;
-    background-color: #d9dee5;
+    background-color: #f0ebf5;
     margin-bottom:2em;
     display: flex;
     align-items: center;
@@ -93,23 +93,23 @@ main{
 
 .filtro {
     background-color: white;
-    border: 1px solid #d9dee5;
+    border: 1px solid #ded6e8;
     padding: 10px 25px;
     font-size: 1.2em;
-    color: #5f6368;
+    color: #665676;
     cursor: pointer;
     transition: 0.2s;
 }
 
 .filtro:hover {
-    background-color: #f5f7fa;
+    background-color: #fff7e1;
 }
 
 .filtro.active {
     border-radius: 7px;
-    background-color: white; /* Quitamos el fondo azul y lo dejamos blanco */
-    border-color: #b9d3f5;   /* Mantiene el borde celeste (puedes borrar esta línea si no lo quieres) */
-    color: #0059ff;          /* Mantiene las letras azules */
+    background-color: #ffffff;
+    border-color: #ffc43d;
+    color: #511d96;
 }
 
 #btn-iz{
@@ -135,7 +135,7 @@ main{
 .solicitud {
     margin-bottom: 2em;
     background: white;
-    border: 2px solid #e5e7eb;
+    border: 2px solid #e7e0ee;
     border-radius: 10px;
     padding: 18px 22px;
     display: flex;
@@ -145,19 +145,19 @@ main{
 }
 
 .solicitud:hover {
-    border-color: #cbd5e1;
+    border-color: #ffc43d;
 }
 
 .nombre {
     font-family: arial, sans-serif;
     font-size: 16px;
-    color: #1f2937;
+    color: #302044;
 }
 
 .correo {
     font-family: arial, sans-serif;
     font-size: 16px;
-    color: #ccc;
+    color: #756788;
 }
 
 .acciones {
@@ -193,7 +193,7 @@ main{
 .reserva {
     margin-bottom: 2em;
     background: white;
-    border: 2px solid #e5e7eb;
+    border: 2px solid #e7e0ee;
     border-radius: 10px;
     padding: 18px 22px;
     display: flex;
@@ -203,7 +203,7 @@ main{
 }
 
 .reserva:hover {
-    border-color: #cbd5e1;
+    border-color: #ffc43d;
 }
 
 .info-reserva {
@@ -220,7 +220,7 @@ main{
 
 .producto,.cantidad,.fecha {
     font-family: Arial, sans-serif;
-    color: #ccc;
+    color: #756788;
     font-size: 14px;
 }
 
@@ -252,7 +252,7 @@ main{
 #categoria {
     padding: 10px;
     margin-bottom: 18px;
-    border: 1px solid #ccc;
+    border: 1px solid #d9d0e5;
     border-radius: 7px;
 }
 
@@ -282,7 +282,7 @@ main{
     padding: 10px;
     margin-bottom: 18px;
 
-    border: 1px solid #ccc;
+    border: 1px solid #d9d0e5;
     border-radius: 7px;
 }
 
@@ -372,7 +372,7 @@ main{
 
 .producto-info span {
     font-size: 14px;
-    color: #777;
+    color: #756788;
 }
 
 
@@ -390,7 +390,7 @@ main{
 
 .form-stock input {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #d9d0e5;
     border-radius: 6px;
 }
 

@@ -1,48 +1,48 @@
 /* ===== THEME COLORS (variables) ===== */
 :root {
-    --bg-main: #ffffff;
-    --bg-left: #f7f7f7;
+    --bg-main: #f8f6fc;
+    --bg-left: #ffffff;
     --bg-right: transparent;
-    --text-primary: #374151;
-    --text-secondary: #686868;
-    --link-color: #3b82f6;
-    --input-text: #333;
-    --input-bg: transparent;
-    --input-border: #888888;
-    --placeholder-color: #767676;
-    --focus-border: #3b82f6;
-    --focus-shadow: rgba(59, 130, 246, 0.2);
-    --btn-bg: #f9f9f9;
-    --btn-hover-bg: #f0f0f0;
-    --btn-text: #333;
-    --btn-border: #ccc;
-    --select-bg: #f9f9f9;
-    --select-border: #ccc;
-    --icon-color: #374151;
-    --accent-color: #facc15;
+    --text-primary: #511d96;
+    --text-secondary: #756788;
+    --link-color: #511d96;
+    --input-text: #302044;
+    --input-bg: #ffffff;
+    --input-border: #d9d0e5;
+    --placeholder-color: #718096;
+    --focus-border: #ffc43d;
+    --focus-shadow: rgba(242, 166, 41, 0.24);
+    --btn-bg: #ffc43d;
+    --btn-hover-bg: #e6a915;
+    --btn-text: #511d96;
+    --btn-border: #ffc43d;
+    --select-bg: #ffffff;
+    --select-border: #d9d0e5;
+    --icon-color: #511d96;
+    --accent-color: #ffc43d;
 }
 
 [data-theme="dark"] {
-    --bg-main: #2b2b30;
-    --bg-left: #333338;
-    --bg-right: #2b2b30;
-    --text-primary: #e0e0e0;
-    --text-secondary: #b0b0b0;
-    --link-color: #e0e0e0;
-    --input-text: #e0e0e0;
-    --input-bg: rgba(255, 255, 255, 0.05);
-    --input-border: #55555c;
-    --placeholder-color: #888888;
-    --focus-border: #e0e0e0;
-    --focus-shadow: rgba(224, 224, 224, 0.2);
-    --btn-bg: #3a3a40;
-    --btn-hover-bg: #45454c;
-    --btn-text: #e0e0e0;
-    --btn-border: #55555c;
-    --select-bg: #3a3a40;
-    --select-border: #55555c;
-    --icon-color: #e0e0e0;
-    --accent-color: #facc15;
+    --bg-main: #172a43;
+    --bg-left: #203a5b;
+    --bg-right: #172a43;
+    --text-primary: #f4f7fb;
+    --text-secondary: #d2dbea;
+    --link-color: #ffcf5c;
+    --input-text: #f4f7fb;
+    --input-bg: rgba(255, 255, 255, 0.08);
+    --input-border: #60748f;
+    --placeholder-color: #c0ccdc;
+    --focus-border: #ffcf5c;
+    --focus-shadow: rgba(255, 193, 91, 0.24);
+    --btn-bg: #ffc43d;
+    --btn-hover-bg: #e6a915;
+    --btn-text: #511d96;
+    --btn-border: #ffc43d;
+    --select-bg: #203a5b;
+    --select-border: #60748f;
+    --icon-color: #f4f7fb;
+    --accent-color: #ffcf5c;
 }
 
 main{
@@ -154,6 +154,7 @@ button {
     font-size:14px;
     cursor: pointer;
     outline: none;
+    font-weight: 700;
 }
 
 button:hover {

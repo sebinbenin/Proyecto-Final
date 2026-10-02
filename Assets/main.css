@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    background-color:rgb(49, 133, 206);
+    background-color:#511d96;
 }
 
 .encabezados img{
@@ -21,16 +21,20 @@
     display: block;
     text-align: center;
     text-decoration: none;
-    color:#f8f8ff;
+    color:#ffffff;
     font-size: 30px;
     font-family: sans-serif;
     font-weight: 700;
     margin:0 0 0 30px;
 }
+.encabezados a:hover{
+    color:#ffc43d;
+}
 p{font-family: Arial, Helvetica, sans-serif;
 }
 a, a:visited{font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
+    color:#511d96;
 }
 h2{
     font-family: Arial, Helvetica, sans-serif;
@@ -44,9 +48,39 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f8f8ff;
+    background-color: #f8f6fc;
+    color:#302044;
     height: 100%;
     width: 100%;
+}
+button{
+    background:#ffc43d;
+    color:#511d96;
+    border:1px solid #ffc43d;
+    border-radius:8px;
+    padding:10px 16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:background-color 0.2s ease, border-color 0.2s ease;
+}
+button:hover{
+    background:#e6a915;
+    border-color:#e6a915;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+    outline:3px solid rgba(242, 166, 41, 0.35);
+    outline-offset:2px;
+}
+input,
+select,
+textarea{
+    color:#302044;
+    background:#ffffff;
+    border:1px solid #d9d0e5;
+    border-radius:7px;
 }
 footer{
     padding-bottom: 10px;
@@ -55,7 +89,7 @@ footer{
     display: flex;
     height: 100%;
     width: 100%;
-    background-color:rgb(49, 133, 206);
+    background-color:#511d96;
 }
 
 #footer-izq{
@@ -82,6 +116,10 @@ footer{
     font-size: 1.25em;
     font-family: Arial;
     color: white;
+}
+.cont-footer a:hover,
+.cont-redes a:hover{
+    color:#ffc43d;
 }
 #img-ubi{
     height: 45px;

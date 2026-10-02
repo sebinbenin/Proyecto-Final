@@ -8,7 +8,7 @@ h1 {
     padding-bottom: 8px;
     white-space: nowrap;
     font-size:2rem;
-    border-bottom: 4px solid #45cbd1;
+    border-bottom: 4px solid #ffc43d;
 }
 .parte-superior {
     display: flex;
@@ -25,7 +25,7 @@ h1 {
     min-height: 100px;
     padding: 10px;
     background-color: white;
-    border: 2px solid #45cbd1;
+    border: 2px solid #ded6e8;
     border-radius: 18px;
 }
 .descripcion h2 {
@@ -40,10 +40,10 @@ h1 {
 }
 
 .imagen-lab {
-    background-color: #eafbfd;
+    background-color: #ffffff;
     margin-top: 16px;
     padding: 16px;
-    border: 2px solid #45cbd1;
+    border: 2px solid #ded6e8;
     border-radius: 20px;
 }
 #img-lab {
@@ -65,8 +65,8 @@ main > section:nth-of-type(1) {
     vertical-align: top;
     box-sizing: border-box;
     color: white;
-    background: linear-gradient(to right, #55d4d8, #0757b9);
-    border: 1px solid black;
+    background: #511d96;
+    border: 1px solid #511d96;
     border-radius: 15px;
 }
 main > section:nth-of-type(2) {
@@ -79,8 +79,8 @@ main > section:nth-of-type(2) {
     vertical-align: top;
     box-sizing: border-box;
     color: white;
-    background: linear-gradient(to right, #55d4d8, #0757b9);
-    border: 1px solid black;
+    background: #511d96;
+    border: 1px solid #511d96;
     border-radius: 15px;
 }
 main > section:nth-of-type(2) > section {
@@ -93,8 +93,8 @@ main > section:nth-of-type(2) > section {
     padding: 15px;
     box-sizing: border-box;
     color: white;
-    background: linear-gradient(to right, #55d4d8, #0757b9);
-    border: 1px solid black;
+    background: #511d96;
+    border: 1px solid #511d96;
     border-radius: 15px;
 }
 main > section h3 {
@@ -148,7 +148,7 @@ main > section:nth-of-type(2) > section > h3::after {
 }
 
 .modelo3d h2{
-    color:#007c99;
+    color:#511d96;
     font-size:40px;
     margin-bottom:20px;
 }

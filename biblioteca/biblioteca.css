@@ -62,7 +62,7 @@ main {
 #derecha-arriba {
     height: 350px;
     width: auto;
-    background: linear-gradient(90deg, #5de0e6, #0078a6, #0b697d);
+    background: #511d96;
     border-radius: 30px;
     color: white;
     margin-top: 30px;
@@ -71,7 +71,8 @@ main {
     padding-left: 20px;
 }
 #normas {
-    background-color: #f5ebeb;
+    background-color: #ffffff;
+    border: 1px solid #e7e0ee;
     height: 250px;
     border-radius: 20px;
     padding-left: 20px;
@@ -90,7 +91,7 @@ h2 {
 .modelo3d h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #0b697d;
+    color: #511d96;
 }
 
 .modelo3dcaracteristicas {

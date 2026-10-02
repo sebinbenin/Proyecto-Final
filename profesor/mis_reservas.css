@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f9fb;
+    background: #f8f6fc;
 }
 
 .contenedor {
@@ -12,13 +12,13 @@ body {
 
 h2 {
     margin-top: 0;
-    color: #123d5b;
+    color: #511d96;
 }
 
 .link {
     display: inline-block;
     margin-bottom: 18px;
-    color: #0d4f78;
+    color: #511d96;
     text-decoration: none;
     font-weight: bold;
 }
@@ -46,24 +46,25 @@ table {
     width: 100%;
     border-collapse: collapse;
     background: #fff;
-    border: 1px solid #dfeef5;
+    border: 1px solid #e7e0ee;
     border-radius: 12px;
     overflow: hidden;
 }
 
 th, td {
     padding: 12px 14px;
-    border-bottom: 1px solid #edf5f9;
+    border-bottom: 1px solid #f0ebf5;
     text-align: left;
 }
 
 th {
-    background: #edf8fb;
-    color: #123d5b;
+    background: #511d96;
+    color: #ffffff;
 }
 
 .btn {
-    background: linear-gradient(90deg, #2ea3c7, #0d4f78);
+    background: #ffc43d;
+    color: #511d96;
     color: #fff;
     border: none;
     border-radius: 18px;

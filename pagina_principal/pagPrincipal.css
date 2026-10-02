@@ -42,6 +42,7 @@
     font-size: 2em;
     font-family: sans-serif;
     margin: 10px 0 0 60px;
+    color:#511d96;
 }
 #informacion p {
     font-weight: 500;
@@ -52,23 +53,28 @@
     width: 500px;
     height: auto;
     margin: 10px 60px 10px ;
+    color:#665676;
 }
 #informacion button{
     text-align: center;
-    background: #020024;
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 100%);
+    background: #ffc43d;
     height: 40px;
     width: 300px;
     margin: 10px 0 0 150px;
     border-radius:20px;
     font-family: sans-serif;
     font-size: 1.5em;
-    color: white;
+    color: #511d96;
+    border: 0;
+    font-weight: 700;
+    cursor: pointer;
 }
+ #informacion button:hover { background:#e6a915; }
 main h2{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2.5em;
     margin: 100px 0 15px 60px;
+    color:#511d96;
 }
 
 .carousel {
@@ -118,8 +124,9 @@ main h2{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255,255,255,0.9);
-    border: 1px solid #8b7f7f;
+    background: #511d96;
+    color:#ffffff;
+    border: 1px solid #511d96;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -127,6 +134,7 @@ main h2{
     font-size: 16px;
     z-index: 2;
 }
+.nav-btn:hover { background:#ffc43d; color:#511d96; }
 .nav-prev {
     display: flex;
     justify-content: center;

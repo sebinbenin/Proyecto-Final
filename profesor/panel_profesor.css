@@ -6,8 +6,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f5f7fb;
-    color: #1e293b;
+    background: #f8f6fc;
+    color: #302044;
 }
 
 
@@ -24,8 +24,8 @@ body {
 .sidebar {
     width: 240px;
     min-height: 100vh;
-    background: #ffffff;
-    border-right: 1px solid #e5e7eb;
+    background: #511d96;
+    border-right: 1px solid #511d96;
     padding: 25px 18px;
     position: fixed;
     left: 0;
@@ -35,7 +35,7 @@ body {
 .logo {
     font-size: 23px;
     font-weight: bold;
-    color: #2563eb;
+    color: #ffc43d;
     margin-bottom: 40px;
     padding-left: 10px;
 }
@@ -48,15 +48,15 @@ body {
 
 .menu a {
     text-decoration: none;
-    color: #64748b;
+    color: #e1e8f1;
     padding: 14px;
     border-radius: 10px;
     transition: 0.3s;
 }
 
 .menu a:hover {
-    background: #eff6ff;
-    color: #2563eb;
+    background: rgba(255, 178, 63, 0.16);
+    color: #ffcf5c;
 }
 
 /* CONTENIDO */
@@ -83,7 +83,7 @@ body {
 }
 
 .encabezado p {
-    color: #64748b;
+    color: #756788;
 }
 
 /* TARJETAS */
@@ -97,7 +97,7 @@ body {
 
 .tarjeta {
     background: white;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e7e0ee;
     border-radius: 16px;
     padding: 25px;
     transition: 0.3s;
@@ -114,7 +114,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #eff6ff;
+    background: #fff2d6;
     border-radius: 12px;
     font-size: 22px;
     margin-bottom: 18px;
@@ -126,7 +126,7 @@ body {
 }
 
 .tarjeta p {
-    color: #64748b;
+    color: #756788;
     font-size: 14px;
     line-height: 1.5;
     margin-bottom: 20px;
@@ -138,8 +138,8 @@ body {
 .boton {
     display: inline-block;
     text-decoration: none;
-    background: #2563eb;
-    color: white;
+    background: #ffc43d;
+    color: #511d96;
     padding: 11px 17px;
     border-radius: 9px;
     font-size: 14px;
@@ -147,16 +147,16 @@ body {
 }
 
 .boton:hover {
-    background: #1d4ed8;
+    background: #e6a915;
 }
 
 .boton.secundario {
-    background: #f1f5f9;
-    color: #334155;
+    background: #f0ebf5;
+    color: #511d96;
 }
 
 .boton.secundario:hover {
-    background: #e2e8f0;
+    background: #d8e0eb;
 }
 
 
@@ -164,7 +164,7 @@ body {
 
 .reservas {
     background: white;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e7e0ee;
     border-radius: 16px;
     padding: 25px;
 }
@@ -182,7 +182,7 @@ body {
 
 .titulo-reservas a {
     text-decoration: none;
-    color: #2563eb;
+    color: #511d96;
     font-size: 14px;
 }
 
@@ -194,7 +194,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 18px 0;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid #e7e0ee;
 }
 
 .reserva h3 {
@@ -203,7 +203,7 @@ body {
 }
 
 .reserva p {
-    color: #64748b;
+    color: #756788;
     font-size: 14px;
 }
 
@@ -296,5 +296,5 @@ svg {
 .cerrar-sesion{
     font-size: 1.5em;
     text-decoration: none;
-    color:#fdf6f6;
+    color:#ffffff;
 }

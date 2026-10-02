@@ -6,10 +6,10 @@ box-sizing: border-box;
 
 body {
 font-family: Arial, sans-serif;
-background: #f4f6f8;
+background: #f8f6fc;
 min-height: 100vh;
 padding: 40px 20px;
-color: #222;
+color: #302044;
 }
 
 .contenedor {
@@ -44,7 +44,7 @@ font-size: 25px;
 
 .cabecera-calendario a {
 text-decoration: none;
-background: #1e73be;
+background: #511d96;
 color: white;
 width: 45px;
 height: 45px;
@@ -56,7 +56,8 @@ font-size: 25px;
 }
 
 .cabecera-calendario a:hover {
-background: #155a96;
+background: #ffc43d;
+color: #511d96;
 }
 
 .dias-semana {
@@ -70,7 +71,7 @@ margin-bottom: 8px;
 text-align: center;
 font-weight: bold;
 padding: 12px 5px;
-background: #e9eef3;
+background: #f0ebf5;
 border-radius: 6px;
 }
 
@@ -90,31 +91,31 @@ display: flex;
 align-items: center;
 justify-content: center;
 text-decoration: none;
-color: #222;
-background: #f8f9fa;
-border: 1px solid #ddd;
+color: #302044;
+background: #ffffff;
+border: 1px solid #ded6e8;
 border-radius: 8px;
 font-size: 18px;
 font-weight: bold;
 }
 
 .dia:hover {
-background: #1e73be;
-color: white;
+background: #ffc43d;
+color: #511d96;
 }
 
 .volver {
 display: inline-block;
 margin-bottom: 20px;
 text-decoration: none;
-color: #1e73be;
+color: #511d96;
 font-weight: bold;
 }
 
 .boton-reservar {
 display: inline-block;
-background: #1e73be;
-color: white;
+background: #ffc43d;
+color: #511d96;
 text-decoration: none;
 padding: 12px 20px;
 border-radius: 8px;
@@ -123,7 +124,7 @@ font-weight: bold;
 }
 
 .boton-reservar:hover {
-background: #155a96;
+background: #e6a915;
 }
 
 table {
@@ -135,7 +136,7 @@ overflow: hidden;
 }
 
 th {
-background: #1e73be;
+background: #511d96;
 color: white;
 padding: 15px;
 text-align: left;
@@ -143,11 +144,11 @@ text-align: left;
 
 td {
 padding: 14px 15px;
-border-bottom: 1px solid #ddd;
+border-bottom: 1px solid #e7e0ee;
 }
 
 tr:hover td {
-background: #f5f8fb;
+background: #f8f6fc;
 }
 
 .formulario {
@@ -182,7 +183,8 @@ width: 100%;
 padding: 13px;
 border: none;
 border-radius: 8px;
-background: #1e73be;
+background: #ffc43d;
+color: #511d96;
 color: white;
 font-size: 16px;
 font-weight: bold;
@@ -190,12 +192,12 @@ cursor: pointer;
 }
 
 .formulario button:hover {
-background: #155a96;
+background: #e6a915;
 }
 
 .dia.deshabilitado {
-    background-color: #f0f0f0; /* Fondo gris claro */
-    color: #a0a0a0; /* Texto atenuado */
+    background-color: #f0ebf5;
+    color: #718096;
     cursor: not-allowed; /* Muestra el cursor de prohibido */
     pointer-events: none; /* Bloquea cualquier intento de clic */
 }
