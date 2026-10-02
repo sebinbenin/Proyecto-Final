@@ -9,7 +9,7 @@
     font-size: 2em;
 }
 .opciones{
-    color:#d2dbea;
+    color:#e4dcef;
     font-size: 1.1em;
     display:grid;
     height: 45vh;
@@ -18,7 +18,7 @@
 
 a, a:visited {
     
-    color: #d2dbea;
+    color: #e4dcef;
 }
 
 .opciones span{
@@ -60,7 +60,7 @@ a, a:visited {
 .cerrar-sesion{
     font-size: 1.3em;
     text-decoration: none;
-    color:#d2dbea;
+    color:#e4dcef;
 }
 
 svg {
