@@ -19,12 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $stmt->execute([$nombre, $correo, $password_hash, $rol, $estado]);
         if ($rol === 'profesor') {
-            $mensaje = "Registro exitoso. Tu cuenta está en evaluación por un administrador.";
+            echo "<script type='text/javascript'>alert('Registro exitoso. Tu cuenta está en evaluación por un administrador.');</script>";
         } else {
-            $mensaje = "Registro exitoso. Ya puedes iniciar sesión.";
+            echo "<script type='text/javascript'>alert('Registro exitoso. Ya puedes iniciar sesión.');</script>";
         }
     } catch (PDOException $e) {
-        $mensaje = "Error: El correo ya existe o hubo un problema.";
+        echo "<script type='text/javascript'>alert('Error: El correo ya existe o hubo un problema.');</script>";
     }
 }
 
