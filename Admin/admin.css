@@ -409,3 +409,78 @@ main{
 
     font-size: 18px;
 }
+
+[data-theme="dark"] #panel-izquierdo{
+    background-color: var(--superficie);
+}
+
+[data-theme="dark"] .opciones span:hover,
+[data-theme="dark"] .opciones span a:hover{
+    color: var(--acento);
+}
+
+[data-theme="dark"] .opciones span:hover{
+    border-left-color: var(--acento);
+    background-color: rgba(56, 189, 248, 0.14);
+}
+
+[data-theme="dark"] .filtros{
+    background-color: var(--superficie-2);
+}
+
+[data-theme="dark"] .filtro{
+    background-color: var(--superficie);
+    border-color: var(--borde);
+    color: var(--texto-suave);
+}
+
+[data-theme="dark"] .filtro:hover{
+    background-color: var(--superficie-2);
+}
+
+[data-theme="dark"] .filtro.active{
+    border-color: var(--acento);
+    color: var(--acento);
+}
+
+[data-theme="dark"] .solicitud,
+[data-theme="dark"] .reserva,
+[data-theme="dark"] .form-producto,
+[data-theme="dark"] .producto-stock{
+    background: var(--superficie);
+    border-color: var(--borde);
+}
+
+[data-theme="dark"] .solicitud:hover,
+[data-theme="dark"] .reserva:hover{
+    border-color: var(--acento);
+}
+
+[data-theme="dark"] .nombre{
+    color: var(--titulo);
+}
+
+[data-theme="dark"] .correo,
+[data-theme="dark"] .producto,
+[data-theme="dark"] .cantidad,
+[data-theme="dark"] .fecha,
+[data-theme="dark"] .producto-info span{
+    color: var(--texto-suave);
+}
+
+[data-theme="dark"] #categoria,
+[data-theme="dark"] .datos-producto input,
+[data-theme="dark"] .datos-producto textarea,
+[data-theme="dark"] .form-stock input{
+    border-color: var(--borde);
+}
+
+[data-theme="dark"] .btn-aprobar{
+    background: rgba(25, 135, 84, 0.25);
+    color: #4ade80;
+}
+
+[data-theme="dark"] .btn-rechazar{
+    background: rgba(220, 53, 69, 0.25);
+    color: #f87171;
+}

@@ -98,6 +98,7 @@ $vista = $_GET['vista'] ?? 'solicitudes';
     <meta name="viewport"content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Assets/main.css">
     <link rel="stylesheet" href="../Admin/admin.css">
+    <script src="../Assets/tema.js"></script>
     <title>Panel del administrador</title>
 </head>
 <body>
