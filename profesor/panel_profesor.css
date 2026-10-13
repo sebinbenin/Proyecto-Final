@@ -21,49 +21,56 @@ body {
 
 /* MENÚ LATERAL */
 
-.sidebar {
-    width: 240px;
+#panel-izquierdo {
+    width: 23%;
     min-height: 100vh;
     background: #511d96;
-    border-right: 1px solid #511d96;
-    padding: 25px 18px;
+    padding: 25px 0;
     position: fixed;
     left: 0;
     top: 0;
 }
 
-.logo {
-    font-size: 23px;
-    font-weight: bold;
-    color: #ffc43d;
-    margin-bottom: 40px;
-    padding-left: 10px;
+#panel-izquierdo h2 {
+    margin-left: 4vh;
+    font-size: 2em;
+    color: #ffffff;
 }
 
-.menu {
+.opciones {
+    color: #e4dcef;
+    font-size: 1.1em;
+    display: grid;
+    margin-top: 5vh;
+}
+
+.opciones span {
+    padding: 10px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    padding-left: 4vh;
+    align-items: center;
 }
 
-.menu a {
-    text-decoration: none;
-    color: #e1e8f1;
-    padding: 14px;
-    border-radius: 10px;
-    transition: 0.3s;
+.opciones span a {
+    width: 100%;
+    color: #e4dcef;
 }
 
-.menu a:hover {
-    background: rgba(255, 178, 63, 0.16);
+.opciones span a:hover {
     color: #ffcf5c;
+}
+
+.opciones span:hover {
+    color: #ffcf5c;
+    border-left: 5px solid #ffc43d;
+    background-color: rgba(242, 166, 41, 0.14);
 }
 
 /* CONTENIDO */
 
 .contenido {
-    margin-left: 240px;
-    width: calc(100% - 240px);
+    margin-left: 23%;
+    width: calc(100% - 23%);
     padding: 35px;
 }
 
@@ -109,14 +116,14 @@ body {
 }
 
 .icono {
-    width: 48px;
-    height: 48px;
+    width: 47px;
+    height: 47px;
+    margin-left: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #fff2d6;
     border-radius: 12px;
-    font-size: 22px;
     margin-bottom: 18px;
 }
 
@@ -221,7 +228,7 @@ body {
 
 @media (max-width: 900px) {
 
-    .sidebar {
+    #panel-izquierdo {
         width: 190px;
     }
 
@@ -238,10 +245,11 @@ body {
 
 @media (max-width: 600px) {
 
-    .sidebar {
+    #panel-izquierdo {
         position: static;
         width: 100%;
         min-height: auto;
+        padding: 20px 0;
     }
 
     .panel {
@@ -254,9 +262,16 @@ body {
         padding: 20px;
     }
 
-    .menu {
-        flex-direction: row;
+    .opciones {
+        margin-top: 15px;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
         overflow-x: auto;
+    }
+
+    #cerrar {
+        margin-top: 15px;
+        padding-left: 4vh;
     }
 
     .encabezado {
@@ -273,15 +288,16 @@ body {
 
 }
 svg {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
+    margin-right: 1em;
+    width: 30px;
+    height: 30px;
 }
 #cerrar{
-    margin-top: 30vh;
+    color: #e4dcef;
+    margin-top: 45vh;
     padding: 10px;
     display: flex;
-    padding-left: 5vh;
+    padding-left: 10vh;
     align-items:center;
 }
 
@@ -293,8 +309,12 @@ svg {
     background-color: #dc354621;
 }
 
+#cerrar a{
+    color: #e4dcef;
+}
+
 .cerrar-sesion{
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-decoration: none;
-    color:#ffffff;
+    color:#e4dcef;
 }

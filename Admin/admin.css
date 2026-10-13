@@ -5,6 +5,7 @@
 }
 
 #panel-izquierdo h2{
+    color: white;
     margin-left: 4vh;
     font-size: 2em;
 }
@@ -25,7 +26,7 @@ a, a:visited {
     margin-left: 1px;
     padding: 10px;
     display: flex;
-    padding-left: 9vh;
+    padding-left: 3vh;
     align-items:center;
 }
 .opciones span a{
@@ -42,6 +43,7 @@ a, a:visited {
 }
 
 #cerrar{
+    color: #e4dcef;
     margin-top: 22vh;
     padding: 10px;
     display: flex;
