@@ -138,6 +138,7 @@ main h2{
 .nav-prev {
     display: flex;
     justify-content: center;
+    align-items:center;
     font-size: 35px;
     left: -50px;
     height: 50px;
@@ -146,6 +147,7 @@ main h2{
 .nav-next {
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 35px;
     right: -50px;
     height: 50px;
