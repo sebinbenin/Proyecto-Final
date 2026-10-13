@@ -12,6 +12,7 @@ exit();
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../profesor/panel_profesor.css">
 <link rel="stylesheet" href="../Assets/main.css">
+<script src="../Assets/tema.js"></script>
 <title>Panel del Profesor</title>
 </head>
 <body>

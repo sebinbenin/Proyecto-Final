@@ -318,3 +318,56 @@ svg {
     text-decoration: none;
     color:#e4dcef;
 }
+
+
+[data-theme="dark"] #panel-izquierdo{
+    background: var(--superficie);
+}
+
+[data-theme="dark"] .opciones span:hover,
+[data-theme="dark"] .opciones span a:hover{
+    color: var(--acento);
+}
+
+[data-theme="dark"] .opciones span:hover{
+    border-left-color: var(--acento);
+    background-color: rgba(56, 189, 248, 0.14);
+}
+
+[data-theme="dark"] .tarjeta,
+[data-theme="dark"] .reservas{
+    background: var(--superficie);
+    border-color: var(--borde);
+}
+
+[data-theme="dark"] .icono{
+    background: var(--superficie-2);
+}
+
+[data-theme="dark"] .encabezado p,
+[data-theme="dark"] .tarjeta p,
+[data-theme="dark"] .reserva p{
+    color: var(--texto-suave);
+}
+
+[data-theme="dark"] .boton{
+    background: var(--acento);
+    color: var(--texto-boton);
+}
+
+[data-theme="dark"] .boton:hover{
+    background: var(--acento-hover);
+}
+
+[data-theme="dark"] .boton.secundario{
+    background: var(--superficie-2);
+    color: var(--texto);
+}
+
+[data-theme="dark"] .titulo-reservas a{
+    color: var(--enlace);
+}
+
+[data-theme="dark"] .reserva{
+    border-top-color: var(--borde);
+}
