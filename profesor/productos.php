@@ -20,7 +20,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <link rel="stylesheet" href="productos.css">
 
 <main class="contenedor">
-    <h2 class="titulo">Préstamo de productos</h2>
+    <h2 class="titulo">Préstamo de equipos</h2>
     <a class="link" href="mis_reservas.php">📋 Ver reservas activas</a>
 
     <?php if (isset($_GET['res'])): ?>
@@ -34,7 +34,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
     <div class="filtros">
-        <input type="text" id="buscador" placeholder="🔍 Buscar producto...">
+        <input type="text" id="buscador" placeholder="🔍 Buscar equipo...">
         <button class="filtro activo" data-filtro="todos">Todos</button>
         <button class="filtro" data-filtro="disponible">Disponibles</button>
         <button class="filtro" data-filtro="sin_stock">Sin stock</button>
@@ -73,7 +73,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <button onclick="window.location.href='../profesor/panel_profesor.php'" class="mi-boton">Volver</button>
         <?php endforeach; ?>
     <?php else: ?>
-        <p>No hay productos cargados todavía.</p>
+        <p>No hay equipos cargados todavía.</p>
     <?php endif; ?>
 </main>
 

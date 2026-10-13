@@ -25,7 +25,7 @@ $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php if (isset($_GET['res'])): ?>
         <?php if ($_GET['res'] === 'devuelto'): ?>
-            <p class="alerta alerta-ok">✅ Producto marcado como devuelto. El stock fue actualizado.</p>
+            <p class="alerta alerta-ok">✅ Equipo marcado como devuelto. El stock fue actualizado.</p>
         <?php elseif ($_GET['res'] === 'error'): ?>
             <p class="alerta alerta-error">❌ Ocurrió un error al procesar la devolución.</p>
         <?php endif; ?>
@@ -35,7 +35,7 @@ $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <table>
             <thead>
                 <tr>
-                    <th>Producto</th>
+                    <th>Equipo</th>
                     <th>Cantidad</th>
                     <th>Fecha</th>
                     <th>Acción</th>
@@ -48,7 +48,7 @@ $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo (int) $r['cantidad']; ?></td>
                         <td><?php echo date('d/m/Y H:i', strtotime($r['fecha_reserva'])); ?></td>
                         <td>
-                            <form method="POST" action="devolver.php" onsubmit="return confirm('¿Confirmás que el producto fue devuelto?');">
+                            <form method="POST" action="devolver.php" onsubmit="return confirm('¿Confirmás que el equipo fue devuelto?');">
                                 <input type="hidden" name="reserva_id" value="<?php echo (int) $r['id']; ?>">
                                 <button type="submit" class="btn">Devolver</button>
                             </form>
@@ -58,7 +58,7 @@ $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     <?php else: ?>
-        <p>No tenés productos reservados en este momento.</p>
+        <p>No tenés equipos reservados en este momento.</p>
     <?php endif; ?>
 <?php
 // Solo incluye session_start() si no lo has puesto al principio del archivo

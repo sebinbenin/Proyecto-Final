@@ -120,7 +120,7 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
                         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                    </svg><a onclick="mostrarProductos(event)">Agregar producto</a></span>
+                    </svg><a onclick="mostrarProductos(event)">Agregar equipo</a></span>
                 <!-- RESERVAR SALONES -->
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -199,7 +199,7 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                             <div class="reserva">
                                 <div class="info-reserva">
                                     <span class="profesor"><?php echo htmlspecialchars($reserva['profesor']);?></span>
-                                    <span class="producto">Producto:<?php echo htmlspecialchars($reserva['producto']);?></span>
+                                    <span class="producto">Equipo:<?php echo htmlspecialchars($reserva['producto']);?></span>
                                     <span class="cantidad">Cantidad:<?php echo htmlspecialchars($reserva['cantidad']);?></span>
                                     <span class="fecha">Fecha:<?php echo htmlspecialchars($reserva['fecha_reserva']);?></span>
                                 </div>
@@ -217,7 +217,7 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                 VISTA PRODUCTOS
             ========================================== -->
             <div id="vista-productos" class="oculto">
-                <h2>Agregar producto</h2>
+                <h2>Agregar equipo</h2>
                 <!-- =================================
                     FORMULARIO
                 ================================== -->
@@ -248,13 +248,13 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                             <input type="file"id="imagen"name="imagen" accept="image/*" required>
                         </div>
                     </div>
-                    <button type="submit"class="btn-subir-producto">Subir producto</button>
+                    <button type="submit"class="btn-subir-producto">Subir equipo</button>
                 </form>
                 <!-- =================================
                     PRODUCTOS EXISTENTES
                 ================================== -->
                 <section class="lista-productos">
-                    <h2>Productos existentes</h2>
+                    <h2>Equipos existentes</h2>
                     <?php if (count($productos) > 0): ?>
                         <?php foreach ($productos as $producto): ?>
                             <div class="producto-stock">
@@ -284,7 +284,7 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <p>No hay productos registrados.</p>
+                        <p>No hay equipos registrados.</p>
                     <?php endif; ?>
                 </section>
             </div>
