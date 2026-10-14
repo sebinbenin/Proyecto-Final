@@ -1,41 +1,26 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
+if (!isset($_SESSION['usuario_id'])) { header("Location: login.php"); exit(); }
 require 'conexion.php';
-
 $id = $_SESSION['usuario_id'];
 
 $stmt = $conexion->prepare("SELECT nombre, correo, rol, foto FROM usuarios WHERE id = ?");
 $stmt->execute([$id]);
-$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+$u = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$sql_cursos = "SELECT cursos.nombre AS curso, profesor_curso.materia
-                FROM profesor_curso
-                INNER JOIN cursos
-                ON profesor_curso.curso_id = cursos.id
-                WHERE profesor_curso.profesor_id = ?";
-$stmt = $conexion->prepare($sql_cursos);
+$stmt = $conexion->prepare("SELECT cursos.nombre AS curso, materia FROM profesor_curso INNER JOIN cursos ON curso_id = cursos.id WHERE profesor_id = ?");
 $stmt->execute([$id]);
 $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$sql_companeros = "SELECT usuarios.nombre, usuarios.correo, usuarios.foto, cursos.nombre AS curso, profesor_curso.materia
-                    FROM profesor_curso
-                    INNER JOIN usuarios
-                    ON profesor_curso.profesor_id = usuarios.id
-                    INNER JOIN cursos
-                    ON profesor_curso.curso_id = cursos.id
-                    WHERE profesor_curso.curso_id IN (SELECT curso_id FROM profesor_curso WHERE profesor_id = ?)
-                    AND profesor_curso.profesor_id != ?
-                    AND usuarios.estado = 'aprobado'
-                    ORDER BY cursos.nombre, usuarios.nombre";
-$stmt = $conexion->prepare($sql_companeros);
+$stmt = $conexion->prepare("SELECT usuarios.nombre, usuarios.correo, usuarios.foto, cursos.nombre AS curso, materia
+    FROM profesor_curso INNER JOIN usuarios ON profesor_id = usuarios.id INNER JOIN cursos ON curso_id = cursos.id
+    WHERE curso_id IN (SELECT curso_id FROM profesor_curso WHERE profesor_id = ?) AND profesor_id != ? AND usuarios.estado = 'aprobado'
+    ORDER BY cursos.nombre, usuarios.nombre");
 $stmt->execute([$id, $id]);
 $companeros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+function foto($f) { return '../Assets/imagenes/' . ($f ? 'perfiles/' . htmlspecialchars($f) : 'foto-usuario.png'); }
+$panel = ['administrador' => '../Admin/panel_admin.php', 'profesor' => '../profesor/panel_profesor.php'][$u['rol']] ?? '../pagina_principal/PagPrincipal.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -43,55 +28,55 @@ $companeros = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Assets/main.css">
+    <link rel="stylesheet" href="perfil.css">
     <script src="../Assets/tema.js"></script>
     <title>Mi Perfil</title>
 </head>
 <body>
     <header id="header"></header>
-    <main>
-        <h2>Mi Perfil</h2>
-        <img src="../Assets/imagenes/<?php echo $usuario['foto'] ? 'perfiles/' . htmlspecialchars($usuario['foto']) : 'foto-usuario.png'; ?>" alt="Foto de perfil" width="120" height="120">
+    <main class="perfil">
+        <div class="banner"></div>
+        <img src="<?= foto($u['foto']) ?>" alt="Foto de perfil" class="foto">
+        <h1><?= htmlspecialchars($u['nombre'] ?? 'Sin nombre') ?></h1>
+        <span class="rol"><?= ucfirst($u['rol']) ?></span>
+
         <form action="subir_foto.php" method="POST" enctype="multipart/form-data">
-            <input type="file" name="foto" accept="image/*" required>
+            <label for="foto"> Elige tu foto</label>
+            <input type="file" id="foto" name="foto" accept="image/*" required onchange="archivo.textContent = this.files[0]?.name">
             <button type="submit">Cambiar foto</button>
+            <small id="archivo">Ningún archivo seleccionado</small>
         </form>
         <?php if (isset($_GET['foto'])): ?>
-            <p style="color: red;">No se pudo subir la foto. Usá una imagen JPG, PNG o WEBP de hasta 2 MB.</p>
+            <p class="error">No se pudo subir la foto. Usá una imagen JPG, PNG o WEBP de hasta 2 MB.</p>
         <?php endif; ?>
-        <p><b>Nombre:</b> <?php echo htmlspecialchars($usuario['nombre'] ?? 'Sin nombre'); ?></p>
-        <p><b>Correo:</b> <?php echo htmlspecialchars($usuario['correo']); ?></p>
-        <p><b>Rol:</b> <?php echo ucfirst($usuario['rol']); ?></p>
 
-        <?php if ($usuario['rol'] === 'profesor'): ?>
-            <h3>Cursos que dicta</h3>
-            <?php if (count($cursos) > 0): ?>
-                <ul>
-                    <?php foreach ($cursos as $c): ?>
-                        <li>Profesor de <?php echo htmlspecialchars($c['curso']); ?> (<?php echo htmlspecialchars($c['materia']); ?>)</li>
-                    <?php endforeach; ?>
+        <div class="cuerpo">
+            <div class="datos">
+                <div><span>Nombre</span><b><?= htmlspecialchars($u['nombre'] ?? 'Sin nombre') ?></b></div>
+                <div><span>Correo</span><b><?= htmlspecialchars($u['correo']) ?></b></div>
+            </div>
+
+            <?php if ($u['rol'] === 'profesor'): ?>
+                <h3>Cursos que dicta</h3>
+                <ul class="chips">
+                    <?php foreach ($cursos as $c): ?><li><?= htmlspecialchars($c['curso'] . ' · ' . $c['materia']) ?></li><?php endforeach; ?>
                 </ul>
-            <?php else: ?>
-                <p>Todavía no tenés cursos asignados.</p>
-            <?php endif; ?>
+                <?php if (!$cursos): ?><p class="vacio">Todavía no tenés cursos asignados.</p><?php endif; ?>
 
-            <h3>Profesores del mismo curso</h3>
-            <?php if (count($companeros) > 0): ?>
-                <ul>
+                <h3>Profesores del mismo curso</h3>
+                <ul class="lista">
                     <?php foreach ($companeros as $p): ?>
-                        <li><img src="../Assets/imagenes/<?php echo $p['foto'] ? 'perfiles/' . htmlspecialchars($p['foto']) : 'foto-usuario.png'; ?>" alt="Foto" width="30" height="30"> <?php echo htmlspecialchars($p['nombre'] ?? $p['correo']); ?> - <?php echo htmlspecialchars($p['materia']); ?> (<?php echo htmlspecialchars($p['curso']); ?>)</li>
+                        <li><img src="<?= foto($p['foto']) ?>" alt="Foto"><div><b><?= htmlspecialchars($p['nombre'] ?? $p['correo']) ?></b><small><?= htmlspecialchars($p['materia'] . ' · ' . $p['curso']) ?></small></div></li>
                     <?php endforeach; ?>
                 </ul>
-            <?php else: ?>
-                <p>No hay otros profesores en tus cursos.</p>
+                <?php if (!$companeros): ?><p class="vacio">No hay otros profesores en tus cursos.</p><?php endif; ?>
             <?php endif; ?>
-        <?php endif; ?>
 
-        <?php if ($usuario['rol'] === 'administrador'): ?>
-            <button onclick="window.location.href='../Admin/panel_admin.php'">Volver al panel</button>
-        <?php elseif ($usuario['rol'] === 'profesor'): ?>
-            <button onclick="window.location.href='../profesor/panel_profesor.php'">Volver al panel</button>
-        <?php endif; ?>
-        <button onclick="window.location.href='logout.php'">Cerrar sesión</button>
+            <div class="botones">
+                <button onclick="location.href='<?= $panel ?>'">Volver al panel</button>
+                <button class="salir" onclick="location.href='logout.php'">Cerrar sesión</button>
+            </div>
+        </div>
     </main>
     <footer id="footer"></footer>
     <script src="../Assets/main.js"></script>

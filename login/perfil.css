@@ -1,0 +1,26 @@
+.perfil{--b:var(--barra,#511d96);--s:var(--superficie,#fff);--l:var(--borde,#e4dcef);--t:var(--titulo,#2a1745);--g:var(--texto-suave,#7a6a90);--a:var(--acento,#ffc43d);max-width:760px;margin:50px auto 60px;background:var(--s);border:1px solid var(--l);border-radius:20px;box-shadow:0 10px 30px #00000014;overflow:hidden;font-family:Arial,sans-serif;text-align:center}
+.banner{height:120px;background:linear-gradient(135deg,var(--b),var(--superficie-2,#7c4dc4))}
+.perfil .foto{width:140px;height:140px;margin-top:-70px;border-radius:50%;object-fit:cover;border:5px solid var(--s);box-shadow:0 6px 18px #0000002e}
+.perfil h1{margin:15px 0 5px;font-size:1.9em;color:var(--t)}
+.rol,.chips li{display:inline-block;padding:5px 14px;border-radius:99px;font-weight:700;font-size:.9em;background:var(--a);color:var(--texto-boton,#511d96)}
+.perfil form{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin-top:18px}
+.perfil input{display:none}
+.perfil label{padding:9px 16px;border:1px dashed var(--l);border-radius:8px;cursor:pointer}
+.perfil label:hover{border-color:var(--a)}
+.perfil small,.perfil .vacio{display:block;width:100%;color:var(--g)!important;font-size:.85em}
+.error{margin:12px 30px 0;padding:10px;border-radius:8px;background:#dc26261a;color:#dc2626!important}
+.cuerpo{padding:25px 30px 30px;text-align:left}
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.datos div,.lista li{padding:14px 16px;border:1px solid var(--l);border-radius:12px;background:var(--fondo,#f8f6fc)}
+.datos span{display:block;font-size:.8em;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;color:var(--g)}
+.datos b,.lista b{color:var(--t)}
+.datos b{font-size:1.05em}
+.perfil h3{margin:28px 0 12px;padding-left:10px;border-left:4px solid var(--a);color:var(--t)}
+.chips,.lista{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{padding:8px 14px;font-weight:400;background:var(--b);color:#fff}
+.lista li{width:100%;display:flex;align-items:center;gap:12px;padding:10px 12px;background:none}
+.lista img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.botones{display:flex;justify-content:center;gap:12px;margin-top:30px;padding-top:22px;border-top:1px solid var(--l)}
+.botones .salir{background:none;color:var(--texto,#302044);border-color:var(--l)}
+.botones .salir:hover{background:#dc26261a;border-color:#dc2626;color:#dc2626}
+@media(max-width:600px){.perfil{margin:25px 12px 40px}.cuerpo{padding:25px 18px}.perfil h1{font-size:1.5em}}
