@@ -10,26 +10,26 @@ require '../login/conexion.php';
 
 
 if (isset($_GET['id']) && isset($_GET['accion'])) {
-    $id_profesor = $_GET['id'];
+    $id_usuario = $_GET['id'];
     $accion = $_GET['accion'];
 
-    
+
     if ($accion === 'aprobar') {
         $nuevo_estado = 'aprobado';
     } elseif ($accion === 'rechazar') {
         $nuevo_estado = 'rechazado';
     } else {
-        
+
         header("Location: panel_admin.php");
         exit();
     }
 
-    
-    $sql = "UPDATE usuarios SET estado = ? WHERE id = ? AND rol = 'profesor'";
+    // Aplica tanto a profesores como a alumnos
+    $sql = "UPDATE usuarios SET estado = ? WHERE id = ? AND rol IN ('profesor', 'alumno')";
     $stmt = $conexion->prepare($sql);
-    
-    if ($stmt->execute([$nuevo_estado, $id_profesor])) {
-        
+
+    if ($stmt->execute([$nuevo_estado, $id_usuario])) {
+
         header("Location: panel_admin.php?res=" . $nuevo_estado);
         exit();
     } else {

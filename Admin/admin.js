@@ -50,69 +50,27 @@ function cambiarPestana(pestana, boton) {
 
 
 // ==========================================
-// MOSTRAR PRODUCTOS
+// CAMBIAR DE VISTA (oculta todas y muestra una)
 // ==========================================
 
-function mostrarProductos(event) {
+const VISTAS = ["vista-solicitudes", "vista-productos", "vista-profesores", "vista-alumnos", "vista-horarios"];
+
+function mostrarVista(event, idVista) {
 
     event.preventDefault();
 
-
-    const vistaSolicitudes =
-        document.getElementById("vista-solicitudes");
-
-    const vistaProductos =
-        document.getElementById("vista-productos");
-
-
-    vistaSolicitudes.classList.add("oculto");
-
-    document.getElementById("vista-profesores").classList.add("oculto");
-
-    vistaProductos.classList.remove("oculto");
+    VISTAS.forEach(function(id) {
+        document.getElementById(id).classList.toggle("oculto", id !== idVista);
+    });
 
 }
 
+function mostrarProductos(event) { mostrarVista(event, "vista-productos"); }
 
+function mostrarSolicitudes(event) { mostrarVista(event, "vista-solicitudes"); }
 
-// ==========================================
-// VOLVER A SOLICITUDES
-// ==========================================
+function mostrarProfesores(event) { mostrarVista(event, "vista-profesores"); }
 
-function mostrarSolicitudes(event) {
+function mostrarAlumnos(event) { mostrarVista(event, "vista-alumnos"); }
 
-    event.preventDefault();
-
-
-    const vistaSolicitudes =
-        document.getElementById("vista-solicitudes");
-
-    const vistaProductos =
-        document.getElementById("vista-productos");
-
-
-    vistaProductos.classList.add("oculto");
-
-    document.getElementById("vista-profesores").classList.add("oculto");
-
-    vistaSolicitudes.classList.remove("oculto");
-
-}
-
-
-
-// ==========================================
-// MOSTRAR PROFESORES
-// ==========================================
-
-function mostrarProfesores(event) {
-
-    event.preventDefault();
-
-    document.getElementById("vista-solicitudes").classList.add("oculto");
-
-    document.getElementById("vista-productos").classList.add("oculto");
-
-    document.getElementById("vista-profesores").classList.remove("oculto");
-
-}
+function mostrarHorarios(event) { mostrarVista(event, "vista-horarios"); }

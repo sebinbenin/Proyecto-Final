@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
+if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['rol'], ['profesor', 'alumno'])) {
     header("Location: ../login/login.php");
     exit();
 }
@@ -23,9 +23,9 @@ if ($reserva_id <= 0) {
 try {
     $conexion->beginTransaction();
 
-    $sqlBuscar = "SELECT producto_id, cantidad FROM reservas WHERE id = ? AND estado = 'aprobada'";
+    $sqlBuscar = "SELECT producto_id, cantidad FROM reservas WHERE id = ? AND usuario_id = ? AND estado = 'aprobada'";
     $stmtBuscar = $conexion->prepare($sqlBuscar);
-    $stmtBuscar->execute([$reserva_id]);
+    $stmtBuscar->execute([$reserva_id, $_SESSION['usuario_id']]);
     $reserva = $stmtBuscar->fetch(PDO::FETCH_ASSOC);
 
     if (!$reserva) {

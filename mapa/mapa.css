@@ -1,0 +1,268 @@
+/* =====================================
+   MAPA 3D DEL EDIFICIO
+===================================== */
+
+.mapa {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    min-height: calc(100vh - 100px);
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.oculto {
+    display: none !important;
+}
+
+/* PANEL IZQUIERDO */
+
+.panel-mapa {
+    width: 340px;
+    flex-shrink: 0;
+    background: var(--superficie, #ffffff);
+    border: 1px solid var(--borde, #e7e0ee);
+    border-radius: 16px;
+    padding: 22px;
+    box-sizing: border-box;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+
+.panel-mapa h1 {
+    font-size: 2em;
+    margin: 0 0 6px;
+    color: var(--titulo, #511d96);
+}
+
+.panel-mapa .ayuda {
+    color: var(--texto-suave, #756788);
+    margin: 0 0 18px;
+    line-height: 1.4;
+}
+
+.grupo-piso h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--texto-suave, #756788);
+    margin: 16px 0 8px;
+}
+
+.grupo-piso .salones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.salon-btn {
+    background: var(--fondo, #f8f6fc);
+    color: var(--texto, #302044);
+    border: 1px solid var(--borde, #ded6e8);
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.salon-btn:hover {
+    background: #fff2d6;
+    border-color: #ffc43d;
+}
+
+.salon-btn.activo {
+    background: #ffc43d;
+    border-color: #ffc43d;
+    color: #511d96;
+}
+
+/* DETALLE CON INDICACIONES */
+
+.detalle {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--borde, #e7e0ee);
+}
+
+.etiqueta-piso {
+    display: inline-block;
+    background: #511d96;
+    color: white;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.detalle h2 {
+    font-size: 1.6em;
+    margin: 10px 0;
+}
+
+.detalle ol {
+    padding-left: 22px;
+    margin: 0 0 18px;
+    line-height: 1.5;
+}
+
+.detalle li {
+    margin-bottom: 6px;
+}
+
+.detalle-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.boton-secundario {
+    display: inline-block;
+    text-align: center;
+    background: var(--fondo, #f0ebf5);
+    color: var(--enlace, #511d96) !important;
+    border: 1px solid var(--borde, #ded6e8);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.boton-secundario:hover {
+    background: var(--superficie-2, #e7e0ee);
+    border-color: var(--borde, #ded6e8);
+}
+
+/* VISTA 3D */
+
+.vista {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--borde, #e7e0ee);
+    background: var(--superficie, #ffffff);
+    min-height: 520px;
+}
+
+#escena {
+    position: absolute;
+    inset: 0;
+}
+
+#escena canvas {
+    display: block;
+    cursor: grab;
+}
+
+.pisos {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pisos button {
+    background: var(--superficie, #ffffff);
+    color: var(--texto, #302044);
+    border: 1px solid var(--borde, #ded6e8);
+    font-size: 14px;
+    padding: 8px 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.pisos button.activo {
+    background: #511d96;
+    border-color: #511d96;
+    color: white;
+}
+
+.consejo {
+    position: absolute;
+    left: 14px;
+    bottom: 6px;
+    font-size: 13px;
+    color: var(--texto-suave, #756788);
+    background: var(--superficie, rgba(255, 255, 255, 0.85));
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* VENTANA DEL MODELO */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 10, 40, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.modal-caja {
+    background: var(--superficie, #ffffff);
+    border-radius: 14px;
+    width: min(1000px, 100%);
+    overflow: hidden;
+}
+
+.modal-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+}
+
+.modal-cabecera h2 {
+    font-size: 1.3em;
+    margin: 0;
+    flex: 1;
+}
+
+#btn-cerrar {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+.modal iframe {
+    display: block;
+    width: 100%;
+    height: min(70vh, 600px);
+    border: 0;
+}
+
+/* Modelos de Sketchfab en blanco y negro para que todos combinen */
+.modelo-gris {
+    filter: grayscale(1);
+    transition: filter 0.3s ease;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .mapa {
+        flex-direction: column-reverse;
+        padding: 12px;
+    }
+
+    .panel-mapa {
+        width: 100%;
+        max-height: none;
+    }
+
+    .vista {
+        min-height: 420px;
+    }
+
+    .pisos {
+        flex-direction: row;
+        flex-wrap: wrap;
+        left: 10px;
+        right: 10px;
+    }
+}

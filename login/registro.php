@@ -2,36 +2,61 @@
 session_start();
 require 'conexion.php';
 $mensaje = "";
+$enviado = false;
 
+// Devuelve lo que el usuario había escrito, para no perderlo si hay un error
+function valor($campo) {
+    return htmlspecialchars($_POST[$campo] ?? '');
+}
+
+// Deja la cédula con el formato 1.234.567-8 (acepta que la escriban con o sin puntos y guion)
+function formatear_cedula($texto) {
+    $digitos = preg_replace('/\D/', '', $texto);
+    if (strlen($digitos) < 7 || strlen($digitos) > 8) {
+        return null;
+    }
+    $numero = substr($digitos, 0, -1);
+    return number_format((int) $numero, 0, '', '.') . '-' . substr($digitos, -1);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
     $correo = $_POST['correo'];
     $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $rol = $_POST['rol'];
-    
-    // Si es profesor, nace pendiente. Si no, nace aprobado.
-    $estado = ($rol === 'profesor') ? 'pendiente' : 'aprobado';
+    $rol = ($_POST['rol'] ?? '') === 'profesor' ? 'profesor' : 'alumno';
+    $cedula = null;
+    $fecha_nacimiento = null;
 
-    $sql = "INSERT INTO usuarios (nombre, correo, password, rol, estado) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conexion->prepare($sql);
-    
-    try {
-        $stmt->execute([$nombre, $correo, $password_hash, $rol, $estado]);
-        if ($rol === 'profesor') {
-            echo "<script type='text/javascript'>alert('Registro exitoso. Tu cuenta está en evaluación por un administrador.');</script>";
-        } else {
-            echo "<script type='text/javascript'>alert('Registro exitoso. Ya puedes iniciar sesión.');</script>";
+    // Profesores y alumnos nacen pendientes hasta que un administrador los apruebe
+    $estado = 'pendiente';
+
+    if ($rol === 'alumno') {
+        $cedula = formatear_cedula($_POST['cedula'] ?? '');
+        $fecha_nacimiento = $_POST['fecha_nacimiento'] ?? '';
+        if ($cedula === null) {
+            $mensaje = "La cédula debe tener 7 u 8 números (ej: 1.234.567-8).";
+        } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha_nacimiento) || $fecha_nacimiento >= date('Y-m-d')) {
+            $mensaje = "Ingresá una fecha de nacimiento válida.";
         }
-    } catch (PDOException $e) {
-        echo "<script type='text/javascript'>alert('Error: El correo ya existe o hubo un problema.');</script>";
+    }
+
+    if ($mensaje === "") {
+        $sql = "INSERT INTO usuarios (nombre, correo, cedula, fecha_nacimiento, password, rol, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conexion->prepare($sql);
+
+        try {
+            $stmt->execute([$nombre, $correo, $cedula, $fecha_nacimiento, $password_hash, $rol, $estado]);
+            $enviado = true;
+        } catch (PDOException $e) {
+            $mensaje = "No se pudo enviar la solicitud: el correo o la cédula ya están registrados.";
+        }
     }
 }
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
-    <link rel= "stylesheet" href="login.css">
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
@@ -43,28 +68,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <button class="dark-mode-btn" id="darkModeToggle"><i class="fa-solid fa-moon"></i></button>
         <div class="left-section">
-            <p><b><?php echo $mensaje; ?></b></p>
             <section class="login-section">
                 <h2>Bienvenido</h2>
+                <?php if ($enviado): ?>
+                    <div class="aviso aviso-ok">
+                        <b>¡Solicitud enviada!</b><br>
+                        Tu registro se envió al administrador. Vas a poder iniciar sesión cuando apruebe tu cuenta.
+                    </div>
+                    <p class="form-text"><a href="login.php">Ir a iniciar sesión</a></p>
+                <?php else: ?>
+                <?php if ($mensaje !== ""): ?>
+                    <div class="aviso aviso-error"><?php echo htmlspecialchars($mensaje); ?></div>
+                <?php endif; ?>
                 <form action="registro.php" method="POST">
-                    <input type="name" placeholder="Nombre completo" name="nombre" required><br><br>
-                    <input type="email" placeholder="Correo electrónico" name="correo" required><br><br>
+                    <input type="name" placeholder="Nombre completo" name="nombre" value="<?php echo valor('nombre'); ?>" required><br><br>
+                    <input type="email" placeholder="Correo electrónico" name="correo" value="<?php echo valor('correo'); ?>" required><br><br>
                     <input type="password" placeholder="Contraseña" name="password" required><br><br>
-                    <select placeholder="Rol" name="rol" required>
+                    <!-- Solo para alumnos -->
+                    <div id="datos-alumno">
+                        <input type="text" placeholder="Cédula (ej: 1.234.567-8)" name="cedula" id="cedula" inputmode="numeric" value="<?php echo valor('cedula'); ?>" required><br><br>
+                        <label class="form-text" for="fecha_nacimiento">Fecha de nacimiento</label><br>
+                        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" max="<?php echo date('Y-m-d'); ?>" value="<?php echo valor('fecha_nacimiento'); ?>" required><br><br>
+                    </div>
+                    <select placeholder="Rol" name="rol" id="rol" required>
                         <option value="alumno">Alumno</option>
-                        <option value="profesor">Profesor</option>
+                        <option value="profesor" <?php if (($_POST['rol'] ?? '') === 'profesor') echo 'selected'; ?>>Profesor</option>
                     </select>
                     <button type="submit">Registrarse</button> <br><br>
                     <p class="form-text">¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
-                    <p class="form-text">Completa el formulario para registrarte. Si eres profesor, tu cuenta será revisada por un administrador antes de poder iniciar sesión.</p>
+                    <p class="form-text">Completa el formulario para registrarte. Tu cuenta será revisada por un administrador antes de poder iniciar sesión.</p>
                 </form>
+                <?php endif; ?>
                 <a href="../pagina_principal/PagPrincipal.php"><i class="fa-solid fa-chevron-left"></i></a>
             </section>
         </div>
         <section class="right-section">
-            
+
         </section>
     </main>
     <script src="login.js"></script>
+    <script>
+        // Muestra cédula y fecha de nacimiento solo cuando el rol es alumno
+        const rol = document.getElementById("rol");
+        const datosAlumno = document.getElementById("datos-alumno");
+        function actualizarCampos() {
+            const esAlumno = rol.value === "alumno";
+            datosAlumno.style.display = esAlumno ? "" : "none";
+            datosAlumno.querySelectorAll("input").forEach(input => input.required = esAlumno);
+        }
+        if (rol) {
+            rol.addEventListener("change", actualizarCampos);
+            actualizarCampos();
+        }
+    </script>
 </body>
 </html>

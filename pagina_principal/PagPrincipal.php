@@ -23,11 +23,13 @@ if (isset($_SESSION['rol'])) {
         <article id="contenedor1">
             <section id="informacion">
                 <h2>Utec Tacuarembó</h2>
-                <p>Centro educativo ubicado en la ciudad de Tacuarembó, especializado en carreras tercearias y bachilleratos tecnicos de UTU. Nuestra vision es preparar a los estuidantes profecionalmente para el mercado laboral <br><br>Se requiere tener aprobado ciclo basico para ingresar a los bachilleratos.<br> Y para cursar niveles tercerarios es necesario tener secundaria completa.</p>
+                <p>Centro educativo ubicado en la ciudad de Tacuarembó, especializado en carreras terciarias y bachilleratos técnicos de UTU. Nuestra visión es preparar a los estudiantes profesionalmente para el mercado laboral.<br><br>Se requiere tener aprobado el ciclo básico para ingresar a los bachilleratos.<br>Para cursar niveles terciarios es necesario tener secundaria completa.</p>
                 <?php if ($rol == 'administrador'): ?>
                 <button onclick="window.location.href='../Admin/panel_admin.php'">Volver al panel</button>
                 <?php elseif ($rol == 'profesor'): ?>
                 <button onclick="window.location.href='../profesor/panel_profesor.php'">Volver al panel</button>
+                <?php elseif ($rol == 'alumno'): ?>
+                <button onclick="window.location.href='../alumno/panel_alumno.php'">Volver al panel</button>
             <?php endif; ?>
             </section>
             <section class="carrusel-automatico">
@@ -40,6 +42,7 @@ if (isset($_SESSION['rol'])) {
             </section>
         </article>
         <h2>Instalaciones</h2>
+        <p class="aviso-mapa">¿No sabés dónde queda un salón? <a href="../mapa/mapa.html">Mirá el mapa 3D del edificio</a> y te mostramos cómo llegar.</p>
         <section class="carousel">
         <button class="nav-btn nav-prev" aria-label="Anterior">‹</button>
         <span class="carousel-track" id="track">

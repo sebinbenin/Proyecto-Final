@@ -140,6 +140,29 @@ input::placeholder {
     margin-right:auto;
 
 }
+/* Mensajes del registro */
+.aviso {
+    max-width: 260px;
+    margin: 0 auto 18px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.aviso-ok {
+    background: #e8f7ee;
+    color: #146c43;
+    border: 1px solid #a3d9b8;
+}
+
+.aviso-error {
+    background: #fdeaea;
+    color: #b02a37;
+    border: 1px solid #f5c2c7;
+}
+
 .form-text a {
     color: var(--link-color);
 }

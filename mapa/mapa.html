@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Assets/main.css">
+    <script src="../Assets/tema.js"></script>
+    <link rel="stylesheet" href="mapa.css">
+    <title>Mapa del edificio</title>
+</head>
+<body>
+    <header id="header"></header>
+    <main class="mapa">
+        <!-- PANEL: elegir a dónde ir -->
+        <aside class="panel-mapa">
+            <h1>¿Te perdiste?</h1>
+            <p class="ayuda">Elegí un salón y te mostramos en qué piso está y cómo llegar desde la entrada.</p>
+
+            <div id="lista-salones"></div>
+
+            <!-- INDICACIONES DEL SALÓN ELEGIDO -->
+            <section id="detalle" class="detalle oculto">
+                <span id="detalle-piso" class="etiqueta-piso"></span>
+                <h2 id="detalle-nombre"></h2>
+                <ol id="detalle-pasos"></ol>
+                <div class="detalle-botones">
+                    <button id="btn-modelo" type="button">Ver modelo 3D del salón</button>
+                    <a id="btn-pagina" class="boton-secundario" href="#">Ver información del salón</a>
+                </div>
+            </section>
+        </aside>
+
+        <!-- VISTA 3D DEL EDIFICIO -->
+        <section class="vista">
+            <div id="escena"></div>
+            <div class="pisos" id="botones-pisos">
+                <button type="button" data-piso="todos" class="activo">Todos</button>
+                <button type="button" data-piso="2">2.º piso</button>
+                <button type="button" data-piso="1">1.er piso</button>
+                <button type="button" data-piso="0">Planta baja</button>
+            </div>
+            <p class="consejo">Arrastrá para girar · rueda o pellizco para acercar · tocá un salón para elegirlo</p>
+        </section>
+    </main>
+
+    <!-- VENTANA CON EL MODELO DE SKETCHFAB -->
+    <div id="modal" class="modal oculto" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+        <div class="modal-caja">
+            <div class="modal-cabecera">
+                <h2 id="modal-titulo"></h2>
+                <button type="button" id="btn-color" class="boton-secundario">Ver a color</button>
+                <button type="button" id="btn-cerrar" aria-label="Cerrar">✕</button>
+            </div>
+            <iframe id="modal-iframe" class="modelo-gris" title="Modelo 3D del salón" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <footer id="footer"></footer>
+    <script src="../Assets/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="mapa.js"></script>
+</body>
+</html>

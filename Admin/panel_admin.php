@@ -6,15 +6,18 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'administrador') {
     exit();
 }
 require '../login/conexion.php';
+require '../Assets/horario.php';
 
 // ================================
-// SOLICITUDES DE PROFESORES
+// SOLICITUDES DE PROFESORES Y ALUMNOS
 // ================================
 
-$sql = "SELECT id, correo, nombre
+$sql = "SELECT id, correo, nombre, rol, cedula,
+        TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad
         FROM usuarios
-        WHERE rol = 'profesor'
-        AND estado = 'pendiente'";
+        WHERE rol IN ('profesor', 'alumno')
+        AND estado = 'pendiente'
+        ORDER BY rol DESC, nombre ASC";
 
 $stmt = $conexion->query($sql);
 $pendientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +31,8 @@ $sql_reservas = "SELECT
                     reservas.cantidad,
                     reservas.fecha_reserva,
                     productos.nombre AS producto,
-                    usuarios.correo AS profesor
+                    usuarios.correo AS profesor,
+                    usuarios.rol
                     FROM reservas
                     INNER JOIN productos
                     ON reservas.producto_id = productos.id
@@ -87,7 +91,69 @@ $asignaciones = $stmt_asignaciones->fetchAll(PDO::FETCH_ASSOC);
 $stmt_cursos = $conexion->query("SELECT id, nombre FROM cursos ORDER BY nombre ASC");
 $cursos = $stmt_cursos->fetchAll(PDO::FETCH_ASSOC);
 
+// ================================
+// ALUMNOS Y SU CURSO
+// ================================
+
+$sql_alumnos = "SELECT usuarios.id, usuarios.nombre, usuarios.correo, usuarios.cedula, usuarios.foto, usuarios.curso_id,
+                    TIMESTAMPDIFF(YEAR, usuarios.fecha_nacimiento, CURDATE()) AS edad,
+                    cursos.nombre AS curso
+                    FROM usuarios
+                    LEFT JOIN cursos ON usuarios.curso_id = cursos.id
+                    WHERE usuarios.rol = 'alumno'
+                    AND usuarios.estado = 'aprobado'
+                    ORDER BY cursos.nombre ASC, usuarios.nombre ASC";
+
+$alumnos = $conexion->query($sql_alumnos)->fetchAll(PDO::FETCH_ASSOC);
+
+// ================================
+// HORARIOS (curso elegido en la vista de horarios)
+// ================================
+
+$curso_horario = intval($_GET['curso_id'] ?? ($cursos[0]['id'] ?? 0));
+$nombre_curso_horario = '';
+foreach ($cursos as $curso) {
+    if ($curso['id'] == $curso_horario) {
+        $nombre_curso_horario = $curso['nombre'];
+    }
+}
+
 $vista = $_GET['vista'] ?? 'solicitudes';
+
+// ================================
+// AVISOS DEL RESULTADO DE CADA ACCIÓN
+// ================================
+
+$mensajes = [
+    'res' => [
+        'aprobado' => ['ok', 'Listo, se aprobó correctamente.'],
+        'rechazado' => ['ok', 'Listo, se rechazó correctamente.'],
+        'sin_stock' => ['error', 'No hay stock suficiente para aprobar esa reserva.'],
+    ],
+    'producto' => [
+        'agregado' => ['ok', 'El equipo se agregó correctamente.'],
+        'error' => ['error', 'No se pudo agregar el equipo. Revisá que todos los datos estén completos.'],
+        'imagen_invalida' => ['error', 'La imagen no es válida. Usá un archivo JPG, PNG o WEBP.'],
+        'error_imagen' => ['error', 'No se pudo subir la imagen del equipo.'],
+    ],
+    'stock' => [
+        'actualizado' => ['ok', 'El stock se actualizó correctamente.'],
+        'insuficiente' => ['error', 'No se puede quitar más stock del que está disponible.'],
+        'no_existe' => ['error', 'Ese equipo no existe.'],
+        'error' => ['error', 'No se pudo cambiar el stock. Revisá la cantidad.'],
+    ],
+];
+
+$aviso = null;
+foreach ($mensajes as $parametro => $opciones) {
+    if (isset($_GET[$parametro], $opciones[$_GET[$parametro]])) {
+        $aviso = $opciones[$_GET[$parametro]];
+        // Los avisos de equipos y stock se muestran en la vista de equipos
+        if ($parametro !== 'res') {
+            $vista = 'productos';
+        }
+    }
+}
 
 ?>
 
@@ -98,6 +164,7 @@ $vista = $_GET['vista'] ?? 'solicitudes';
     <meta name="viewport"content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Assets/main.css">
     <link rel="stylesheet" href="../Admin/admin.css">
+    <link rel="stylesheet" href="../Assets/horario.css">
     <script src="../Assets/tema.js"></script>
     <title>Panel del administrador</title>
 </head>
@@ -145,6 +212,20 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                     </svg><a onclick="mostrarProfesores(event)">Profesores</a>
                 </span>
+                <!-- ALUMNOS -->
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 10 12 5 2 10l10 5 10-5z"/>
+                        <path d="M6 12v5c3 2 9 2 12 0v-5"/>
+                    </svg><a onclick="mostrarAlumnos(event)">Alumnos</a>
+                </span>
+                <!-- HORARIOS -->
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg><a onclick="mostrarHorarios(event)">Horarios</a>
+                </span>
             </section>
             <!-- CERRAR SESIÓN -->
             <span id="cerrar">
@@ -158,10 +239,13 @@ $vista = $_GET['vista'] ?? 'solicitudes';
     PANEL DERECHO
 ========================================= -->
         <section id="panel-derecho">
+            <?php if ($aviso): ?>
+                <div class="aviso aviso-<?php echo $aviso[0]; ?>"><?php echo $aviso[1]; ?></div>
+            <?php endif; ?>
             <!-- =====================================
                 VISTA SOLICITUDES / RESERVAS
             ====================================== -->
-            <div id="vista-solicitudes" <?php if ($vista === 'profesores') echo 'class="oculto"'; ?>>
+            <div id="vista-solicitudes" <?php if ($vista !== 'solicitudes') echo 'class="oculto"'; ?>>
                 <h2 id="titulo-panel">Solicitudes</h2>
                 <!-- FILTROS -->
                 <section class="filtros">
@@ -172,17 +256,20 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                 <!-- =================================
                     SOLICITUDES
                 ================================== -->
-                <section id="solicitudes" class="contenido oculto">
+                <section id="solicitudes" class="contenido">
                     <?php if (count($pendientes) > 0): ?>
                         <?php foreach ($pendientes as $profesor): ?>
                             <span class="solicitud">
                                 <span class="info-reserva">
-                                    <span class="nombre"><?php echo htmlspecialchars($profesor['nombre']);?></span>
+                                    <span class="nombre"><?php echo htmlspecialchars($profesor['nombre']);?> <span class="etiqueta-rol"><?php echo ucfirst($profesor['rol']); ?></span></span>
                                     <span class="correo"><?php echo htmlspecialchars($profesor['correo']);?></span>
+                                    <?php if ($profesor['rol'] === 'alumno'): ?>
+                                        <span class="correo">Cédula: <?php echo htmlspecialchars($profesor['cedula'] ?? '-'); ?> · Edad: <?php echo $profesor['edad'] !== null ? (int) $profesor['edad'] . ' años' : '-'; ?></span>
+                                    <?php endif; ?>
                                 </span>
                                 <span class="acciones">
                                     <a href="procesar_solicitud.php?id=<?php echo $profesor['id']; ?>&accion=aprobar" class="btn-aprobar">Aprobar</a>
-                                    <a href="procesar_solicitud.php?id=<?php echo $profesor['id']; ?>&accion=rechazar" class="btn-rechazar" onclick="return confirm('¿Estás seguro de que deseas rechazar esta cuenta?');">Rechazar</a>
+                                    <a href="procesar_solicitud.php?id=<?php echo $profesor['id']; ?>&accion=rechazar" class="btn-rechazar" data-confirmar="¿Seguro?">Rechazar</a>
                                 </span>
                             </span>
                         <?php endforeach; ?>
@@ -193,18 +280,18 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                 <!-- =================================
                     RESERVAS
                 ================================== -->
-                <div id="reservas"class="contenido oculto">
+                <div id="reservas" class="contenido">
                     <?php if (count($reservas_pendientes) > 0): ?>
                         <?php foreach ($reservas_pendientes as $reserva): ?>
                             <div class="reserva">
                                 <div class="info-reserva">
-                                    <span class="profesor"><?php echo htmlspecialchars($reserva['profesor']);?></span>
-                                    <span class="producto">Equipo:<?php echo htmlspecialchars($reserva['producto']);?></span>
-                                    <span class="cantidad">Cantidad:<?php echo htmlspecialchars($reserva['cantidad']);?></span>
-                                    <span class="fecha">Fecha:<?php echo htmlspecialchars($reserva['fecha_reserva']);?></span>
+                                    <span class="profesor"><?php echo htmlspecialchars($reserva['profesor']);?> <span class="etiqueta-rol"><?php echo ucfirst($reserva['rol']); ?></span></span>
+                                    <span class="producto">Equipo: <?php echo htmlspecialchars($reserva['producto']);?></span>
+                                    <span class="cantidad">Cantidad: <?php echo htmlspecialchars($reserva['cantidad']);?></span>
+                                    <span class="fecha">Fecha: <?php echo date('d/m/Y H:i', strtotime($reserva['fecha_reserva']));?></span>
                                 </div>
                                 <div class="acciones"><a href="procesar_reserva.php?id=<?php echo $reserva['id']; ?>&accion=aprobar"class="btn-aprobar">Aceptar</a>
-                                    <a href="procesar_reserva.php?id=<?php echo $reserva['id']; ?>&accion=rechazar" class="btn-rechazar" onclick="return confirm('¿Estás seguro de que deseas rechazar esta reserva?');"> Rechazar </a>
+                                    <a href="procesar_reserva.php?id=<?php echo $reserva['id']; ?>&accion=rechazar" class="btn-rechazar" data-confirmar="¿Seguro?"> Rechazar </a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -216,7 +303,7 @@ $vista = $_GET['vista'] ?? 'solicitudes';
             <!-- =========================================
                 VISTA PRODUCTOS
             ========================================== -->
-            <div id="vista-productos" class="oculto">
+            <div id="vista-productos" <?php if ($vista !== 'productos') echo 'class="oculto"'; ?>>
                 <h2>Agregar equipo</h2>
                 <!-- =================================
                     FORMULARIO
@@ -271,8 +358,8 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                                 </div>
                                 <!-- STOCK -->
                                 <div class="stock-info">
-                                    <span>Stock:<strong><?php echo $producto['stock_total'];?></strong></span>
-                                    <span>Disponible:<strong><?php echo $producto['stock_disponible'];?></strong></span>
+                                    <span>Stock: <strong><?php echo $producto['stock_total'];?></strong></span>
+                                    <span>Disponible: <strong><?php echo $producto['stock_disponible'];?></strong></span>
                                 </div>
                                 <!-- CAMBIAR STOCK -->
                                 <form action="cambiar_stock.php" method="POST" class="form-stock">
@@ -313,7 +400,7 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                                         <?php $tiene_cursos = true; ?>
                                         <span>
                                             <?php echo htmlspecialchars($asignacion['curso']); ?> (<?php echo htmlspecialchars($asignacion['materia']); ?>)
-                                            <a href="asignar_curso.php?accion=quitar&profesor_id=<?php echo $profesor['id']; ?>&curso_id=<?php echo $asignacion['curso_id']; ?>&materia=<?php echo urlencode($asignacion['materia']); ?>" onclick="return confirm('¿Quitar este curso?');">Quitar</a>
+                                            <a href="asignar_curso.php?accion=quitar&profesor_id=<?php echo $profesor['id']; ?>&curso_id=<?php echo $asignacion['curso_id']; ?>&materia=<?php echo urlencode($asignacion['materia']); ?>" data-confirmar="¿Seguro?">Quitar</a>
                                         </span>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
@@ -340,8 +427,85 @@ $vista = $_GET['vista'] ?? 'solicitudes';
                     <p>No hay profesores aprobados.</p>
                 <?php endif; ?>
             </div>
+            <!-- =========================================
+                VISTA ALUMNOS
+            ========================================== -->
+            <div id="vista-alumnos" <?php if ($vista !== 'alumnos') echo 'class="oculto"'; ?>>
+                <h2>Alumnos</h2>
+                <p class="ayuda">Asigná a cada alumno la clase en la que está. Los profesores de esa clase lo verán en "Mis alumnos".</p>
+                <?php if (count($alumnos) > 0): ?>
+                    <?php foreach ($alumnos as $alumno): ?>
+                        <div class="reserva">
+                            <div class="info-reserva">
+                                <img src="../Assets/imagenes/<?php echo $alumno['foto'] ? 'perfiles/' . htmlspecialchars($alumno['foto']) : 'foto-usuario.png'; ?>" alt="Foto" width="60" height="60">
+                                <span class="profesor"><?php echo htmlspecialchars($alumno['nombre'] ?? 'Sin nombre'); ?></span>
+                                <span class="correo"><?php echo htmlspecialchars($alumno['correo']); ?></span>
+                                <span class="correo">Cédula: <?php echo htmlspecialchars($alumno['cedula'] ?? '-'); ?> · Edad: <?php echo $alumno['edad'] !== null ? (int) $alumno['edad'] . ' años' : '-'; ?></span>
+                                <span><?php echo $alumno['curso'] ? 'Clase: ' . htmlspecialchars($alumno['curso']) : 'Sin clase asignada'; ?></span>
+                            </div>
+                            <!-- ASIGNAR CLASE -->
+                            <form action="asignar_alumno.php" method="POST">
+                                <input type="hidden" name="alumno_id" value="<?php echo $alumno['id']; ?>">
+                                <select name="curso_id">
+                                    <option value="">Sin clase</option>
+                                    <?php foreach ($cursos as $curso): ?>
+                                        <option value="<?php echo $curso['id']; ?>" <?php if ($curso['id'] == $alumno['curso_id']) echo 'selected'; ?>><?php echo htmlspecialchars($curso['nombre']); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <button type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No hay alumnos aprobados.</p>
+                <?php endif; ?>
+            </div>
+            <!-- =========================================
+                VISTA HORARIOS
+            ========================================== -->
+            <div id="vista-horarios" <?php if ($vista !== 'horarios') echo 'class="oculto"'; ?>>
+                <h2>Horarios de clase</h2>
+                <!-- ELEGIR CURSO -->
+                <form method="GET" class="form-horario">
+                    <input type="hidden" name="vista" value="horarios">
+                    <label for="curso_horario">Curso:</label>
+                    <select name="curso_id" id="curso_horario" onchange="this.form.submit()">
+                        <?php foreach ($cursos as $curso): ?>
+                            <option value="<?php echo $curso['id']; ?>" <?php if ($curso['id'] == $curso_horario) echo 'selected'; ?>><?php echo htmlspecialchars($curso['nombre']); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+                <?php if ($curso_horario > 0): ?>
+                    <?php mostrar_horario($conexion, $curso_horario, $nombre_curso_horario, true); ?>
+                    <!-- AGREGAR CLASE -->
+                    <form action="horarios_admin.php" method="POST" class="form-horario">
+                        <input type="hidden" name="accion" value="agregar">
+                        <input type="hidden" name="curso_id" value="<?php echo $curso_horario; ?>">
+                        <select name="dia" required>
+                            <option value="1">Lunes</option>
+                            <option value="2">Martes</option>
+                            <option value="3">Miércoles</option>
+                            <option value="4">Jueves</option>
+                            <option value="5">Viernes</option>
+                        </select>
+                        <input type="time" name="hora_inicio" required>
+                        <input type="time" name="hora_fin" required>
+                        <input type="text" name="materia" placeholder="Materia" required>
+                        <select name="profesor_id">
+                            <option value="">Profesor</option>
+                            <?php foreach ($profesores as $profesor): ?>
+                                <option value="<?php echo $profesor['id']; ?>"><?php echo htmlspecialchars($profesor['nombre'] ?? $profesor['correo']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <button type="submit">Agregar clase</button>
+                    </form>
+                <?php else: ?>
+                    <p>Primero creá un curso en la sección Profesores.</p>
+                <?php endif; ?>
+            </div>
         </section>
     </main>
     <script src="../Admin/admin.js"></script>
+    <script src="../Assets/confirmar.js"></script>
 </body>
 </html>

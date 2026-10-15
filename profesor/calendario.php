@@ -8,10 +8,10 @@ if (!isset($_SESSION['rol'])) {
     exit();
 }
 
-// 2. Verificamos que el rol sea exclusivamente 'admin' o 'profesor'
+// 2. Verificamos que el rol sea 'admin', 'profesor' o 'alumno'
 $rol_usuario = $_SESSION['rol'];
-if ($rol_usuario !== 'administrador' && $rol_usuario !== 'profesor') {
-    // Si es un usuario con otro rol (ej. alumno), lo redirigimos o mostramos error
+if (!in_array($rol_usuario, ['administrador', 'profesor', 'alumno'])) {
+    // Si es un usuario con otro rol, lo redirigimos o mostramos error
     echo "<script>
             alert('No tienes permisos para acceder a esta página.');
             window.location.href = '../login/login.php';
@@ -57,6 +57,12 @@ $nombreMes = [
     12 => "Diciembre"
 ];
 
+$paneles = [
+    'administrador' => '../Admin/panel_admin.php',
+    'profesor' => '../profesor/panel_profesor.php',
+    'alumno' => '../alumno/panel_alumno.php'
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +85,15 @@ $nombreMes = [
 
 <div class="contenedor">
 
+<a class="volver" href="<?php echo $paneles[$rol_usuario]; ?>">← Volver</a>
+
 <h1>📅 Reserva de Salones</h1>
+
+<?php include 'aviso.php'; ?>
+
+<?php if ($rol_usuario === 'alumno'): ?>
+    <p>Como alumno podés reservar la Biblioteca y el Anfiteatro para estudiar.</p>
+<?php endif; ?>
 
 <div class="calendario">
 
@@ -132,8 +146,11 @@ $nombreMes = [
         $timestamp = mktime(0, 0, 0, $mes, $dia, $anio);
         $diaSemana = (int)date('N', $timestamp); 
         
+        // Los días que ya pasaron quedan en rojo y no se pueden reservar
+        if ($fecha < date('Y-m-d')) {
+            echo "<div class='dia pasado' title='Este día ya pasó'>$dia</div>";
         // 6 = Sábado, 7 = Domingo
-        if ($diaSemana === 6 || $diaSemana === 7) {
+        } elseif ($diaSemana === 6 || $diaSemana === 7) {
             echo "<div class='dia deshabilitado'>$dia</div>";
         } else {
             $clase = ($fecha === $fechaSeleccionada) ? "dia seleccionado" : "dia";

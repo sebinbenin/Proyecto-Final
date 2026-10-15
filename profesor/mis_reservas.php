@@ -1,27 +1,32 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
+if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['rol'], ['profesor', 'alumno'])) {
     header("Location: ../login/login.php");
     exit();
 }
 
 require '../login/conexion.php';
 
+// Solo las reservas del usuario que inició sesión
 $sql = "SELECT r.id, r.cantidad, r.fecha_reserva, p.nombre AS nombre_producto
         FROM reservas r
         INNER JOIN productos p ON p.id = r.producto_id
-        WHERE r.estado = 'aprobada'
+        WHERE r.estado = 'aprobada' AND r.usuario_id = ?
         ORDER BY r.fecha_reserva DESC";
-$stmt = $conexion->query($sql);
+$stmt = $conexion->prepare($sql);
+$stmt->execute([$_SESSION['usuario_id']]);
 $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$panel = $_SESSION['rol'] === 'alumno' ? '../alumno/panel_alumno.php' : '../profesor/panel_profesor.php';
 ?>
 
+<meta charset="UTF-8">
 <link rel="stylesheet" href="mis_reservas.css">
+<script src="../Assets/confirmar.js"></script>
 
 <main class="contenedor">
     <h2>Reservas activas</h2>
-    <a class="link" href="productos.php">← Volver</a>
+    <a class="link" href="<?php echo $panel; ?>">← Volver</a>
 
     <?php if (isset($_GET['res'])): ?>
         <?php if ($_GET['res'] === 'devuelto'): ?>
@@ -48,7 +53,7 @@ $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo (int) $r['cantidad']; ?></td>
                         <td><?php echo date('d/m/Y H:i', strtotime($r['fecha_reserva'])); ?></td>
                         <td>
-                            <form method="POST" action="devolver.php" onsubmit="return confirm('¿Confirmás que el equipo fue devuelto?');">
+                            <form method="POST" action="devolver.php" data-confirmar="¿Confirmás?">
                                 <input type="hidden" name="reserva_id" value="<?php echo (int) $r['id']; ?>">
                                 <button type="submit" class="btn">Devolver</button>
                             </form>

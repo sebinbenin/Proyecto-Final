@@ -77,6 +77,16 @@ main h2{
     color:var(--titulo, #511d96);
 }
 
+.aviso-mapa{
+    margin: -5px 0 20px 60px;
+    font-size: 1.15em;
+}
+
+.aviso-mapa a{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .carousel {
     margin-bottom: 100px;
     margin-left: 67px;

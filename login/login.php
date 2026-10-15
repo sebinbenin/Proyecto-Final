@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST['correo'];
     $password = $_POST['password'];
 
-    $sql = "SELECT id, password, rol, estado FROM usuarios WHERE correo = ?";
+    $sql = "SELECT id, nombre, password, rol, estado FROM usuarios WHERE correo = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->execute([$correo]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,13 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // El estado es 'aprobado', iniciamos sesión
             $_SESSION['usuario_id'] = $usuario['id'];
             $_SESSION['rol'] = $usuario['rol'];
-            
+            $_SESSION['usuario_nombre'] = $usuario['nombre'];
+
             // Redirigir al inicio o a su panel
             if ($usuario['rol'] === 'administrador') {
                 header("Location: ../Admin/panel_admin.php");
             } elseif ($usuario['rol'] === 'profesor') {
                 header("Location: ../profesor/panel_profesor.php");
-            exit();
+            } elseif ($usuario['rol'] === 'alumno') {
+                header("Location: ../alumno/panel_alumno.php");
             } else {
                 header("Location: ../pagina_principal/PagPrincipal.php");
             }

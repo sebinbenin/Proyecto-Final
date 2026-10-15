@@ -1,0 +1,104 @@
+/* =====================================
+   GRILLA DE HORARIOS (alumno y administrador)
+===================================== */
+
+.horario-contenedor {
+    overflow-x: auto;
+    margin-bottom: 30px;
+}
+
+.horario {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    background: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #302044;
+}
+
+.horario th,
+.horario td {
+    border: 1px solid #9c8fb0;
+    padding: 8px 6px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.horario thead th {
+    background: #f0ebf5;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.horario .horario-titulo {
+    background: #511d96;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.horario .horario-hora {
+    font-weight: bold;
+    white-space: nowrap;
+    background: #faf8fd;
+    width: 110px;
+}
+
+.horario-clase small {
+    display: block;
+    color: #756788;
+    margin-top: 2px;
+}
+
+.horario-clase + .horario-clase {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed #d9d0e5;
+}
+
+.horario-borrar {
+    display: inline-block;
+    margin-top: 4px;
+    color: #dc3545 !important;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.horario-borrar.confirmando {
+    background: #dc3545;
+    color: white !important;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.horario-vacio {
+    color: #756788;
+    padding: 25px !important;
+}
+
+[data-theme="dark"] .horario {
+    background: var(--superficie);
+    color: var(--texto);
+}
+
+[data-theme="dark"] .horario th,
+[data-theme="dark"] .horario td {
+    border-color: var(--borde);
+}
+
+[data-theme="dark"] .horario thead th,
+[data-theme="dark"] .horario .horario-hora {
+    background: var(--superficie-2);
+}
+
+[data-theme="dark"] .horario .horario-titulo {
+    background: var(--acento);
+    color: var(--texto-boton);
+}
+
+[data-theme="dark"] .horario-clase small,
+[data-theme="dark"] .horario-vacio {
+    color: var(--texto-suave);
+}

@@ -2,10 +2,11 @@
 session_start();
 
 
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] != 'profesor') {
+if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['rol'], ['profesor', 'alumno'])) {
     header("Location: ../login/login.php");
     exit();
 }
+$panel = $_SESSION['rol'] === 'alumno' ? '../alumno/panel_alumno.php' : '../profesor/panel_profesor.php';
 
 require '../login/conexion.php';
 
@@ -52,7 +53,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="info">
                     <h3><?php echo htmlspecialchars($p['nombre']); ?></h3>
-                    <p>📦 Stock disponible: <strong><?php echo (int) $p['stock_disponible']; ?> unidades</strong></p>
+                    <p>📦 Stock disponible: <strong><?php echo (int) $p['stock_disponible']; ?> <?php echo (int) $p['stock_disponible'] === 1 ? 'unidad' : 'unidades'; ?></strong></p>
                     <p>🏷️ Estado: <?php echo $disponible ? '<span class="disponible">Disponible</span>' : '<span class="sin-stock">Sin stock</span>'; ?></p>
                 </div>
 
@@ -70,8 +71,8 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif; ?>
                 </div>
             </div>
-            <button onclick="window.location.href='../profesor/panel_profesor.php'" class="mi-boton">Volver</button>
         <?php endforeach; ?>
+        <button onclick="window.location.href='<?php echo $panel; ?>'" class="mi-boton">Volver</button>
     <?php else: ?>
         <p>No hay equipos cargados todavía.</p>
     <?php endif; ?>

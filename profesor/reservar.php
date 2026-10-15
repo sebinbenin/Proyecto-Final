@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
+if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['rol'], ['profesor', 'alumno'])) {
     header("Location: ../login/login.php");
     exit();
 }

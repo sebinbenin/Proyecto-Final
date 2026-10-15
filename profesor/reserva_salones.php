@@ -11,10 +11,32 @@ require '../login/conexion.php';
 
 // Obtener la fecha seleccionada
 $fecha = (isset($_GET['fecha']) && !empty($_GET['fecha'])) ? $_GET['fecha'] : date('Y-m-d');
+// No se puede reservar un día que ya pasó
+if ($fecha < date('Y-m-d')) {
+    $fecha = date('Y-m-d');
+}
 
 // Autocompletar con el nombre guardado en la sesión
 $profesor_logueado = $_SESSION['usuario_nombre'] ?? '';
 $rol_usuario = $_SESSION['rol'];
+$es_alumno = $rol_usuario === 'alumno';
+
+// Los alumnos solo pueden reservar estos salones (con fines de estudio)
+$salones_alumno = ['Biblioteca', 'Anfiteatro'];
+
+// Para el alumno, el motivo se completa con su clase
+$curso_alumno = '';
+if ($es_alumno) {
+    $stmt = $conexion->prepare("SELECT cursos.nombre FROM usuarios INNER JOIN cursos ON usuarios.curso_id = cursos.id WHERE usuarios.id = ?");
+    $stmt->execute([$_SESSION['usuario_id']]);
+    $curso_alumno = $stmt->fetchColumn() ?: '';
+}
+
+$paneles = [
+    'administrador' => '../Admin/panel_admin.php',
+    'profesor' => '../profesor/panel_profesor.php',
+    'alumno' => '../alumno/panel_alumno.php'
+];
 ?>
 
 <!DOCTYPE html>
@@ -30,14 +52,11 @@ $rol_usuario = $_SESSION['rol'];
 <div class="contenedor formulario">
 
     <!-- VOLVER -->
-    <a class="volver" href="<?php if ($rol_usuario === 'profesor') {
-            echo "../profesor/panel_profesor.php";
-        }
-        elseif ($rol_usuario === 'administrador') {
-            echo "../Admin/panel_admin.php";
-        } ?>">← Volver</a>
+    <a class="volver" href="<?php echo $paneles[$rol_usuario] ?? '../login/login.php'; ?>">← Volver</a>
 
     <h1>Nueva reserva de salón</h1>
+
+    <?php include 'aviso.php'; ?>
 
     <form action="guardar_reserva.php" method="POST">
 
@@ -48,6 +67,7 @@ $rol_usuario = $_SESSION['rol'];
             id="fecha"
             name="fecha"
             value="<?php echo htmlspecialchars($fecha); ?>"
+            min="<?php echo date('Y-m-d'); ?>"
             required
         >
 
@@ -57,10 +77,13 @@ $rol_usuario = $_SESSION['rol'];
             <option value="">Seleccionar salón</option>
             <?php
             try {
-                $query_salones = $conexion->query("SELECT nombre FROM salones ORDER BY nombre ASC");
+                $query_salones = $conexion->query("SELECT DISTINCT nombre FROM salones ORDER BY nombre ASC");
                 while ($salon_item = $query_salones->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<option value="' . htmlspecialchars($salon_item['nombre']) . '">' 
-                         . htmlspecialchars($salon_item['nombre']) 
+                    if ($es_alumno && !in_array($salon_item['nombre'], $salones_alumno)) {
+                        continue;
+                    }
+                    echo '<option value="' . htmlspecialchars($salon_item['nombre']) . '">'
+                         . htmlspecialchars($salon_item['nombre'])
                          . '</option>';
                 }
             } catch (PDOException $e) {
@@ -87,24 +110,26 @@ $rol_usuario = $_SESSION['rol'];
             required
         >
 
-        <!-- PROFESOR -->
+        <!-- PROFESOR / ALUMNO -->
         <label for="profesor">Reservado por:</label>
         <input
             type="text"
             id="profesor"
             name="profesor"
-            placeholder="Nombre del profesor"
+            placeholder="<?php echo $es_alumno ? 'Tu nombre' : 'Nombre del profesor'; ?>"
             value="<?php echo htmlspecialchars($profesor_logueado); ?>"
+            <?php if ($es_alumno) echo 'readonly'; ?>
             required
         >
 
-        <!-- CURSO -->
-        <label for="curso">Curso / Clase:</label>
+        <!-- CURSO / MOTIVO -->
+        <label for="curso"><?php echo $es_alumno ? 'Motivo:' : 'Curso / Clase:'; ?></label>
         <input
             type="text"
             id="curso"
             name="curso"
-            placeholder="Ejemplo: 3° Informática"
+            placeholder="<?php echo $es_alumno ? 'Ejemplo: Estudio para el parcial de Matemática' : 'Ejemplo: 3° Informática'; ?>"
+            value="<?php echo $es_alumno ? htmlspecialchars(trim('Estudio ' . $curso_alumno)) : ''; ?>"
             required
         >
 

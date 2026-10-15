@@ -201,6 +201,35 @@ background: #e6a915;
     cursor: not-allowed; /* Muestra el cursor de prohibido */
     pointer-events: none; /* Bloquea cualquier intento de clic */
 }
+
+/* Avisos al guardar una reserva */
+.aviso {
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.aviso-ok {
+    background: #e8f7ee;
+    color: #146c43;
+    border: 1px solid #a3d9b8;
+}
+
+.aviso-error {
+    background: #fdeaea;
+    color: #b02a37;
+    border: 1px solid #f5c2c7;
+}
+
+/* Días que ya pasaron: en rojo y sin poder reservar */
+.dia.pasado {
+    background-color: #fdeaea;
+    border-color: #f5c2c7;
+    color: #dc3545;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 @media (max-width: 700px) {
 
 body {
