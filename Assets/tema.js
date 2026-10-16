@@ -12,6 +12,19 @@ const imagenesNoche = [
     "simbolos informatica personas-Photoroom.png", "simbolos informatica seguridad-Photoroom.png"
 ];
 
+function setDarkModeButton(active) {
+    const botonLogin = document.getElementById("darkModeToggle");
+    const botonTema = document.getElementById("botonTema");
+    if (botonLogin) {
+        botonLogin.innerHTML = active
+            ? '<i class="fa-solid fa-sun"></i>'
+            : '<i class="fa-solid fa-moon"></i>';
+    }
+    if (botonTema) {
+        botonTema.textContent = active ? "☼" : "☾";
+    }
+}
+
 function aplicarTema(oscuro) {
     document.documentElement.setAttribute("data-theme", oscuro ? "dark" : "light");
 
@@ -22,8 +35,7 @@ function aplicarTema(oscuro) {
         img.setAttribute("src", oscuro ? normal.replace("imagenes/", "imagenes/noche/") : normal);
     });
 
-    const boton = document.getElementById("botonTema");
-    if (boton) boton.textContent = oscuro ? "☼" : "☾";
+    setDarkModeButton(oscuro);
 }
 
 function cambiarTema() {
@@ -32,5 +44,19 @@ function cambiarTema() {
     aplicarTema(oscuro);
 }
 
+function setDarkMode(active) {
+    localStorage.setItem("darkMode", active);
+    aplicarTema(active);
+}
+
 document.documentElement.setAttribute("data-theme", localStorage.getItem("darkMode") === "true" ? "dark" : "light");
-document.addEventListener("DOMContentLoaded", () => aplicarTema(localStorage.getItem("darkMode") === "true"));
+document.addEventListener("DOMContentLoaded", () => {
+    aplicarTema(localStorage.getItem("darkMode") === "true");
+    const botonLogin = document.getElementById("darkModeToggle");
+    if (botonLogin && !botonLogin.hasAttribute("data-listener-attached")) {
+        botonLogin.addEventListener("click", () => {
+            setDarkMode(document.documentElement.getAttribute("data-theme") !== "dark");
+        });
+        botonLogin.setAttribute("data-listener-attached", "true");
+    }
+});

@@ -237,6 +237,12 @@ select:focus {
     color: var(--accent-color);
     box-shadow: none;
 }
+.dark-mode-btn .fa-moon {
+    color: #f5d000;
+}
+.dark-mode-btn .fa-sun {
+    color: #ffffff;
+}
 
 [data-theme="dark"] {
     color-scheme: dark;

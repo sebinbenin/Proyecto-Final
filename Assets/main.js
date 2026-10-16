@@ -25,6 +25,13 @@ fetch("../Assets/main.html")
             document.getElementById("header").appendChild(header);
             aplicarTema(localStorage.getItem("darkMode") === "true");
         }
+if (!document.querySelector('link[href*="font-awesome"]')) {
+    const faLink = document.createElement("link");
+    faLink.rel = "stylesheet";
+    faLink.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css";
+    document.head.appendChild(faLink);
+}
+
 
         if (footer) {
             document.getElementById("footer").appendChild(footer);

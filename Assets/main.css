@@ -15,7 +15,7 @@
     --enlace:#38bdf8;
 }
 .usuario{
-    margin-left:65%;
+    margin-left:122vh;
     width: 60px;
     height: 60px;
 }
@@ -177,14 +177,6 @@ footer{
     border-radius: 50%;
     object-fit: cover;
 }
-#botonTema{
-    margin-left:20px;
-    width:45px;
-    height:45px;
-    padding:0;
-    border-radius:50%;
-    font-size:24px;
-}
 [data-theme="dark"] .encabezados{
     border-bottom:1px solid #12264a;
 }
@@ -200,4 +192,31 @@ footer{
 [data-theme="dark"] .info-card,
 [data-theme="dark"] #info_sala{
     outline:1px solid #24406e;
+}
+
+/* Dark mode toggle boton (shared) */
+.dark-mode-btn {
+    margin-left:3vh;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--icon-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 8px;
+    width: auto;
+    max-width: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.dark-mode-btn:hover {
+    color: var(--accent-color, #0077cc);
+    box-shadow: none;
+}
+.dark-mode-btn .fa-moon {
+    color: #f5d000;
+}
+.dark-mode-btn .fa-sun {
+    color: #ffffff;
 }

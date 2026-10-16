@@ -83,8 +83,8 @@ main h2{
 }
 
 .aviso-mapa a{
+    text-decoration:none;
     font-weight: bold;
-    text-decoration: underline;
 }
 
 .carousel {
