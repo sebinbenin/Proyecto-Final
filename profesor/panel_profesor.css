@@ -418,3 +418,69 @@ svg {
 [data-theme="dark"] .vacio{
     color: var(--texto-suave);
 }
+
+/* =====================================
+   RESPONSIVE (complementa las media queries de arriba)
+   Va al final para poder pisar #cerrar, que se define después de ellas
+===================================== */
+
+@media (max-width: 900px) {
+    #panel-izquierdo h2 {
+        margin-left: 20px;
+        font-size: 1.6em;
+    }
+    .opciones span {
+        padding-left: 20px;
+    }
+    #cerrar {
+        padding-left: 20px;
+    }
+    .contenido {
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    #panel-izquierdo {
+        padding: 16px 0 8px;
+    }
+    /* Las opciones del menú en dos columnas en vez de una fila que se corta */
+    .opciones {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(2, 1fr);
+        overflow: visible;
+        margin-top: 10px;
+        font-size: 1em;
+    }
+    .opciones span {
+        padding: 8px 8px 8px 20px;
+    }
+    #panel-izquierdo svg {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+    }
+    #cerrar {
+        margin-top: 4px;
+    }
+    .cerrar-sesion {
+        font-size: 1.1em;
+    }
+    .encabezado h1 {
+        font-size: 24px;
+    }
+    .tarjeta {
+        padding: 20px;
+    }
+    /* La tabla de alumnos se desliza de costado en vez de romper la página */
+    .tabla-alumnos {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .titulo-reservas {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+}

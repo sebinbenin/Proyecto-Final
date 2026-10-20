@@ -163,3 +163,140 @@ main h2{
     height: 50px;
     width: 50px;
 }
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 1024px) {
+    #contenedor1 {
+        flex-direction: column;
+        align-items: center;
+    }
+    #informacion {
+        width: 100%;
+        max-width: 700px;
+        padding: 0 24px;
+        box-sizing: border-box;
+    }
+    #informacion h2 {
+        margin: 10px 0 0;
+    }
+    #informacion p {
+        width: auto;
+        margin: 10px 0;
+    }
+    #informacion button {
+        display: block;
+        max-width: 100%;
+        margin: 10px auto 0;
+    }
+    .carrusel-automatico {
+        width: calc(100% - 48px);
+        max-width: 700px;
+        margin: 24px 24px 0;
+    }
+    .ubi-img {
+        width: 100%;
+        height: 100%;
+    }
+    main h2 {
+        margin: 60px 24px 15px;
+    }
+    .aviso-mapa {
+        margin: -5px 24px 20px;
+    }
+    .carousel {
+        width: calc(100% - 140px);
+        height: auto;
+        margin: 0 auto 80px;
+    }
+    .slide {
+        width: calc((100% - 32px) / 3);
+        height: auto;
+        aspect-ratio: 1;
+    }
+    .slide img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .carrusel-automatico {
+        height: 260px;
+    }
+    #informacion p {
+        font-size: 1.15em;
+    }
+    main h2 {
+        font-size: 2em;
+        margin-top: 40px;
+    }
+    .carousel {
+        width: calc(100% - 100px);
+        margin-bottom: 50px;
+    }
+    .slide {
+        width: calc((100% - 16px) / 2);
+    }
+    .nav-prev,
+    .nav-next {
+        width: 38px;
+        height: 38px;
+        font-size: 28px;
+    }
+    .nav-prev {
+        left: -44px;
+    }
+    .nav-next {
+        right: -44px;
+    }
+}
+
+@media (max-width: 480px) {
+    #informacion {
+        padding: 0 16px;
+    }
+    #informacion h2 {
+        font-size: 1.7em;
+    }
+    #informacion p {
+        font-size: 1.05em;
+    }
+    #informacion button {
+        width: 100%;
+        font-size: 1.25em;
+    }
+    .carrusel-automatico {
+        width: calc(100% - 32px);
+        height: 220px;
+        margin: 20px 16px 0;
+    }
+    main h2 {
+        font-size: 1.7em;
+        margin: 36px 16px 10px;
+    }
+    .aviso-mapa {
+        margin: 0 16px 16px;
+        font-size: 1em;
+    }
+    .carousel {
+        width: calc(100% - 84px);
+    }
+    .slide {
+        width: 85%;
+    }
+    .nav-prev,
+    .nav-next {
+        width: 32px;
+        height: 32px;
+        font-size: 24px;
+    }
+    .nav-prev {
+        left: -38px;
+    }
+    .nav-next {
+        right: -38px;
+    }
+}

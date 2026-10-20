@@ -135,3 +135,77 @@ border: 1px solid var(--borde, #e7e0ee);
     border: 0;
     border-radius: 20px;
 }
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 1300px) {
+    #Lado_izquierdo,
+    #Lado_derecho {
+        flex: 0 0 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    #Lado_derecho {
+        margin-top: 20px;
+    }
+    #inicio {
+        margin-left: 0;
+    }
+    #First {
+        height: auto;
+    }
+    .Espacioletras {
+        height: auto;
+        margin-left: 0;
+    }
+    .informacion_salon,
+    .normas_de_uso {
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+    .informacion_salon p {
+        width: auto;
+        height: auto;
+        margin: 0 20px;
+    }
+    .informacion_salon div {
+        width: auto;
+        margin: 30px 20px 0;
+    }
+    .que_se_hace_en_el_salon {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 30px 20px 0;
+    }
+    .informacion_salon span {
+        width: auto;
+        height: auto;
+        margin-left: 0;
+    }
+    .modelo3d {
+        margin: 40px 0 0;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 600px) {
+    .Espacioletras,
+    .que_se_hace_en_el_salon {
+        grid-template-columns: 1fr;
+    }
+    .informacion_salon,
+    .normas_de_uso {
+        border-radius: 20px;
+    }
+    .normas {
+        margin: 0 16px 14px 0;
+    }
+    .modelo3dcaracteristicas iframe {
+        min-height: 320px;
+    }
+}

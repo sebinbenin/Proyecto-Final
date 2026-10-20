@@ -571,3 +571,137 @@ main{
     background: rgba(220, 53, 69, 0.25);
     color: #f87171;
 }
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 900px) {
+    #panel-izquierdo {
+        width: 220px;
+        flex-shrink: 0;
+    }
+    #panel-izquierdo h2 {
+        margin-left: 20px;
+        font-size: 1.6em;
+    }
+    .opciones span {
+        padding-left: 20px;
+    }
+    #cerrar {
+        padding-left: 20px;
+    }
+    #panel-derecho {
+        margin-left: 20px;
+        padding-right: 20px;
+    }
+    .filtros {
+        display: inline-flex;
+        width: auto;
+    }
+    .formulario-contenido {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .imagen-producto {
+        width: 100%;
+    }
+    .producto-stock {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .producto-info {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    /* El menú lateral pasa arriba y la página scrollea entera */
+    main {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+    #panel-izquierdo {
+        width: 100%;
+        height: auto;
+        padding: 16px 0 8px;
+    }
+    #panel-izquierdo h2 {
+        margin: 0 0 0 20px;
+    }
+    .opciones {
+        grid-template-columns: repeat(2, 1fr);
+        height: auto;
+        margin-top: 10px;
+        font-size: 1em;
+    }
+    .opciones span {
+        padding: 8px 8px 8px 20px;
+    }
+    #panel-izquierdo svg {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+    }
+    #cerrar {
+        margin-top: 4px;
+    }
+    .cerrar-sesion {
+        font-size: 1.1em;
+    }
+    #panel-derecho {
+        margin: 0;
+        padding: 0 16px 30px;
+        overflow: visible;
+    }
+    .filtros {
+        display: flex;
+        width: 100%;
+    }
+    .filtro {
+        flex: 1;
+        padding: 10px 6px;
+        font-size: 1em;
+    }
+    /* Tarjetas de solicitudes y reservas: los botones pasan abajo */
+    .solicitud,
+    .reserva {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 16px;
+    }
+    .correo {
+        overflow-wrap: anywhere;
+    }
+    .acciones {
+        display: flex;
+        gap: 10px;
+        height: auto;
+    }
+    .acciones a {
+        flex: 1;
+    }
+    .btn-aprobar {
+        margin-bottom: 0;
+    }
+    .form-producto {
+        width: auto;
+        padding: 18px;
+    }
+    .lista-productos {
+        width: 100%;
+    }
+    .stock-info {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    #vista-horarios {
+        padding-right: 0;
+    }
+    .aviso {
+        margin-right: 0;
+    }
+}

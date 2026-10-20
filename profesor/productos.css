@@ -191,3 +191,16 @@ body {
         text-align: left;
     }
 }
+
+/* =====================================
+   RESPONSIVE (complementa la media query de 700px de arriba)
+===================================== */
+
+/* En pantallas angostas el botón fijo tapaba las tarjetas: pasa al final de la lista */
+@media (max-width: 1000px) {
+    .mi-boton {
+        position: static;
+        display: block;
+        margin: 10px auto 30px;
+    }
+}

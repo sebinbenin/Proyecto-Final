@@ -140,3 +140,95 @@ main {
     border: 0;
     border-radius: 20px;
 }
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 1200px) {
+    #lado_izquierdo,
+    #lado_derecho {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    #lado_izquierdo h2 {
+        margin: 30px 0 0;
+    }
+    #descripcion {
+        margin: 10px 0;
+    }
+    #sala {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 6;
+        object-fit: cover;
+        margin-left: 0;
+    }
+    #barra {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
+    #informacion {
+        height: auto;
+        margin-left: 0;
+    }
+    .info_informatica {
+        width: auto;
+        height: auto;
+        margin: 0 0 16px;
+    }
+    #info_sala {
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+    #info_sala p {
+        width: auto;
+        margin: 0 20px;
+    }
+    #info_sala div {
+        width: auto;
+        margin: 30px 20px;
+    }
+    #equipamiento {
+        height: auto;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 20px;
+    }
+    #equipamiento span {
+        width: auto;
+        height: auto;
+        margin-left: 0;
+    }
+    #normas_uso {
+        height: auto;
+        padding-bottom: 10px;
+    }
+    .modelo3dcaracteristicas {
+        margin: 40px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 600px) {
+    #informacion,
+    #equipamiento {
+        grid-template-columns: 1fr;
+    }
+    #info_sala,
+    #normas_uso {
+        border-radius: 20px;
+    }
+    #normas_uso h2 {
+        margin-left: 20px;
+    }
+    .modelo3dcaracteristicas iframe {
+        min-height: 320px;
+    }
+}

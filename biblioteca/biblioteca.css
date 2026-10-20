@@ -106,3 +106,75 @@ h2 {
     border: 0;
     border-radius: 20px;
 }
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 1200px) {
+    #lado-izquierdo,
+    #derecho {
+        width: 100%;
+        margin: 0;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    #lado-izquierdo h1,
+    #lado-izquierdo p {
+        padding-left: 0;
+    }
+    #img-biblioteca {
+        width: 100%;
+        margin-left: 0;
+    }
+    #info-izquierda {
+        width: 100%;
+        margin-left: 0;
+    }
+    #descripcion-derecha br {
+        display: none;
+    }
+    #derecha-arriba {
+        height: auto;
+        padding-bottom: 20px;
+    }
+    #descripcion-derecha {
+        padding-right: 20px;
+    }
+    #normas {
+        height: auto;
+        padding: 0 20px 16px;
+    }
+    .modelo3d {
+        margin: 40px 0 0;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 600px) {
+    #info-izquierda,
+    #info-derecha {
+        grid-template-columns: 1fr;
+    }
+    #info-derecha {
+        padding-right: 20px;
+    }
+    #info-derecha span {
+        width: 100%;
+    }
+    .imagenes-descripcion {
+        width: 70px;
+        height: 56px;
+        flex-shrink: 0;
+    }
+    #derecha-arriba {
+        border-radius: 20px;
+    }
+    #normas h2 {
+        padding-left: 0;
+    }
+    .modelo3dcaracteristicas iframe {
+        min-height: 320px;
+    }
+}

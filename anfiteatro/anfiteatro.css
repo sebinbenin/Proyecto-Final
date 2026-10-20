@@ -131,3 +131,42 @@
     border: 0;
     border-radius: 20px;
 }
+
+/* =====================================
+   RESPONSIVE (tablet; el celular ya tiene su media query de 700px arriba)
+===================================== */
+
+@media (max-width: 1024px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+    .info-card {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+    .main-image {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
+    .features {
+        margin-left: 0;
+    }
+    .modelo3d {
+        margin: 40px 0 0;
+        padding: 0 4%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-item {
+        margin-left: 15px;
+    }
+    .info-item p {
+        font-size: 1.1em;
+    }
+    .modelo3dcaracteristicas iframe {
+        min-height: 320px;
+    }
+}

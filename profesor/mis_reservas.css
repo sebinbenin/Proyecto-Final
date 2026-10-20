@@ -72,3 +72,23 @@ th {
     font-weight: bold;
     cursor: pointer;
 }
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 700px) {
+    .contenedor {
+        margin: 20px auto;
+        padding: 0 16px;
+    }
+    /* Las tablas se deslizan de costado en vez de salirse de la pantalla */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    th, td {
+        padding: 10px 12px;
+    }
+}
